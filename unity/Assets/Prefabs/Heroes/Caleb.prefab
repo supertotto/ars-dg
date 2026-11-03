@@ -11,6 +11,9 @@ GameObject:
   - component: {fileID: 8061727066524809121}
   - component: {fileID: 6562159384667821400}
   - component: {fileID: 3281302703964392579}
+  - component: {fileID: 4329325481034155517}
+  - component: {fileID: 8912165393490426310}
+  - component: {fileID: 8096362078845486321}
   m_Layer: 0
   m_Name: Caleb
   m_TagString: Untagged
@@ -70,11 +73,51 @@ MonoBehaviour:
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1a053bcfb4a807540a33ea073d1286ce, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.ClickToMove
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.Movimento
   velocidade: 3.5
   velocidadeGiro: 720
   distanciaParada: 0.15
-  chao:
+--- !u!114 &4329325481034155517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301881108601528563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3642aa62aa0f83542ac6bc9e4e85143d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Combat.Combatente
+  equipe: 0
+  vidaMaxima: 500
+  alturaDoCorpo: 1.2268157
+--- !u!114 &8912165393490426310
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301881108601528563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2fa72d484f16b6e4e8beeccabbf41056, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.AtaqueBasico
+  definicao: {fileID: 11400000, guid: 3015884863b2a444f98eee1c8688bfe3, type: 2}
+--- !u!114 &8096362078845486321
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301881108601528563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed10c40d8cf37e14082d253ccc5c568a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.ComandosDoJogador
+  clicavel:
     serializedVersion: 2
     m_Bits: 4294967295
 --- !u!1001 &8024684772149348667
