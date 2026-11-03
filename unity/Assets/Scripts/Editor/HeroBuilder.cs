@@ -220,8 +220,22 @@ namespace ARS.EditorTools
 
         static AnimatorController CriarAnimator(string caminho, AnimationClip parado, AnimationClip andar, AnimationClip correr, AnimationClip atacar)
         {
-            AssetDatabase.DeleteAsset(caminho);
-            var controlador = AnimatorController.CreateAnimatorControllerAtPath(caminho);
+            // Reaproveita o arquivo existente (mantém o mesmo GUID e as referências dos prefabs e cenas)
+            var controlador = AssetDatabase.LoadAssetAtPath<AnimatorController>(caminho);
+            if (controlador == null)
+            {
+                controlador = AnimatorController.CreateAnimatorControllerAtPath(caminho);
+            }
+            else
+            {
+                foreach (var p in controlador.parameters.ToArray()) controlador.RemoveParameter(p);
+                if (controlador.layers.Length == 0) controlador.AddLayer("Base Layer");
+                var antiga = controlador.layers[0].stateMachine;
+                foreach (var t in antiga.anyStateTransitions.ToArray()) antiga.RemoveAnyStateTransition(t);
+                foreach (var e in antiga.states.ToArray()) antiga.RemoveState(e.state);
+                foreach (var arvoreVelha in AssetDatabase.LoadAllAssetsAtPath(caminho).OfType<BlendTree>())
+                    Object.DestroyImmediate(arvoreVelha, true);
+            }
             controlador.AddParameter("Velocidade", AnimatorControllerParameterType.Float);
 
             var estado = controlador.CreateBlendTreeInController("Locomocao", out BlendTree arvore);
@@ -260,6 +274,7 @@ namespace ARS.EditorTools
                 aoAndar.interruptionSource = TransitionInterruptionSource.None;
             }
             EditorUtility.SetDirty(controlador);
+            AssetDatabase.SaveAssets();
             return controlador;
         }
 

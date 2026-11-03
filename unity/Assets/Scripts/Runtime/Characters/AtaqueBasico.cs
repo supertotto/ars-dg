@@ -32,7 +32,7 @@ namespace ARS.Characters
             movimento = GetComponent<Movimento>();
             eu = GetComponent<Combatente>();
             animator = GetComponentInChildren<Animator>();
-            if (animator != null)
+            if (animator != null && animator.runtimeAnimatorController != null)
                 foreach (var p in animator.parameters)
                     if (p.nameHash == ParametroAtacar) animatorTemAtaque = true;
         }
@@ -47,7 +47,7 @@ namespace ARS.Characters
         {
             alvo = null;
             golpeSaiEm = -1f;
-            if (animatorTemAtaque) animator.ResetTrigger(ParametroAtacar);
+            if (animatorTemAtaque && animator.isActiveAndEnabled) animator.ResetTrigger(ParametroAtacar);
         }
 
         void Update()
@@ -83,7 +83,7 @@ namespace ARS.Characters
             {
                 proximoAtaque = Time.time + definicao.intervalo;
                 golpeSaiEm = Time.time + definicao.tempoDoGolpe;
-                if (animatorTemAtaque) animator.SetTrigger(ParametroAtacar);
+                if (animatorTemAtaque && animator.isActiveAndEnabled) animator.SetTrigger(ParametroAtacar);
             }
         }
 

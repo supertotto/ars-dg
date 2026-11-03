@@ -26,6 +26,20 @@ namespace ARS.Characters
 
         public bool EmMovimento => destino.HasValue;
 
+        bool avisouSemAnimator;
+
+        bool AnimatorPronto()
+        {
+            if (animator == null || !animator.isActiveAndEnabled) return false;
+            if (animator.runtimeAnimatorController != null) return true;
+            if (!avisouSemAnimator)
+            {
+                avisouSemAnimator = true;
+                Debug.LogWarning($"[ARS] {name}: o Animator está sem controlador. Rode ARS → Montar heróis e recrie a cena de teste.", this);
+            }
+            return false;
+        }
+
         void Awake()
         {
             controle = GetComponent<CharacterController>();
@@ -80,7 +94,7 @@ namespace ARS.Characters
 
             controle.Move(deslocamento);
 
-            if (animator != null && Time.deltaTime > 0f)
+            if (AnimatorPronto() && Time.deltaTime > 0f)
             {
                 float velocidadeAtual = new Vector3(deslocamento.x, 0f, deslocamento.z).magnitude / Time.deltaTime;
                 animator.SetFloat(ParametroVelocidade, velocidadeAtual, 0.1f, Time.deltaTime);
