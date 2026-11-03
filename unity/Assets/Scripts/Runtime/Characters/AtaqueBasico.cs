@@ -47,6 +47,7 @@ namespace ARS.Characters
         {
             alvo = null;
             golpeSaiEm = -1f;
+            if (animatorTemAtaque) animator.ResetTrigger(ParametroAtacar);
         }
 
         void Update()

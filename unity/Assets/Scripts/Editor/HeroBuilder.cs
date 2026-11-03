@@ -251,6 +251,13 @@ namespace ARS.EditorTools
                 saida.hasExitTime = true;
                 saida.exitTime = 0.9f;
                 saida.duration = 0.1f;
+
+                // Se começar a andar no meio do golpe, corta o ataque na hora (evita "deslizar")
+                var aoAndar = estadoAtaque.AddTransition(estado);
+                aoAndar.AddCondition(AnimatorConditionMode.Greater, 0.3f, "Velocidade");
+                aoAndar.hasExitTime = false;
+                aoAndar.duration = 0.1f;
+                aoAndar.interruptionSource = TransitionInterruptionSource.None;
             }
             EditorUtility.SetDirty(controlador);
             return controlador;
