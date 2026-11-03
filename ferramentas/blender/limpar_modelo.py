@@ -389,6 +389,19 @@ def processar(caminho, saida, op, sem_bake):
     alto = juntar(malhas)
     tris_original = contar_tris(alto)
 
+    # Diagnóstico: de onde vem a cor do modelo
+    imagens = sorted({n.image.name + f" ({n.image.size[0]}x{n.image.size[1]})"
+                      for m in alto.data.materials if m and m.node_tree
+                      for n in m.node_tree.nodes if n.type == "TEX_IMAGE" and n.image})
+    print(f"  materiais: {len(alto.data.materials)}, texturas: {', '.join(imagens) or 'nenhuma'}, "
+          f"cor por vértice: {len(alto.data.color_attributes)}")
+
+    # Apaga resultados antigos deste modelo, para nunca sobrar arquivo de outra rodada
+    for antigo in (nome + ".fbx", nome + "_cor.png"):
+        caminho_antigo = os.path.join(saida, antigo)
+        if os.path.exists(caminho_antigo):
+            os.remove(caminho_antigo)
+
     ilhas, removidos = limpar_malha(alto, op["fracao_lixo"])
 
     # Posiciona o original antes de copiar, para os dois ficarem alinhados
@@ -409,6 +422,7 @@ def processar(caminho, saida, op, sem_bake):
         imagem = preparar_material_baixo(baixo, nome, op["textura"])
         transferir_textura(alto, baixo, imagem)
         brilho = brilho_medio(imagem)
+        print(f"  brilho da textura transferida: {brilho:.3f}")
         if brilho < 0.01:
             # Bake falhou (textura preta): volta para a textura e a UV originais
             print(f"  AVISO: a transferência de textura saiu preta (brilho {brilho:.3f}); usando a textura original")
@@ -418,6 +432,8 @@ def processar(caminho, saida, op, sem_bake):
             baixo.data.uv_layers.remove(baixo.data.uv_layers[UV_JOGO])
             bpy.data.images.remove(imagem)
             imagem = textura_original(baixo)
+            if imagem is None:
+                print("  ERRO: o modelo original não tem textura nem cor por vértice que o Blender consiga ler")
         else:
             remover_uvs_antigas(baixo)
     else:
