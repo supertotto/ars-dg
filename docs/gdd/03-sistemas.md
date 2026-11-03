@@ -113,6 +113,7 @@ Com o nivelamento para baixo, os atributos dos nós pequenos são reduzidos, mas
 
 ## Regras de combate
 
+- **Controle em chefes:** chefes são **imunes a controle** (atordoar, enraizar, transformar, empurrar…), como no WoW. O máximo que funciona é **interromper** uma magia que o chefe está conjurando.
 - **Golpes em área:** os golpes dos chefes acertam uma área (cone na frente, círculo em volta), não só o tank. Quem estiver na área leva dano — posicionamento vale para todos.
 - **Derrota (estilo WoW):** se o grupo inteiro cair, todos voltam ao último ponto seguro e o chefe reseta, **sem limite de tentativas**. A dungeon nunca falha por derrota.
 

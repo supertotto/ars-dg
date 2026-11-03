@@ -16,6 +16,63 @@ São **5 classes base**, cada uma com **3 subclasses de função fixa** (tank, h
 >
 > **Os kits por subclasse abaixo são da versão anterior** e serão refeitos herói por herói (em andamento). Skills deles podem ser reaproveitadas nos kits novos.
 
+## Padrão das teclas (vale para todos os heróis)
+
+Para o jogador não errar a tecla ao trocar de herói (o problema do pulo da Tristana no W e do dash do Lucian no E, no LoL):
+
+| Tecla | Papel |
+| --- | --- |
+| **Q** | Skill principal: o ataque ou a cura principal do herói |
+| **W** | Skill de apoio ou efeito específico do herói |
+| **E** | **Deslocamento**, quando o herói tiver um. Herói sem deslocamento usa o E para outra coisa |
+| **R** | Ultimate, cada uma do seu jeito |
+
+Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, ele fica no **E**.
+
+## Kits por herói (em andamento)
+
+### Ignis — Mago · tema: só bola de fogo
+
+| Tecla | Skill | Efeito |
+| --- | --- | --- |
+| Q | Bola de Fogo | Projétil que explode no impacto e deixa queimadura |
+| W | Órbita de Brasas | Três bolinhas de fogo giram em volta dele e queimam quem encosta; usar o W de novo lança as bolinhas na direção do mouse |
+| E | Bola Propulsora | Explode uma bola nos próprios pés: ele é arremessado para trás e queima quem estava perto |
+| R | Bola de Fogo Gigante | Cai do céu numa área marcada: dano concentrado no impacto, seguido de queimadura |
+| Passiva | Sequência Flamejante | Acertos seguidos de bola de fogo aumentam o dano das próximas, até um limite; o bônus some se ele ficar um tempo sem acertar |
+
+### Caleb — Mago · tema: aprendiz atrapalhado
+
+O caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é previsível, e o "erro" aparece na aparência (míssil em forma de sapo, explosão que solta borboletas).
+
+| Tecla | Skill | Efeito |
+| --- | --- | --- |
+| Q | Mísseis Mágicos | Mísseis perseguidores com **3 cargas** independentes: solta um de cada vez ou concentra todos num alvo |
+| W | Transformação | Transforma um inimigo em animal por um instante: ele não ataca nem usa skills. Em chefes, só interrompe magias |
+| E | Teleporte do Cappuccino | Teleporta e causa dano na chegada; o **Cappuccino** (o gato, que não pode ser atacado) fica no ponto de partida. Reativando, o Caleb volta para onde está o gato. No ponto do dano fica um **enxame de abelhas** picando os inimigos por alguns segundos |
+| R | Chuva de Sapinhos | Chuva de sapinhos e o **Cappuccino gigante** atacando os inimigos na área |
+| Passiva | Acerto Épico | Depois de um certo número de skills que acertam, a próxima sai **épica** (mais forte, com visual enorme) e **não gasta Mana** |
+
+### Rex — Ranger · tema: acrobata que nunca erra
+
+| Tecla | Skill | Efeito |
+| --- | --- | --- |
+| Q | (nome a definir) | Flecha que ricocheteia entre inimigos próximos, acertando cada um uma vez e perdendo dano a cada ricochete |
+| W | (nome a definir) | Aumenta a velocidade de ataque; acertos dão velocidade de movimento (não acumula) |
+| E | (nome a definir) | Mortal na direção escolhida, disparando uma flecha no alvo selecionado |
+| R | (nome a definir) | Sequência de disparos críticos com alcance aumentado |
+| Passiva | Foco (provisório) | Tiros seguidos no mesmo alvo aumentam o dano (no Q, só o primeiro alvo conta). Os ataques do Rex **não podem ser esquivados** |
+
+### Kael — Ranger · tema: atirador metódico
+
+| Tecla | Skill | Efeito |
+| --- | --- | --- |
+| Q | (nome a definir) | Flecha carregada que atravessa os inimigos em linha; quanto mais carrega, mais dano |
+| W | (nome a definir) | Chuva de flechas numa área marcada |
+| E | (nome a definir) | Salto para trás, deixando uma armadilha que enraíza |
+| R | (nome a definir) | Disparo canalizado de grande dano num alvo, ignorando parte da armadura |
+| Passiva | (nome a definir) | Mais dano conforme a distância, até um limite, e dano extra contra **alvo parado** (enraizado, conjurando ou sem se mover) — funciona em chefes |
+
 ## Modo customizado (futuro)
 
 - O personagem customizado começa com um **kit básico da subclasse** (ex.: o Mago começa com o Q *Disparo Místico*).
@@ -25,7 +82,15 @@ São **5 classes base**, cada uma com **3 subclasses de função fixa** (tank, h
 
 ## Armas e acessórios
 
-A segunda mão é sempre um **acessório próprio da subclasse**.
+> **Decisão (03/11/2026):** a subclasse define a **categoria** da arma; cada herói tem a **forma** dele (ex.: Bárbaro = machados → a Bella usa um machado grande de duas mãos, o Brok usa dois machados). No modo customizado, o jogador escolhe a subclasse e a forma da arma.
+>
+> **A forma muda o ataque básico e dá um bônus pequeno:** arma de duas mãos bate mais forte e mais devagar (ex.: bônus de penetração de armadura); arma dupla bate mais rápido e mais fraco (ex.: bônus de chance de crítico). As skills não mudam. Os bônus de cada forma estão em aberto.
+>
+> **Arma de duas mãos** ocupa os dois espaços (arma e acessório) e soma o efeito do acessório na própria arma.
+
+A tabela abaixo é da versão anterior (arma por subclasse) e vale como **categoria** e referência.
+
+A segunda mão é um **acessório próprio da subclasse**. (versão anterior)
 
 | Subclasse | Arma principal | Acessório |
 | --- | --- | --- |
