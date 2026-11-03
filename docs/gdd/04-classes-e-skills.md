@@ -52,7 +52,9 @@ Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, 
 
 > **Decisão (03/11/2026):** a subclasse define a **categoria** da arma; cada herói tem a **forma** dele (ex.: Bárbaro = machados → a Bella usa um machado grande de duas mãos, o Brok usa dois machados). No modo customizado, o jogador escolhe a subclasse e a forma da arma.
 >
-> Em aberto: se a forma muda o jogo (atributos, ataque básico) e o que ocupa o espaço de acessório quando a arma é de duas mãos.
+> **A forma muda o ataque básico e dá um bônus pequeno:** arma de duas mãos bate mais forte e mais devagar (ex.: bônus de penetração de armadura); arma dupla bate mais rápido e mais fraco (ex.: bônus de chance de crítico). As skills não mudam. Os bônus de cada forma estão em aberto.
+>
+> Em aberto: o que ocupa o espaço de acessório quando a arma é de duas mãos.
 
 A tabela abaixo é da versão anterior (arma por subclasse) e vale como **categoria** e referência.
 

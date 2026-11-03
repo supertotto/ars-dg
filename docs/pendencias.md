@@ -28,7 +28,7 @@
 - [ ] Refazer os kits: um kit próprio para cada um dos 20 heróis (em andamento)
 - [ ] Modo customizado: kit básico de cada subclasse, níveis de escolha, se ultimate e passiva entram na escolha
 - [ ] Árvore de talentos: por subclasse ou por herói, agora que os kits são por herói
-- [ ] Forma da arma: muda atributos/ataque básico ou é só visual? O que ocupa o acessório com arma de duas mãos?
+- [ ] Forma da arma: bônus de cada forma; o que ocupa o acessório com arma de duas mãos
 - [ ] Refazer a folha da Bella (Bárbara) com um machado grande de duas mãos
 - [ ] Fala dos "dois Redemoinhos" (Brok e Bella): ajustar se só o Brok girar no kit novo
 - [ ] Animações de personalidade por herói (parado, andar, comemoração) e animações de skill por herói
