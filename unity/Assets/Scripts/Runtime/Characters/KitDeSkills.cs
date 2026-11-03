@@ -1,0 +1,158 @@
+using ARS.Combat;
+using ARS.Data;
+using UnityEngine;
+
+namespace ARS.Characters
+{
+    public enum Tecla { Q, W, E, R }
+
+    /// <summary>
+    /// As 4 skills do personagem (Q, W, E, R) com recarga, cargas e custo.
+    /// As skills são dados (<see cref="SkillDef"/>); este componente só executa.
+    /// </summary>
+    [RequireComponent(typeof(Combatente))]
+    public class KitDeSkills : MonoBehaviour
+    {
+        public SkillDef q, w, e, r;
+
+        /// <summary>Estado de uma tecla: cargas disponíveis e quando volta a próxima.</summary>
+        public class Estado
+        {
+            public SkillDef skill;
+            public int cargas;
+            public float proximaCargaEm;
+        }
+
+        readonly Estado[] estados = new Estado[4];
+        Combatente eu;
+        Recurso recurso;
+        Animator animator;
+        static readonly int ParametroAtacar = Animator.StringToHash("Atacar");
+
+        public string UltimaMensagem { get; private set; }
+        float mensagemAte;
+
+        void Awake()
+        {
+            eu = GetComponent<Combatente>();
+            recurso = GetComponent<Recurso>();
+            animator = GetComponentInChildren<Animator>();
+            var skills = new[] { q, w, e, r };
+            for (int i = 0; i < 4; i++)
+                estados[i] = new Estado { skill = skills[i], cargas = skills[i] != null ? skills[i].cargas : 0 };
+        }
+
+        public Estado EstadoDe(Tecla tecla) => estados[(int)tecla];
+
+        /// <summary>Segundos até a próxima carga (0 = cheia).</summary>
+        public float RecargaRestante(Tecla tecla)
+        {
+            var estado = estados[(int)tecla];
+            if (estado.skill == null || estado.cargas >= estado.skill.cargas) return 0f;
+            return Mathf.Max(0f, estado.proximaCargaEm - Time.time);
+        }
+
+        void Update()
+        {
+            foreach (var estado in estados)
+            {
+                if (estado.skill == null || estado.cargas >= estado.skill.cargas) continue;
+                if (Time.time >= estado.proximaCargaEm)
+                {
+                    estado.cargas++;
+                    if (estado.cargas < estado.skill.cargas)
+                        estado.proximaCargaEm = Time.time + estado.skill.recarga;
+                }
+            }
+            if (Time.time > mensagemAte) UltimaMensagem = null;
+        }
+
+        /// <summary>Tenta usar a skill da tecla. "cursor" = ponto do chão sob o mouse.</summary>
+        public bool Usar(Tecla tecla, Combatente alvoSobCursor, Vector3 cursor)
+        {
+            var estado = estados[(int)tecla];
+            var skill = estado.skill;
+            if (skill == null) return Avisar($"{tecla}: sem skill");
+            if (estado.cargas <= 0) return Avisar($"{skill.nome}: recarregando");
+            if (recurso != null && !recurso.TemPelomenos(skill.custo)) return Avisar($"Sem {recurso.tipo} suficiente");
+
+            Combatente alvo = null;
+            if (skill.alvo == AlvoDaSkill.Proprio)
+            {
+                alvo = eu;
+            }
+            else
+            {
+                alvo = alvoSobCursor != null && eu.EhInimigoDe(alvoSobCursor) && alvoSobCursor.Vivo
+                    ? alvoSobCursor
+                    : InimigoMaisPerto(cursor, skill.raioDeBuscaNoCursor);
+                if (alvo == null) return Avisar("Sem alvo");
+                if (DistanciaPlana(transform.position, alvo.transform.position) > skill.alcance)
+                    return Avisar("Fora de alcance");
+            }
+
+            // Pagou: gasta recurso e carga
+            if (recurso != null) recurso.Gastar(skill.custo);
+            if (estado.cargas == skill.cargas) estado.proximaCargaEm = Time.time + skill.recarga;
+            estado.cargas--;
+
+            if (animator != null && animator.runtimeAnimatorController != null && animator.isActiveAndEnabled)
+                animator.SetTrigger(ParametroAtacar);
+
+            Executar(skill, alvo);
+            return true;
+        }
+
+        void Executar(SkillDef skill, Combatente alvo)
+        {
+            if (skill.entrega == EntregaDaSkill.Instantanea || alvo == eu)
+            {
+                AplicadorDeEfeitos.Aplicar(skill.efeitos, alvo, eu);
+                return;
+            }
+
+            Vector3 saida = PontoDeSaida(skill.pontoDeDisparo);
+            Projetil.Disparar(saida, alvo, skill.velocidadeProjetil, skill.corProjetil, skill.tamanhoProjetil,
+                              skill.rastro, skill.visualProjetil,
+                              atingido => AplicadorDeEfeitos.Aplicar(skill.efeitos, atingido, eu));
+        }
+
+        Vector3 PontoDeSaida(PontoDeDisparo ponto)
+        {
+            Transform osso = null;
+            if (animator != null && animator.isHuman)
+            {
+                if (ponto == PontoDeDisparo.MaoDireita) osso = animator.GetBoneTransform(HumanBodyBones.RightHand);
+                else if (ponto == PontoDeDisparo.MaoEsquerda) osso = animator.GetBoneTransform(HumanBodyBones.LeftHand);
+            }
+            return osso != null ? osso.position : transform.position + Vector3.up * 1.3f + transform.forward * 0.4f;
+        }
+
+        Combatente InimigoMaisPerto(Vector3 ponto, float raio)
+        {
+            Combatente melhor = null;
+            float melhorDistancia = raio;
+            foreach (var c in Combatente.Todos)
+            {
+                if (!c.Vivo || !eu.EhInimigoDe(c)) continue;
+                float d = DistanciaPlana(ponto, c.transform.position);
+                if (d <= melhorDistancia) { melhorDistancia = d; melhor = c; }
+            }
+            return melhor;
+        }
+
+        bool Avisar(string mensagem)
+        {
+            UltimaMensagem = mensagem;
+            mensagemAte = Time.time + 1.2f;
+            return false;
+        }
+
+        static float DistanciaPlana(Vector3 a, Vector3 b)
+        {
+            a.y = 0f;
+            b.y = 0f;
+            return Vector3.Distance(a, b);
+        }
+    }
+}

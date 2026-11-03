@@ -4,6 +4,7 @@ using System.Linq;
 using ARS.Characters;
 using ARS.Combat;
 using ARS.Data;
+using ARS.UI;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -158,7 +159,11 @@ namespace ARS.EditorTools
             combatente.equipe = Equipe.Jogadores;
             combatente.alturaDoCorpo = altura * 0.6f;
             raiz.AddComponent<AtaqueBasico>().definicao = DefinicaoDeAtaque(nome);
+            raiz.AddComponent<Recurso>(); // provisório: Mana para todos até existir a ficha do herói
+            var kit = raiz.AddComponent<KitDeSkills>();
+            AtribuirSkills(nome, kit);
             raiz.AddComponent<ComandosDoJogador>();
+            raiz.AddComponent<HudProvisorio>();
 
             ArsPaths.GarantirPasta(ArsPaths.Prefabs);
             string caminhoPrefab = $"{ArsPaths.Prefabs}/{nome}.prefab";
@@ -203,6 +208,29 @@ namespace ARS.EditorTools
             }
             return melhor;
         }
+
+        /// <summary>
+        /// Liga as skills do herói pela pasta Assets/Data/Skills/&lt;Herói&gt;: o arquivo com "_Q_" no nome
+        /// vai no Q, "_W_" no W, e assim por diante (ex.: Caleb_Q_MisseisMagicos).
+        /// </summary>
+        static void AtribuirSkills(string nome, KitDeSkills kit)
+        {
+            string pasta = $"{ArsPaths.Dados}/Skills/{nome}";
+            if (!AssetDatabase.IsValidFolder(pasta)) return;
+            var skills = AssetDatabase.FindAssets("t:SkillDef", new[] { pasta })
+                .Select(g => AssetDatabase.GUIDToAssetPath(g))
+                .Select(c => AssetDatabase.LoadAssetAtPath<SkillDef>(c))
+                .Where(sk => sk != null)
+                .ToList();
+            SkillDef Achar(string tecla) => skills.FirstOrDefault(sk => sk.name.ToUpperInvariant().Contains($"_{tecla}_"));
+            kit.q = Achar("Q");
+            kit.w = Achar("W");
+            kit.e = Achar("E");
+            kit.r = Achar("R");
+            Debug.Log($"[ARS] {nome}: skills Q={Nome(kit.q)}, W={Nome(kit.w)}, E={Nome(kit.e)}, R={Nome(kit.r)}");
+        }
+
+        static string Nome(SkillDef s) => s != null ? s.nome : "—";
 
         /// <summary>Ataque básico do herói em Assets/Data/Heroes (cria com valores provisórios se não existir).</summary>
         public static AtaqueBasicoDef DefinicaoDeAtaque(string nome)

@@ -1,3 +1,4 @@
+using System;
 using UnityEngine;
 
 namespace ARS.Combat
@@ -6,17 +7,24 @@ namespace ARS.Combat
     public class Projetil : MonoBehaviour
     {
         Combatente alvo;
-        Combatente origem;
-        float dano;
-        TipoDeDano tipo;
+        Action<Combatente> aoAcertar;
         float velocidade;
         float vidaRestante = 5f;
 
         static Material materialBase;
 
+        /// <summary>Projétil que causa dano simples ao acertar (ataque básico).</summary>
         public static void Disparar(Vector3 de, Combatente alvo, Combatente origem, float dano, TipoDeDano tipo,
                                     float velocidade, Color cor, float tamanho = 0.25f, bool rastro = true,
                                     GameObject visual = null)
+        {
+            Disparar(de, alvo, velocidade, cor, tamanho, rastro, visual,
+                     atingido => atingido.ReceberDano(dano, tipo, origem));
+        }
+
+        /// <summary>Projétil genérico: ao acertar, chama "aoAcertar" com o alvo (ex.: aplicar efeitos de uma skill).</summary>
+        public static void Disparar(Vector3 de, Combatente alvo, float velocidade, Color cor, float tamanho, bool rastro,
+                                    GameObject visual, Action<Combatente> aoAcertar)
         {
             GameObject objeto;
             if (visual != null)
@@ -60,9 +68,7 @@ namespace ARS.Combat
 
             var projetil = objeto.AddComponent<Projetil>();
             projetil.alvo = alvo;
-            projetil.origem = origem;
-            projetil.dano = dano;
-            projetil.tipo = tipo;
+            projetil.aoAcertar = aoAcertar;
             projetil.velocidade = velocidade;
         }
 
@@ -97,7 +103,7 @@ namespace ARS.Combat
 
             if ((destino - posicao).sqrMagnitude < 0.04f)
             {
-                alvo.ReceberDano(dano, tipo, origem);
+                aoAcertar?.Invoke(alvo);
                 Destroy(gameObject);
             }
         }

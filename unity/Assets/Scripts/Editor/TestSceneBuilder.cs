@@ -123,7 +123,10 @@ namespace ARS.EditorTools
             boneco.AddComponent<Combatente>().equipe = Equipe.Jogadores;
             var ataque = boneco.AddComponent<AtaqueBasico>();
             ataque.definicao = HeroBuilder.DefinicaoDeAtaque("Provisorio");
+            boneco.AddComponent<Recurso>();
+            boneco.AddComponent<KitDeSkills>();
             boneco.AddComponent<ComandosDoJogador>();
+            boneco.AddComponent<ARS.UI.HudProvisorio>();
             return boneco;
         }
 

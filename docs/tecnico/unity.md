@@ -38,6 +38,15 @@ Assets/
 - A animação de ataque é escolhida pelo nome do arquivo: `attack`, `atacar`, `ataque`, `cast` ou `spell`. Coloque na pasta `Animations` do herói.
 - A cena de teste tem **bonecos de treino**: mostram a vida, os números de dano e voltam à vida cheia depois de 3 segundos sem apanhar.
 
+## Skills (primeira versão)
+
+- Cada skill é um dado (`SkillDef`) em `Assets/Data/Skills/<Herói>/`. O nome do arquivo diz a tecla: `Caleb_Q_MisseisMagicos` vai no **Q** (`_W_`, `_E_`, `_R_` para as outras). **ARS → Montar heróis** liga sozinho.
+- Uma skill tem custo, recarga, **cargas** (ex.: 3 mísseis que voltam um de cada vez), alvo, alcance, como chega (na hora ou por projétil) e uma **lista de efeitos genéricos**.
+- Efeitos com código hoje: **Dano** e **Cura**. Os outros (escudo, lentidão, atordoar, enraizar, empurrar, elemento, invocar) já existem nos dados e serão implementados um a um.
+- **Q, W, E, R** usam a skill no inimigo sob o cursor (ou o mais perto do cursor).
+- Para criar uma skill nova: botão direito na pasta → **Create → ARS → Skill**.
+- HUD provisório com letras grandes: vida, Mana e as 4 teclas com cargas e recarga (o tamanho da letra fica no componente **Hud Provisorio**).
+
 ## Importação automática
 
 Ao arrastar um FBX do Mixamo para as pastas acima, o projeto já configura sozinho (só na primeira importação):

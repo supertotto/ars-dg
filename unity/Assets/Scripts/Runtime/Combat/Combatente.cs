@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ARS.Combat
@@ -24,7 +25,13 @@ namespace ARS.Combat
         public event Action<float, TipoDeDano, Combatente> AoReceberDano;
         public event Action<Combatente> AoMorrer;
 
+        static readonly List<Combatente> todos = new List<Combatente>();
+        /// <summary>Todos os combatentes ativos na cena.</summary>
+        public static IReadOnlyList<Combatente> Todos => todos;
+
         void Awake() => Vida = vidaMaxima;
+        void OnEnable() => todos.Add(this);
+        void OnDisable() => todos.Remove(this);
 
         public bool EhInimigoDe(Combatente outro) => outro != null && outro.equipe != equipe;
 
