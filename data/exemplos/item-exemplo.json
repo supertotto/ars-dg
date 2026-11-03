@@ -1,0 +1,18 @@
+{
+  "id": "escudo-casco-da-tartaruga",
+  "nome": "item.escudo_casco_da_tartaruga.nome",
+  "espaco": "acessorio",
+  "subclasses_permitidas": ["cavaleiro"],
+  "raridade": "lendario",
+  "atributos": { "vigor": 12, "forca": 6 },
+  "estatisticas": { "armadura": 40, "tenacidade": 10 },
+  "efeitos": [
+    {
+      "tipo": "efeito_unico",
+      "id": "efeito.casco_da_tartaruga",
+      "_descricao": "Efeito único exclusivo deste item (a definir)."
+    }
+  ],
+  "origem": { "dungeon": "pantano-sombrio", "chefe": "tartaruga-gigante" },
+  "_nota": "Exemplo ilustrativo. Nomes de dungeon/chefe e números provisórios."
+}

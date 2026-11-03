@@ -1,0 +1,25 @@
+{
+  "id": "mago",
+  "classe": "arcano",
+  "funcao": "dps",
+  "recurso": "mana",
+  "atributo_principal": "inteligencia",
+  "arma_principal": "cajado",
+  "acessorio": "grimorio",
+  "crescimento_por_nivel": {
+    "forca": 1,
+    "agilidade": 1,
+    "vigor": 1,
+    "inteligencia": 3,
+    "sabedoria": 2
+  },
+  "kit": {
+    "skill_1": "bola-de-fogo",
+    "skill_2": "chuva-de-meteoros",
+    "skill_3": "piscar",
+    "ultimate": "ira-dos-ceus",
+    "passiva": "acumulo-arcano"
+  },
+  "arvore_de_talentos": "talentos-mago",
+  "_nota": "Números provisórios: balanceamento em aberto."
+}

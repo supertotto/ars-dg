@@ -1,0 +1,34 @@
+{
+  "id": "talentos-mago",
+  "subclasse": "mago",
+  "pontos_por_nivel": 1,
+  "nos": [
+    {
+      "id": "mago-pequeno-01",
+      "tipo": "pequeno",
+      "efeitos": [{ "tipo": "modificar_atributo", "atributo": "inteligencia", "valor": 2 }]
+    },
+    {
+      "id": "mago-pequeno-02",
+      "tipo": "pequeno",
+      "efeitos": [{ "tipo": "modificar_atributo", "estatistica": "penetracao_magica", "valor": 3 }]
+    },
+    {
+      "id": "mago-medio-01",
+      "tipo": "medio",
+      "requer": ["mago-pequeno-01"],
+      "melhora_skill": "bola-de-fogo",
+      "efeitos": [{ "tipo": "modificar_recarga", "valor_segundos": -1 }]
+    },
+    {
+      "id": "mago-marco-10",
+      "tipo": "grande",
+      "nivel_minimo": 10,
+      "escolha": [
+        { "id": "mago-marco-10-a", "troca_skill": { "de": "piscar", "para": "a-definir" } },
+        { "id": "mago-marco-10-b", "melhora_skill": "chuva-de-meteoros", "efeitos": [] }
+      ]
+    }
+  ],
+  "_nota": "Estrutura de exemplo. Talentos reais e números: em aberto."
+}

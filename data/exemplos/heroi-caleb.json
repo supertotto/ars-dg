@@ -1,0 +1,30 @@
+{
+  "id": "caleb",
+  "nome": "heroi.caleb.nome",
+  "raca": "humano",
+  "subclasse": "mago",
+  "funcao": "dps",
+  "visual": {
+    "esqueleto": "humanoide-medio",
+    "modelo_padrao": "caleb-padrao",
+    "cores_dominantes": ["roxo", "dourado", "vermelho"]
+  },
+  "skins": [],
+  "afinidade": {
+    "capitulos": [
+      "historia.caleb.cap1",
+      "historia.caleb.cap2",
+      "historia.caleb.cap3",
+      "historia.caleb.cap4",
+      "historia.caleb.cap5"
+    ],
+    "cosmetico_afinidade": "cosmetico.caleb.afinidade",
+    "cosmetico_compra": "cosmetico.caleb.compra"
+  },
+  "duplas": ["ignis", "nana", "sir-quixote", "wix"],
+  "desbloqueio": {
+    "roleta": true,
+    "preco_ouro": 0,
+    "preco_premium": 0
+  }
+}

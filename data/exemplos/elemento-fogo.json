@@ -1,0 +1,14 @@
+{
+  "id": "fogo",
+  "nome": "elemento.fogo.nome",
+  "efeito": {
+    "tipo": "dano",
+    "nome": "queimadura",
+    "ao_longo_do_tempo": true,
+    "duracao_segundos": 4,
+    "intervalo_segundos": 1,
+    "tag_aplicada": "Estado.EmChamas"
+  },
+  "interacoes": [],
+  "_nota": "Interações entre elementos e números provisórios: em aberto."
+}

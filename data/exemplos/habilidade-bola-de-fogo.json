@@ -1,0 +1,24 @@
+{
+  "id": "bola-de-fogo",
+  "nome": "skill.bola_de_fogo.nome",
+  "descricao": "skill.bola_de_fogo.descricao",
+  "subclasse": "mago",
+  "custo": { "recurso": "mana", "valor": 20 },
+  "recarga_segundos": 6,
+  "alvo": { "tipo": "projetil", "alcance": 12, "velocidade": 18 },
+  "tags": ["Skill.Magia", "Elemento.Fogo"],
+  "ao_impactar": [
+    {
+      "tipo": "dano",
+      "area": { "tipo": "area_circulo", "raio": 2 },
+      "escala": { "atributo": "inteligencia", "fator": 1.2 },
+      "base": 30
+    },
+    {
+      "tipo": "aplicar_elemento",
+      "elemento": "fogo",
+      "area": { "tipo": "area_circulo", "raio": 2 }
+    }
+  ],
+  "_nota": "Números provisórios: balanceamento em aberto."
+}
