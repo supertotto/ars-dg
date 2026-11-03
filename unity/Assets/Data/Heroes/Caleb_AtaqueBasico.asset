@@ -19,5 +19,9 @@ MonoBehaviour:
   tipo: 1
   usaProjetil: 1
   velocidadeProjetil: 14
-  corProjetil: {r: 0.6, g: 0.4, b: 1, a: 1}
+  visualProjetil: {fileID: 3280519133390621005, guid: a71be3e7990efb040a07565c43cbb198, type: 3}
+  corProjetil: {r: 1, g: 0.9333334, b: 0.5490196, a: 1}
+  tamanhoProjetil: 0.25
+  rastro: 0
+  pontoDeDisparo: 0
   alturaDeDisparo: 1.3
