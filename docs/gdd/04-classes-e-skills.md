@@ -45,7 +45,8 @@ Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, 
 
 - **Decisão:** o caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é previsível, e o resultado aparece na aparência (míssil em forma de sapo, explosão que solta borboletas).
 - Kit em revisão (proposta vinda do ChatGPT): Q mísseis perseguidores com 3 cargas · W transforma um inimigo em animal · E teleporte com dano e volta ao ponto inicial · R chuva de sapinhos e gato gigante · passiva de skill fortalecida + ataque básico que recupera Mana.
-- Pontos a resolver: E muito parecido com o W da LeBlanc (LoL); passiva com funções demais; regra da transformação em chefes.
+- **E decidido — teleporte com o gato:** o Caleb teleporta e causa dano na chegada; o **gato fica no ponto de partida**. Reativando o E, ele **volta para onde está o gato**. No ponto onde causou dano fica um **enxame de abelhas** picando os inimigos por alguns segundos.
+- Pontos a resolver: passiva com funções demais; regra da transformação em chefes.
 
 ## Modo customizado (futuro)
 
