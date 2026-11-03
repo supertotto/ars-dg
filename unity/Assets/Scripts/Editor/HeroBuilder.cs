@@ -107,6 +107,13 @@ namespace ARS.EditorTools
             clipes.AddRange(ClipesNaPasta(pastaHeroi + "/Animations"));
             clipes.AddRange(ClipesNaPasta(ArsPaths.Animacoes));
 
+            var naoHumanoides = clipes.Where(c => !c.humanMotion).Select(c => c.name).Distinct().ToList();
+            if (naoHumanoides.Count > 0)
+                Debug.LogWarning($"[ARS] {nome}: {naoHumanoides.Count} animação(ões) não estão como Humanoid e foram ignoradas " +
+                                 $"({string.Join(", ", naoHumanoides.Take(8))}). Use ARS → Reconfigurar FBX.");
+            clipes = clipes.Where(c => c.humanMotion).ToList();
+            Debug.Log($"[ARS] {nome}: {clipes.Count} animação(ões) humanoide(s) encontrada(s): {string.Join(", ", clipes.Select(c => c.name).Distinct().Take(15))}");
+
             var parado = Escolher(clipes, PalavrasParado);
             var andar = Escolher(clipes, PalavrasAndar);
             var correr = Escolher(clipes, PalavrasCorrer);

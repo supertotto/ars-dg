@@ -27,6 +27,7 @@ Assets/
 | --- | --- |
 | Criar pastas do projeto | Cria a estrutura acima |
 | Novo herói (criar pastas)… | Pede o nome e cria `Characters/<Herói>/Model`, `Textures`, `Animations`, `Materials` |
+| Reconfigurar FBX (Humanoid e animações) | Refaz a configuração de todos os FBX. Use se as animações não tocarem (por exemplo, se os arquivos entraram antes das ferramentas) |
 | Montar heróis | Para cada herói com FBX em `Model/`: cria o material com a textura, o Animator (parado/andar/correr) e o prefab com movimento por clique |
 | Criar cena de teste | Chão, blocos, luz, câmera isométrica e os heróis montados. Botão direito anda, rodinha dá zoom |
 

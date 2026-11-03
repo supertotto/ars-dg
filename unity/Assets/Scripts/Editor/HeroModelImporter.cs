@@ -22,14 +22,26 @@ namespace ARS.EditorTools
 
         void OnPreprocessModel()
         {
-            if (!assetPath.ToLowerInvariant().EndsWith(".fbx")) return;
             if (!assetImporter.importSettingsMissing) return;
+            ConfigurarModelo((ModelImporter)assetImporter, assetPath);
+        }
 
-            bool modelo = ArsPaths.EhModeloDeHeroi(assetPath);
-            bool animacao = ArsPaths.EhAnimacao(assetPath);
-            if (!modelo && !animacao) return;
+        void OnPreprocessAnimation()
+        {
+            if (!assetImporter.importSettingsMissing) return;
+            ConfigurarClipes((ModelImporter)assetImporter, assetPath);
+        }
 
-            var importador = (ModelImporter)assetImporter;
+        public static bool EhFbxDoProjeto(string caminho) =>
+            caminho.ToLowerInvariant().EndsWith(".fbx") &&
+            (ArsPaths.EhModeloDeHeroi(caminho) || ArsPaths.EhAnimacao(caminho));
+
+        /// <summary>Rig Humanoid e opções de importação.</summary>
+        public static void ConfigurarModelo(ModelImporter importador, string caminho)
+        {
+            if (!EhFbxDoProjeto(caminho)) return;
+            bool modelo = ArsPaths.EhModeloDeHeroi(caminho);
+
             importador.animationType = ModelImporterAnimationType.Human;
             importador.avatarSetup = ModelImporterAvatarSetup.CreateFromThisModel;
             importador.importAnimation = true;
@@ -37,24 +49,20 @@ namespace ARS.EditorTools
             importador.importCameras = false;
             importador.importLights = false;
 
-            if (animacao)
-            {
-                // Arquivo só de animação: não precisa de materiais
-                importador.materialImportMode = ModelImporterMaterialImportMode.None;
-            }
+            // Arquivo só de animação: não precisa de materiais
+            if (!modelo) importador.materialImportMode = ModelImporterMaterialImportMode.None;
         }
 
-        void OnPreprocessAnimation()
+        /// <summary>Nome, loop e "Bake Into Pose" de cada clipe.</summary>
+        public static void ConfigurarClipes(ModelImporter importador, string caminho)
         {
-            if (!assetImporter.importSettingsMissing) return;
-            if (!ArsPaths.EhAnimacao(assetPath) && !ArsPaths.EhModeloDeHeroi(assetPath)) return;
+            if (!EhFbxDoProjeto(caminho)) return;
 
-            var importador = (ModelImporter)assetImporter;
             var clipes = importador.defaultClipAnimations;
             if (clipes == null || clipes.Length == 0) return;
 
-            string nomeArquivo = System.IO.Path.GetFileNameWithoutExtension(assetPath).ToLowerInvariant();
-            bool ehModelo = ArsPaths.EhModeloDeHeroi(assetPath);
+            string nomeArquivo = System.IO.Path.GetFileNameWithoutExtension(caminho).ToLowerInvariant();
+            bool ehModelo = ArsPaths.EhModeloDeHeroi(caminho);
             bool ciclo = PalavrasDeCiclo.Any(p => nomeArquivo.Contains(p));
 
             foreach (var clipe in clipes)
@@ -80,6 +88,46 @@ namespace ARS.EditorTools
             }
 
             importador.clipAnimations = clipes;
+        }
+
+        /// <summary>
+        /// Refaz a configuração de todos os FBX (útil se eles entraram no projeto
+        /// antes destas ferramentas, ou se algo foi mexido à mão).
+        /// </summary>
+        [MenuItem("ARS/Reconfigurar FBX (Humanoid e animações)", priority = 10)]
+        public static void ReconfigurarTodos()
+        {
+            var caminhos = AssetDatabase.FindAssets("t:GameObject", new[] { ArsPaths.Personagens, ArsPaths.Animacoes }
+                    .Where(p => AssetDatabase.IsValidFolder(p)).ToArray())
+                .Select(g => AssetDatabase.GUIDToAssetPath(g))
+                .Where(EhFbxDoProjeto)
+                .Distinct()
+                .ToList();
+
+            try
+            {
+                for (int i = 0; i < caminhos.Count; i++)
+                {
+                    string caminho = caminhos[i];
+                    EditorUtility.DisplayProgressBar("ARS", "Reconfigurando " + caminho, (float)i / caminhos.Count);
+                    if (!(AssetImporter.GetAtPath(caminho) is ModelImporter importador)) continue;
+
+                    // 1ª passada: rig Humanoid (os clipes só ficam humanoides depois disso)
+                    ConfigurarModelo(importador, caminho);
+                    importador.clipAnimations = new ModelImporterClipAnimation[0];
+                    importador.SaveAndReimport();
+
+                    // 2ª passada: nome, loop e Bake Into Pose
+                    ConfigurarClipes(importador, caminho);
+                    importador.SaveAndReimport();
+                }
+            }
+            finally
+            {
+                EditorUtility.ClearProgressBar();
+            }
+
+            Debug.Log($"[ARS] {caminhos.Count} FBX reconfigurado(s). Agora rode ARS → Montar heróis.");
         }
     }
 }
