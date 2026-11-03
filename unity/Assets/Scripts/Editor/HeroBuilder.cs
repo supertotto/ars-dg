@@ -2,6 +2,8 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using ARS.Characters;
+using ARS.Combat;
+using ARS.Data;
 using UnityEditor;
 using UnityEditor.Animations;
 using UnityEngine;
@@ -22,6 +24,7 @@ namespace ARS.EditorTools
         static readonly string[] PalavrasParado = { "parado", "idle", "breathing" };
         static readonly string[] PalavrasAndar = { "andar", "walk" };
         static readonly string[] PalavrasCorrer = { "correr", "run", "jog", "sprint" };
+        static readonly string[] PalavrasAtaque = { "atacar", "ataque", "attack", "cast", "spell" };
         static readonly string[] PalavrasExcluidas = { "back", "left", "right", "strafe", "turn", "tras", "esquerda", "direita", "start", "stop" };
 
         [MenuItem("ARS/Criar pastas do projeto", priority = 0)]
@@ -117,11 +120,12 @@ namespace ARS.EditorTools
             var parado = Escolher(clipes, PalavrasParado);
             var andar = Escolher(clipes, PalavrasAndar);
             var correr = Escolher(clipes, PalavrasCorrer);
+            var atacar = Escolher(clipes, PalavrasAtaque);
 
             if (parado == null) Debug.LogWarning($"[ARS] {nome}: nenhuma animação de parado (idle) encontrada.");
             if (andar == null) Debug.LogWarning($"[ARS] {nome}: nenhuma animação de andar (walk) encontrada.");
 
-            var controlador = CriarAnimator($"{pastaHeroi}/{nome}.controller", parado, andar, correr);
+            var controlador = CriarAnimator($"{pastaHeroi}/{nome}.controller", parado, andar, correr, atacar);
             var material = CriarMaterial(nome, pastaHeroi);
 
             // Monta o objeto na cena temporariamente
@@ -149,7 +153,12 @@ namespace ARS.EditorTools
             controle.height = altura;
             controle.radius = Mathf.Clamp(Mathf.Max(limites.size.x, limites.size.z) * 0.25f, 0.25f, 0.6f);
             controle.center = new Vector3(0f, altura / 2f, 0f);
-            raiz.AddComponent<ClickToMove>();
+            raiz.AddComponent<Movimento>();
+            var combatente = raiz.AddComponent<Combatente>();
+            combatente.equipe = Equipe.Jogadores;
+            combatente.alturaDoCorpo = altura * 0.6f;
+            raiz.AddComponent<AtaqueBasico>().definicao = DefinicaoDeAtaque(nome);
+            raiz.AddComponent<ComandosDoJogador>();
 
             ArsPaths.GarantirPasta(ArsPaths.Prefabs);
             string caminhoPrefab = $"{ArsPaths.Prefabs}/{nome}.prefab";
@@ -157,7 +166,7 @@ namespace ARS.EditorTools
             Object.DestroyImmediate(raiz);
 
             Debug.Log($"[ARS] {nome}: prefab salvo em {caminhoPrefab} " +
-                      $"(parado: {Nome(parado)}, andar: {Nome(andar)}, correr: {Nome(correr)}, textura: {(material != null ? "sim" : "a do FBX")}).");
+                      $"(parado: {Nome(parado)}, andar: {Nome(andar)}, correr: {Nome(correr)}, atacar: {Nome(atacar)}, textura: {(material != null ? "sim" : "a do FBX")}).");
             return true;
         }
 
@@ -193,7 +202,23 @@ namespace ARS.EditorTools
             return melhor;
         }
 
-        static AnimatorController CriarAnimator(string caminho, AnimationClip parado, AnimationClip andar, AnimationClip correr)
+        /// <summary>Ataque básico do herói em Assets/Data/Heroes (cria com valores provisórios se não existir).</summary>
+        public static AtaqueBasicoDef DefinicaoDeAtaque(string nome)
+        {
+            string pasta = ArsPaths.Dados + "/Heroes";
+            ArsPaths.GarantirPasta(pasta);
+            string caminho = $"{pasta}/{nome}_AtaqueBasico.asset";
+            var def = AssetDatabase.LoadAssetAtPath<AtaqueBasicoDef>(caminho);
+            if (def == null)
+            {
+                def = ScriptableObject.CreateInstance<AtaqueBasicoDef>();
+                AssetDatabase.CreateAsset(def, caminho);
+                Debug.Log($"[ARS] {nome}: ataque básico criado com valores provisórios em {caminho} (ajuste lá).");
+            }
+            return def;
+        }
+
+        static AnimatorController CriarAnimator(string caminho, AnimationClip parado, AnimationClip andar, AnimationClip correr, AnimationClip atacar)
         {
             AssetDatabase.DeleteAsset(caminho);
             var controlador = AnimatorController.CreateAnimatorControllerAtPath(caminho);
@@ -208,7 +233,25 @@ namespace ARS.EditorTools
             if (andar != null) arvore.AddChild(andar, correr != null ? LimiarAndar : LimiarCorrer);
             if (correr != null) arvore.AddChild(correr, LimiarCorrer);
 
-            controlador.layers[0].stateMachine.defaultState = estado;
+            var maquina = controlador.layers[0].stateMachine;
+            maquina.defaultState = estado;
+
+            // Ataque: dispara pelo gatilho "Atacar" e volta para a locomoção no fim
+            controlador.AddParameter("Atacar", AnimatorControllerParameterType.Trigger);
+            if (atacar != null)
+            {
+                var estadoAtaque = maquina.AddState("Atacar");
+                estadoAtaque.motion = atacar;
+                var entrada = maquina.AddAnyStateTransition(estadoAtaque);
+                entrada.AddCondition(AnimatorConditionMode.If, 0f, "Atacar");
+                entrada.hasExitTime = false;
+                entrada.duration = 0.05f;
+                entrada.canTransitionToSelf = true;
+                var saida = estadoAtaque.AddTransition(estado);
+                saida.hasExitTime = true;
+                saida.exitTime = 0.9f;
+                saida.duration = 0.1f;
+            }
             EditorUtility.SetDirty(controlador);
             return controlador;
         }

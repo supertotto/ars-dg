@@ -31,6 +31,13 @@ Assets/
 | Montar heróis | Para cada herói com FBX em `Model/`: cria o material com a textura, o Animator (parado/andar/correr) e o prefab com movimento por clique |
 | Criar cena de teste | Chão, blocos, luz, câmera isométrica e os heróis montados. Botão direito anda, rodinha dá zoom |
 
+## Combate (primeira versão)
+
+- **Botão direito no chão:** anda. **Botão direito num inimigo:** ataca sozinho até receber outra ordem (estilo LoL).
+- O ataque básico de cada herói é um dado em `Assets/Data/Heroes/<Herói>_AtaqueBasico.asset` (alcance, intervalo, dano, projétil). Criado com valores **provisórios** na primeira montagem; ajuste no Inspector.
+- A animação de ataque é escolhida pelo nome do arquivo: `attack`, `atacar`, `ataque`, `cast` ou `spell`. Coloque na pasta `Animations` do herói.
+- A cena de teste tem **bonecos de treino**: mostram a vida, os números de dano e voltam à vida cheia depois de 3 segundos sem apanhar.
+
 ## Importação automática
 
 Ao arrastar um FBX do Mixamo para as pastas acima, o projeto já configura sozinho (só na primeira importação):

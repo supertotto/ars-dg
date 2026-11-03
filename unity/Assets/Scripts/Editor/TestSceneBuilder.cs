@@ -1,6 +1,7 @@
 using System.Linq;
 using ARS.CameraSystem;
 using ARS.Characters;
+using ARS.Combat;
 using UnityEditor;
 using UnityEditor.SceneManagement;
 using UnityEngine;
@@ -63,7 +64,7 @@ namespace ARS.EditorTools
                 var heroi = (GameObject)PrefabUtility.InstantiatePrefab(prefabs[i]);
                 heroi.transform.position = new Vector3(i * 2f, 0f, 0f);
                 if (i == 0) controlado = heroi;
-                else if (heroi.TryGetComponent(out ClickToMove movimento)) movimento.enabled = false;
+                else if (heroi.TryGetComponent(out ComandosDoJogador comandos)) comandos.enabled = false;
             }
 
             if (controlado == null)
@@ -71,6 +72,10 @@ namespace ARS.EditorTools
                 controlado = BonecoProvisorio();
                 Debug.Log("[ARS] Nenhum herói montado ainda: usando um boneco provisório.");
             }
+
+            // Bonecos de treino para testar o ataque básico (botão direito em cima deles)
+            CriarBonecoDeTreino(new Vector3(4f, 0f, 5f));
+            CriarBonecoDeTreino(new Vector3(-3f, 0f, 7f));
 
             // Câmera isométrica seguindo o herói controlado
             var camera = Camera.main;
@@ -114,8 +119,29 @@ namespace ARS.EditorTools
             controle.height = 2f;
             controle.radius = 0.5f;
             controle.center = new Vector3(0f, 1f, 0f);
-            boneco.AddComponent<ClickToMove>();
+            boneco.AddComponent<Movimento>();
+            boneco.AddComponent<Combatente>().equipe = Equipe.Jogadores;
+            var ataque = boneco.AddComponent<AtaqueBasico>();
+            ataque.definicao = HeroBuilder.DefinicaoDeAtaque("Provisorio");
+            boneco.AddComponent<ComandosDoJogador>();
             return boneco;
+        }
+
+        static void CriarBonecoDeTreino(Vector3 posicao)
+        {
+            var boneco = new GameObject("Boneco de treino");
+            boneco.transform.position = posicao;
+            var corpo = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+            corpo.name = "Corpo";
+            corpo.transform.SetParent(boneco.transform, false);
+            corpo.transform.localPosition = new Vector3(0f, 1f, 0f);
+            corpo.GetComponent<Renderer>().sharedMaterial = CriarMaterial("Assets/Materials/Boneco_Treino.mat", new Color(0.75f, 0.25f, 0.2f));
+
+            var combatente = boneco.AddComponent<Combatente>();
+            combatente.equipe = Equipe.Inimigos;
+            combatente.vidaMaxima = 1000f;
+            combatente.alturaDoCorpo = 1.1f;
+            boneco.AddComponent<BonecoDeTreino>();
         }
 
         static Material CriarMaterial(string caminho, Color cor)

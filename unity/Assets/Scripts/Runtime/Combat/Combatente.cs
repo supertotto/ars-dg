@@ -1,0 +1,48 @@
+using System;
+using UnityEngine;
+
+namespace ARS.Combat
+{
+    public enum Equipe { Jogadores, Inimigos }
+
+    public enum TipoDeDano { Fisico, Magico }
+
+    /// <summary>Tudo que causa ou recebe dano: heróis, inimigos, bonecos de treino.</summary>
+    public class Combatente : MonoBehaviour
+    {
+        public Equipe equipe = Equipe.Jogadores;
+        [Tooltip("Vida máxima (provisório).")]
+        public float vidaMaxima = 500f;
+        [Tooltip("Altura do centro do corpo, para mirar projéteis e mostrar números.")]
+        public float alturaDoCorpo = 1.1f;
+
+        public float Vida { get; private set; }
+        public bool Vivo => Vida > 0f;
+        public Vector3 Centro => transform.position + Vector3.up * alturaDoCorpo;
+
+        /// <summary>(quantidade, tipo, quem causou)</summary>
+        public event Action<float, TipoDeDano, Combatente> AoReceberDano;
+        public event Action<Combatente> AoMorrer;
+
+        void Awake() => Vida = vidaMaxima;
+
+        public bool EhInimigoDe(Combatente outro) => outro != null && outro.equipe != equipe;
+
+        public void ReceberDano(float quantidade, TipoDeDano tipo, Combatente origem)
+        {
+            if (!Vivo || quantidade <= 0f) return;
+            Vida = Mathf.Max(0f, Vida - quantidade);
+            AoReceberDano?.Invoke(quantidade, tipo, origem);
+            NumeroFlutuante.Mostrar(Centro + Vector3.up * 0.8f, quantidade, tipo);
+            if (!Vivo) AoMorrer?.Invoke(this);
+        }
+
+        public void Curar(float quantidade)
+        {
+            if (quantidade <= 0f) return;
+            Vida = Mathf.Min(vidaMaxima, Vida + quantidade);
+        }
+
+        public void RestaurarVida() => Vida = vidaMaxima;
+    }
+}
