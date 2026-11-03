@@ -20,9 +20,10 @@ namespace ARS.CameraSystem
 
         [Header("Distância e zoom")]
         public float distancia = 16f;
-        public float distanciaMinima = 8f;
+        public float distanciaMinima = 4f;
         public float distanciaMaxima = 26f;
-        public float velocidadeZoom = 0.01f;
+        [Tooltip("Metros de zoom por clique da rodinha.")]
+        public float passoZoom = 1.5f;
 
         [Header("Suavização")]
         [Tooltip("Quanto maior, mais rápido a câmera alcança o alvo.")]
@@ -32,12 +33,22 @@ namespace ARS.CameraSystem
         {
             if (alvo == null) return;
 
+            // Zoom: rodinha do mouse, ou teclas + e - (também as do teclado numérico)
+            float zoom = 0f;
             var mouse = Mouse.current;
             if (mouse != null)
             {
                 float rolagem = mouse.scroll.ReadValue().y;
-                distancia = Mathf.Clamp(distancia - rolagem * velocidadeZoom, distanciaMinima, distanciaMaxima);
+                if (Mathf.Abs(rolagem) > 0.01f) zoom = Mathf.Sign(rolagem); // cada "clique" vale o mesmo em qualquer mouse
             }
+            var teclado = Keyboard.current;
+            if (teclado != null)
+            {
+                if (teclado.equalsKey.wasPressedThisFrame || teclado.numpadPlusKey.wasPressedThisFrame) zoom = 1f;
+                if (teclado.minusKey.wasPressedThisFrame || teclado.numpadMinusKey.wasPressedThisFrame) zoom = -1f;
+            }
+            if (zoom != 0f)
+                distancia = Mathf.Clamp(distancia - zoom * passoZoom, distanciaMinima, distanciaMaxima);
 
             Quaternion orientacao = Quaternion.Euler(inclinacao, rotacao, 0f);
             Vector3 destino = alvo.position - orientacao * Vector3.forward * distancia;

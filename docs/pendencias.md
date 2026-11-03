@@ -60,7 +60,7 @@
 ## Técnico
 
 - [ ] Números do ataque básico (alcance 6 m, 1 ataque/s, 20 de dano, projétil): provisórios, iguais para todos por enquanto
-- [ ] Controles e câmera: botão direito anda (provisório, estilo LoL); velocidade 3,5 m/s; câmera com inclinação 50°, rotação 45° e distância 16 m
+- [ ] Controles e câmera: botão direito anda (provisório, estilo LoL); velocidade 3,5 m/s; câmera com inclinação 50°, rotação 45° e distância 16 m (zoom de 4 a 26 m)
 - [ ] Backend: monólito modular ou microsserviços (ver [Arquitetura](tecnico/arquitetura.md))
 - [ ] Usar plataforma pronta (Nakama, PlayFab, Unity Gaming Services) ou backend próprio
 - [ ] Modelo de rede do multiplayer
