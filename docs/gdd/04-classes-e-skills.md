@@ -38,8 +38,8 @@ Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, 
 | Q | Bola de Fogo | Projétil que explode no impacto e deixa queimadura |
 | W | Órbita de Brasas | Três bolinhas de fogo giram em volta dele e queimam quem encosta; usar o W de novo lança as bolinhas na direção do mouse |
 | E | Bola Propulsora | Explode uma bola nos próprios pés: ele é arremessado para trás e queima quem estava perto |
-| R | Bola de fogo gigante | Em aberto: carregada, caindo do céu ou rolando pela arena |
-| Passiva | — | Em aberto |
+| R | Bola de Fogo Gigante | Cai do céu numa área marcada: dano concentrado no impacto, seguido de queimadura |
+| Passiva | Sequência Flamejante | Acertos seguidos de bola de fogo aumentam o dano das próximas, até um limite; o bônus some se ele ficar um tempo sem acertar |
 
 ### Caleb — Mago · tema: aprendiz atrapalhado
 
