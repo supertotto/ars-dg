@@ -95,7 +95,8 @@ namespace ARS.Characters
             {
                 Vector3 saida = PontoDeSaida();
                 Projetil.Disparar(saida, alvo, eu, definicao.dano, definicao.tipo,
-                                  definicao.velocidadeProjetil, definicao.corProjetil);
+                                  definicao.velocidadeProjetil, definicao.corProjetil,
+                                  definicao.tamanhoProjetil, definicao.rastro, definicao.visualProjetil);
             }
             else
             {

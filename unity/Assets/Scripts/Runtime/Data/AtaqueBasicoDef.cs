@@ -25,7 +25,14 @@ namespace ARS.Data
         [Tooltip("Desligado = ataque corpo a corpo (o dano sai na hora).")]
         public bool usaProjetil = true;
         public float velocidadeProjetil = 14f;
+        [Tooltip("Visual próprio do projétil (um prefab com modelo, partículas, luz...). Vazio = bolinha simples.")]
+        public GameObject visualProjetil;
+        [Tooltip("Cor da bolinha simples e do rastro.")]
         public Color corProjetil = new Color(0.6f, 0.4f, 1f);
+        [Tooltip("Tamanho da bolinha simples, em metros.")]
+        public float tamanhoProjetil = 0.25f;
+        [Tooltip("Deixa um rastro atrás do projétil.")]
+        public bool rastro = true;
         [Tooltip("De onde o projétil sai. Mãos usam o esqueleto Humanoid; quando houver arma, a ponta dela.")]
         public PontoDeDisparo pontoDeDisparo = PontoDeDisparo.MaoDireita;
         [Tooltip("Altura de onde o projétil sai, se o ponto for \"Altura\" ou se a mão não for encontrada.")]

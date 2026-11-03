@@ -15,27 +15,42 @@ namespace ARS.Combat
         static Material materialBase;
 
         public static void Disparar(Vector3 de, Combatente alvo, Combatente origem, float dano, TipoDeDano tipo,
-                                    float velocidade, Color cor)
+                                    float velocidade, Color cor, float tamanho = 0.25f, bool rastro = true,
+                                    GameObject visual = null)
         {
-            var objeto = GameObject.CreatePrimitive(PrimitiveType.Sphere);
-            objeto.name = "Projetil";
-            Destroy(objeto.GetComponent<Collider>());
-            objeto.transform.position = de;
-            objeto.transform.localScale = Vector3.one * 0.25f;
+            GameObject objeto;
+            if (visual != null)
+            {
+                objeto = Instantiate(visual, de, Quaternion.identity);
+                objeto.name = "Projetil";
+                foreach (var colisor in objeto.GetComponentsInChildren<Collider>()) Destroy(colisor);
+            }
+            else
+            {
+                objeto = GameObject.CreatePrimitive(PrimitiveType.Sphere);
+                objeto.name = "Projetil";
+                Destroy(objeto.GetComponent<Collider>());
+                objeto.transform.position = de;
+                objeto.transform.localScale = Vector3.one * tamanho;
 
-            var render = objeto.GetComponent<MeshRenderer>();
-            if (materialBase == null)
-            {
-                var shader = Shader.Find("Universal Render Pipeline/Unlit");
-                if (shader != null) materialBase = new Material(shader);
+                var render = objeto.GetComponent<MeshRenderer>();
+                render.sharedMaterial = MaterialColorido(cor);
+                render.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
-            if (materialBase != null)
+
+            if (rastro)
             {
-                var material = new Material(materialBase);
-                material.SetColor("_BaseColor", cor);
-                render.sharedMaterial = material;
+                var trilha = objeto.AddComponent<TrailRenderer>();
+                trilha.time = 0.25f;
+                trilha.startWidth = tamanho * 0.8f;
+                trilha.endWidth = 0f;
+                trilha.sharedMaterial = MaterialColorido(cor);
+                var corFinal = cor;
+                corFinal.a = 0f;
+                trilha.startColor = cor;
+                trilha.endColor = corFinal;
+                trilha.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
             }
-            render.shadowCastingMode = UnityEngine.Rendering.ShadowCastingMode.Off;
 
             var projetil = objeto.AddComponent<Projetil>();
             projetil.alvo = alvo;
@@ -43,6 +58,20 @@ namespace ARS.Combat
             projetil.dano = dano;
             projetil.tipo = tipo;
             projetil.velocidade = velocidade;
+        }
+
+        static Material MaterialColorido(Color cor)
+        {
+            if (materialBase == null)
+            {
+                var shader = Shader.Find("Universal Render Pipeline/Unlit");
+                if (shader == null) shader = Shader.Find("Sprites/Default");
+                materialBase = new Material(shader);
+            }
+            var material = new Material(materialBase);
+            material.SetColor("_BaseColor", cor);
+            material.color = cor;
+            return material;
         }
 
         void Update()
@@ -56,6 +85,8 @@ namespace ARS.Combat
 
             Vector3 destino = alvo.Centro;
             Vector3 posicao = Vector3.MoveTowards(transform.position, destino, velocidade * Time.deltaTime);
+            Vector3 direcao = destino - posicao;
+            if (direcao.sqrMagnitude > 0.0001f) transform.rotation = Quaternion.LookRotation(direcao);
             transform.position = posicao;
 
             if ((destino - posicao).sqrMagnitude < 0.04f)
