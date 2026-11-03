@@ -24,14 +24,22 @@ namespace ARS.EditorTools
             using (new EditorGUILayout.HorizontalScope())
             {
                 GUILayout.FlexibleSpace();
-                if (GUILayout.Button("Cancelar", GUILayout.Width(90))) Close();
+                bool cancelar = GUILayout.Button("Cancelar", GUILayout.Width(90));
                 GUI.enabled = !string.IsNullOrWhiteSpace(nome);
-                if (GUILayout.Button("Criar", GUILayout.Width(90)))
-                {
-                    HeroBuilder.CriarPastasDoHeroi(nome);
-                    Close();
-                }
+                bool criar = GUILayout.Button("Criar", GUILayout.Width(90));
                 GUI.enabled = true;
+
+                if (cancelar || criar)
+                {
+                    // Fecha e cria as pastas depois de terminar de desenhar a janela
+                    string nomeEscolhido = nome;
+                    EditorApplication.delayCall += () =>
+                    {
+                        if (criar) HeroBuilder.CriarPastasDoHeroi(nomeEscolhido);
+                    };
+                    Close();
+                    GUIUtility.ExitGUI();
+                }
             }
         }
     }
