@@ -7,6 +7,8 @@ namespace ARS.Data
     /// Definição do ataque básico (dados, não código). Cada herói aponta para uma.
     /// Todos os números são PROVISÓRIOS — balanceamento em aberto (docs/pendencias.md).
     /// </summary>
+    public enum PontoDeDisparo { MaoDireita, MaoEsquerda, Altura }
+
     [CreateAssetMenu(menuName = "ARS/Ataque básico", fileName = "AtaqueBasico")]
     public class AtaqueBasicoDef : ScriptableObject
     {
@@ -24,7 +26,9 @@ namespace ARS.Data
         public bool usaProjetil = true;
         public float velocidadeProjetil = 14f;
         public Color corProjetil = new Color(0.6f, 0.4f, 1f);
-        [Tooltip("Altura de onde o projétil sai.")]
+        [Tooltip("De onde o projétil sai. Mãos usam o esqueleto Humanoid; quando houver arma, a ponta dela.")]
+        public PontoDeDisparo pontoDeDisparo = PontoDeDisparo.MaoDireita;
+        [Tooltip("Altura de onde o projétil sai, se o ponto for \"Altura\" ou se a mão não for encontrada.")]
         public float alturaDeDisparo = 1.3f;
     }
 }

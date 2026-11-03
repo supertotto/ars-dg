@@ -93,7 +93,7 @@ namespace ARS.Characters
 
             if (definicao.usaProjetil)
             {
-                Vector3 saida = transform.position + Vector3.up * definicao.alturaDeDisparo + transform.forward * 0.4f;
+                Vector3 saida = PontoDeSaida();
                 Projetil.Disparar(saida, alvo, eu, definicao.dano, definicao.tipo,
                                   definicao.velocidadeProjetil, definicao.corProjetil);
             }
@@ -101,6 +101,20 @@ namespace ARS.Characters
             {
                 alvo.ReceberDano(definicao.dano, definicao.tipo, eu);
             }
+        }
+
+        Vector3 PontoDeSaida()
+        {
+            Transform osso = null;
+            if (animator != null && animator.isHuman)
+            {
+                if (definicao.pontoDeDisparo == PontoDeDisparo.MaoDireita)
+                    osso = animator.GetBoneTransform(HumanBodyBones.RightHand);
+                else if (definicao.pontoDeDisparo == PontoDeDisparo.MaoEsquerda)
+                    osso = animator.GetBoneTransform(HumanBodyBones.LeftHand);
+            }
+            if (osso != null) return osso.position + transform.forward * 0.15f;
+            return transform.position + Vector3.up * definicao.alturaDeDisparo + transform.forward * 0.4f;
         }
 
         static float DistanciaPlana(Vector3 a, Vector3 b)
