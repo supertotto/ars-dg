@@ -24,6 +24,12 @@ namespace ARS.Combat
                 objeto = Instantiate(visual, de, Quaternion.identity);
                 objeto.name = "Projetil";
                 foreach (var colisor in objeto.GetComponentsInChildren<Collider>()) Destroy(colisor);
+                // Quem move o projétil é este script: física do pack (gravidade, empurrão) fica desligada
+                foreach (var corpo in objeto.GetComponentsInChildren<Rigidbody>())
+                {
+                    corpo.isKinematic = true;
+                    corpo.useGravity = false;
+                }
             }
             else
             {
