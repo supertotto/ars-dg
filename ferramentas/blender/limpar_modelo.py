@@ -223,7 +223,53 @@ def preparar_material_baixo(obj, nome, tamanho):
     return imagem
 
 
+def preparar_material_alto(alto):
+    """
+    Liga a cor do modelo original direto numa emissão, para o bake ler a cor pura,
+    sem luz e sem depender do tipo de material que o gerador criou (PBR, unlit...).
+    Usa a textura de cor se houver; senão, a cor por vértice (TripoSR e afins).
+    """
+    for i, original in enumerate(alto.data.materials):
+        if original is None or not original.node_tree:
+            continue
+        # Cópia, para não estragar o material original (o de reserva, se o bake falhar)
+        mat = original.copy()
+        alto.data.materials[i] = mat
+        arvore = mat.node_tree
+        nos = arvore.nodes
+        saida = next((n for n in nos if n.type == "OUTPUT_MATERIAL"), None) or nos.new("ShaderNodeOutputMaterial")
+
+        fonte = None
+        bsdf = next((n for n in nos if n.type == "BSDF_PRINCIPLED"), None)
+        if bsdf is not None and bsdf.inputs["Base Color"].is_linked:
+            fonte = bsdf.inputs["Base Color"].links[0].from_socket
+        if fonte is None:
+            tex = next((n for n in nos if n.type == "TEX_IMAGE" and n.image is not None), None)
+            if tex is not None:
+                fonte = tex.outputs["Color"]
+        if fonte is None and alto.data.color_attributes:
+            atributo = nos.new("ShaderNodeVertexColor")
+            atributo.layer_name = alto.data.color_attributes[0].name
+            fonte = atributo.outputs["Color"]
+
+        emissao = nos.new("ShaderNodeEmission")
+        if fonte is not None:
+            arvore.links.new(fonte, emissao.inputs["Color"])
+        elif bsdf is not None:
+            emissao.inputs["Color"].default_value = bsdf.inputs["Base Color"].default_value
+        arvore.links.new(emissao.outputs["Emission"], saida.inputs["Surface"])
+
+    # Modelo sem material nenhum, só com cor por vértice
+    if not alto.data.materials and alto.data.color_attributes:
+        mat = bpy.data.materials.new("cor_por_vertice")
+        if not mat.node_tree:
+            mat.use_nodes = True
+        alto.data.materials.append(mat)
+        preparar_material_alto(alto)
+
+
 def transferir_textura(alto, baixo, imagem):
+    preparar_material_alto(alto)
     cena = bpy.context.scene
     cena.render.engine = "CYCLES"
     cena.cycles.device = "CPU"
@@ -232,17 +278,38 @@ def transferir_textura(alto, baixo, imagem):
     bake.use_selected_to_active = True
     bake.use_cage = False
     tamanho = max(baixo.dimensions)
-    bake.cage_extrusion = tamanho * 0.01
-    bake.max_ray_distance = tamanho * 0.03
-    bake.margin = 8
+    bake.cage_extrusion = tamanho * 0.02
+    bake.max_ray_distance = 0.0  # sem limite: acha a superfície original mesmo longe
+    bake.margin = 16
     ativar_uv(baixo)
     selecionar([alto, baixo], baixo)
-    bpy.ops.object.bake(type="DIFFUSE", pass_filter={"COLOR"})
+    bpy.ops.object.bake(type="EMIT")
     imagem.pack()
     mat = baixo.data.materials[0]
     nos = mat.node_tree.nodes
     bsdf = next(n for n in nos if n.type == "BSDF_PRINCIPLED")
     mat.node_tree.links.new(nos.active.outputs["Color"], bsdf.inputs["Base Color"])
+
+
+def brilho_medio(imagem):
+    """Média dos pixels (0 = tudo preto). Serve para detectar bake que falhou."""
+    try:
+        import numpy as np
+        px = np.empty(len(imagem.pixels), dtype=np.float32)
+        imagem.pixels.foreach_get(px)
+        return float(px.reshape(-1, 4)[:, :3].mean())
+    except Exception:  # noqa: BLE001
+        amostra = imagem.pixels[: 4 * 4096]
+        return sum(v for i, v in enumerate(amostra) if i % 4 != 3) / max(1, len(amostra) * 3 / 4)
+
+
+def textura_original(obj):
+    for mat in obj.data.materials:
+        if mat and mat.node_tree:
+            for n in mat.node_tree.nodes:
+                if n.type == "TEX_IMAGE" and n.image is not None:
+                    return n.image
+    return None
 
 
 def remover_uvs_antigas(obj):
@@ -277,12 +344,26 @@ def posicionar(obj, altura):
 # Exportação
 # --------------------------------------------------------------------------
 
-def exportar(obj, caminho_fbx, imagem):
-    if imagem is not None:
-        caminho_png = os.path.splitext(caminho_fbx)[0] + "_cor.png"
-        imagem.filepath_raw = caminho_png
+def salvar_png(imagem, caminho):
+    if imagem.packed_file is None or imagem.source == "GENERATED":
+        imagem.filepath_raw = caminho
         imagem.file_format = "PNG"
         imagem.save()
+        return
+    # Imagem embutida no arquivo original (GLB): copia os pixels para uma imagem nova
+    largura, altura = imagem.size
+    copia = bpy.data.images.new(imagem.name + "_png", largura, altura, alpha=True)
+    px = [0.0] * (largura * altura * 4)
+    imagem.pixels.foreach_get(px)
+    copia.pixels.foreach_set(px)
+    copia.filepath_raw = caminho
+    copia.file_format = "PNG"
+    copia.save()
+
+
+def exportar(obj, caminho_fbx, imagem):
+    if imagem is not None:
+        salvar_png(imagem, os.path.splitext(caminho_fbx)[0] + "_cor.png")
     selecionar([obj], obj)
     bpy.ops.export_scene.fbx(
         filepath=caminho_fbx,
@@ -308,6 +389,19 @@ def processar(caminho, saida, op, sem_bake):
     alto = juntar(malhas)
     tris_original = contar_tris(alto)
 
+    # Diagnóstico: de onde vem a cor do modelo
+    imagens = sorted({n.image.name + f" ({n.image.size[0]}x{n.image.size[1]})"
+                      for m in alto.data.materials if m and m.node_tree
+                      for n in m.node_tree.nodes if n.type == "TEX_IMAGE" and n.image})
+    print(f"  materiais: {len(alto.data.materials)}, texturas: {', '.join(imagens) or 'nenhuma'}, "
+          f"cor por vértice: {len(alto.data.color_attributes)}")
+
+    # Apaga resultados antigos deste modelo, para nunca sobrar arquivo de outra rodada
+    for antigo in (nome + ".fbx", nome + "_cor.png"):
+        caminho_antigo = os.path.join(saida, antigo)
+        if os.path.exists(caminho_antigo):
+            os.remove(caminho_antigo)
+
     ilhas, removidos = limpar_malha(alto, op["fracao_lixo"])
 
     # Posiciona o original antes de copiar, para os dois ficarem alinhados
@@ -323,10 +417,27 @@ def processar(caminho, saida, op, sem_bake):
 
     imagem = None
     if not sem_bake:
+        materiais_originais = list(baixo.data.materials)
         criar_uv(baixo)
         imagem = preparar_material_baixo(baixo, nome, op["textura"])
         transferir_textura(alto, baixo, imagem)
-        remover_uvs_antigas(baixo)
+        brilho = brilho_medio(imagem)
+        print(f"  brilho da textura transferida: {brilho:.3f}")
+        if brilho < 0.01:
+            # Bake falhou (textura preta): volta para a textura e a UV originais
+            print(f"  AVISO: a transferência de textura saiu preta (brilho {brilho:.3f}); usando a textura original")
+            baixo.data.materials.clear()
+            for m in materiais_originais:
+                baixo.data.materials.append(m)
+            baixo.data.uv_layers.remove(baixo.data.uv_layers[UV_JOGO])
+            bpy.data.images.remove(imagem)
+            imagem = textura_original(baixo)
+            if imagem is None:
+                print("  ERRO: o modelo original não tem textura nem cor por vértice que o Blender consiga ler")
+        else:
+            remover_uvs_antigas(baixo)
+    else:
+        imagem = textura_original(baixo)
 
     bpy.data.objects.remove(alto, do_unlink=True)
     exportar(baixo, os.path.join(saida, nome + ".fbx"), imagem)
