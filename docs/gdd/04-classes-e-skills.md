@@ -47,7 +47,8 @@ Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, 
 - Kit em revisão (proposta vinda do ChatGPT): Q mísseis perseguidores com 3 cargas · W transforma um inimigo em animal · E teleporte com dano e volta ao ponto inicial · R chuva de sapinhos e gato gigante · passiva de skill fortalecida + ataque básico que recupera Mana.
 - **E decidido — teleporte com o gato:** o Caleb teleporta e causa dano na chegada; o **gato, o Cappuccino, fica no ponto de partida** (não pode ser atacado). Reativando o E, ele **volta para onde está o gato**. No ponto onde causou dano fica um **enxame de abelhas** picando os inimigos por alguns segundos.
 - **Passiva decidida — Acerto Épico:** depois de um certo número de skills que acertam, a próxima sai **épica** (mais forte, com visual enorme) e **não gasta Mana**.
-- Pontos a resolver: regra da transformação (W) em chefes; confirmar Q, W e R.
+- Em chefes, o W só interrompe magias (chefes são imunes a controle).
+- Pontos a resolver: confirmar Q, W e R.
 
 ## Modo customizado (futuro)
 
