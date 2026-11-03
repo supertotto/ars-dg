@@ -50,7 +50,13 @@ Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, 
 
 ## Armas e acessórios
 
-A segunda mão é sempre um **acessório próprio da subclasse**.
+> **Decisão (03/11/2026):** a subclasse define a **categoria** da arma; cada herói tem a **forma** dele (ex.: Bárbaro = machados → a Bella usa um machado grande de duas mãos, o Brok usa dois machados). No modo customizado, o jogador escolhe a subclasse e a forma da arma.
+>
+> Em aberto: se a forma muda o jogo (atributos, ataque básico) e o que ocupa o espaço de acessório quando a arma é de duas mãos.
+
+A tabela abaixo é da versão anterior (arma por subclasse) e vale como **categoria** e referência.
+
+A segunda mão é um **acessório próprio da subclasse**. (versão anterior)
 
 | Subclasse | Arma principal | Acessório |
 | --- | --- | --- |
