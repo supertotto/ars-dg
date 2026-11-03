@@ -92,7 +92,7 @@
 
 - **Personalidade:** aprendiz do Ignis — o Ignis ensina a teoria, o Caleb aprende errando. **Imprevisível:** os feitiços saem trocados e cada erro vira uma surpresa (sapos que a Nana adora, borboletas, nevasca no deserto, o chefe virando galinha por três segundos). De vez em quando sai um **acerto épico** que nem o Ignis consegue fazer.
 - **História:** tentou o primeiro teleporte para ir à escola de magia e caiu no meio do salão da Guilda.
-- **Visual:** magrinho, atrapalhado, simpático (vibe do Presto, sem copiar o chapéu/túnica dele). Óculos tortos e remendados, como se tivesse copiado os do Ignis. Chapéu de mago de aba larga, chamuscado e remendado. Grimório com a estrela de seis pontas, cajado e um **gato laranja e branco** no ombro. **Cores:** roxo e dourado com remendos vermelhos. Folha: `caleb.jpg` (estudos em `caleb-estudos/`).
+- **Visual:** magrinho, atrapalhado, simpático (vibe do Presto, sem copiar o chapéu/túnica dele). Óculos tortos e remendados, como se tivesse copiado os do Ignis. Chapéu de mago de aba larga, chamuscado e remendado. Grimório com a estrela de seis pontas, cajado e um **gato laranja e branco, o Cappuccino,** no ombro. **Cores:** roxo e dourado com remendos vermelhos. Folha: `caleb.jpg` (estudos em `caleb-estudos/`).
 
 ## Sacerdotes
 
