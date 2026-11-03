@@ -69,8 +69,8 @@ namespace ARS.Combat
                 materialBase = new Material(shader);
             }
             var material = new Material(materialBase);
-            material.SetColor("_BaseColor", cor);
-            material.color = cor;
+            if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", cor);
+            if (material.HasProperty("_Color")) material.SetColor("_Color", cor);
             return material;
         }
 

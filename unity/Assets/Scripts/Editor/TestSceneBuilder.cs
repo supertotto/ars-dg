@@ -151,8 +151,8 @@ namespace ARS.EditorTools
             var shader = Shader.Find("Universal Render Pipeline/Lit");
             if (shader == null) shader = Shader.Find("Standard");
             material = new Material(shader);
-            material.SetColor("_BaseColor", cor);
-            material.color = cor;
+            if (material.HasProperty("_BaseColor")) material.SetColor("_BaseColor", cor);
+            if (material.HasProperty("_Color")) material.SetColor("_Color", cor);
             ArsPaths.GarantirPasta("Assets/Materials");
             AssetDatabase.CreateAsset(material, caminho);
             return material;
