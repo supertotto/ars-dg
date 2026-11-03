@@ -41,6 +41,12 @@ Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, 
 | R | Bola de fogo gigante | Em aberto: carregada, caindo do céu ou rolando pela arena |
 | Passiva | — | Em aberto |
 
+### Caleb — Mago · tema: aprendiz atrapalhado
+
+- **Decisão:** o caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é previsível, e o resultado aparece na aparência (míssil em forma de sapo, explosão que solta borboletas).
+- Kit em revisão (proposta vinda do ChatGPT): Q mísseis perseguidores com 3 cargas · W transforma um inimigo em animal · E teleporte com dano e volta ao ponto inicial · R chuva de sapinhos e gato gigante · passiva de skill fortalecida + ataque básico que recupera Mana.
+- Pontos a resolver: E muito parecido com o W da LeBlanc (LoL); passiva com funções demais; regra da transformação em chefes.
+
 ## Modo customizado (futuro)
 
 - O personagem customizado começa com um **kit básico da subclasse** (ex.: o Mago começa com o Q *Disparo Místico*).
@@ -54,7 +60,7 @@ Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, 
 >
 > **A forma muda o ataque básico e dá um bônus pequeno:** arma de duas mãos bate mais forte e mais devagar (ex.: bônus de penetração de armadura); arma dupla bate mais rápido e mais fraco (ex.: bônus de chance de crítico). As skills não mudam. Os bônus de cada forma estão em aberto.
 >
-> Em aberto: o que ocupa o espaço de acessório quando a arma é de duas mãos.
+> **Arma de duas mãos** ocupa os dois espaços (arma e acessório) e soma o efeito do acessório na própria arma.
 
 A tabela abaixo é da versão anterior (arma por subclasse) e vale como **categoria** e referência.
 
