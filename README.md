@@ -46,5 +46,7 @@ docs/
   pendencias.md Decisões em aberto
 data/
   exemplos/     Exemplos de dados (JSON)
+ferramentas/
+  blender/      Script de limpeza dos modelos 3D gerados por IA
 CLAUDE.md       Instruções para o Claude Code
 ```

@@ -1,0 +1,5 @@
+{
+  "_nota": "Valores por modelo (o nome é o do arquivo, sem extensão). Todos PROVISÓRIOS: alturas e orçamentos estão em aberto em docs/pendencias.md. Copie para config.json e ajuste.",
+  "caleb": { "altura": 1.8, "tris": 15000, "textura": 2048 },
+  "maximilian": { "altura": 2.2 }
+}

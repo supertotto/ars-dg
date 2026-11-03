@@ -33,6 +33,7 @@
 - [ ] Voadora: mecânica
 - [ ] Esquema de controle no console
 - [ ] Interações entre elementos
+- [ ] Altura de cada herói e orçamento de triângulos e textura dos modelos (o script de limpeza usa 1,8 m, 15.000 triângulos e 2048 px, provisórios)
 
 ## Conteúdo
 

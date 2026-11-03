@@ -20,3 +20,9 @@ crashlytics-build.properties
 # SO
 .DS_Store
 Thumbs.db
+
+# Ferramentas: modelos de entrada e saída ficam fora do Git (arquivos grandes)
+ferramentas/blender/entrada/*
+ferramentas/blender/saida/*
+!ferramentas/blender/entrada/.gitkeep
+!ferramentas/blender/saida/.gitkeep
