@@ -31,6 +31,8 @@ namespace ARS.EditorTools
                 .OrderBy(p => p)
                 .Select(p => AssetDatabase.LoadAssetAtPath<GameObject>(p))
                 .Where(p => p != null && p.GetComponentsInChildren<Renderer>(true).Length > 0)
+                // Pula os objetos da demonstração do pack (câmeras, "player" de demo etc.)
+                .Where(p => !p.name.ToLowerInvariant().Contains("demo"))
                 .Take(Maximo)
                 .ToList();
 
