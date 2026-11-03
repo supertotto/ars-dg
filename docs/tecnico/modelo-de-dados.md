@@ -6,8 +6,8 @@
 
 | Entidade | Arquivo de exemplo | O que define |
 | --- | --- | --- |
-| Herói | `heroi-caleb.json` | Raça, subclasse, nome, visual padrão, skins, afinidade |
-| Subclasse | `subclasse-mago.json` | Classe, recurso, atributo principal, armas, kit de skills, árvore de talentos |
+| Herói | `heroi-caleb.json` | Raça, subclasse, nome, **kit próprio**, visual padrão, skins, afinidade |
+| Subclasse | `subclasse-mago.json` | Classe, recurso, atributo principal, armas, kit básico do modo customizado, árvore de talentos |
 | Habilidade | `habilidade-bola-de-fogo.json` | Custo, recarga, alvo, lista de efeitos |
 | Elemento | `elemento-fogo.json` | Efeito aplicado e interações |
 | Item | `item-exemplo.json` | Espaço, raridade, atributos, estatísticas, efeitos |

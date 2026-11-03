@@ -13,7 +13,7 @@ Cada herói tem **8 ações ativas** (uma por botão) e **2 passivas**.
 
 | Origem | Ativas | Passivas |
 | --- | --- | --- |
-| Subclasse | 3 skills + 1 ultimate | 1 |
+| Herói (kit próprio) | 3 skills + 1 ultimate | 1 |
 | Raça | 1 | 1 |
 | Feitiços | 2, escolhidos antes da dungeon | — |
 | Consumível | 1 atalho | — |

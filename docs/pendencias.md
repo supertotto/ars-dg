@@ -25,6 +25,10 @@
 
 ## Sistemas
 
+- [ ] Refazer os kits: um kit próprio para cada um dos 20 heróis (em andamento)
+- [ ] Modo customizado: kit básico de cada subclasse, níveis de escolha, se ultimate e passiva entram na escolha
+- [ ] Árvore de talentos: por subclasse ou por herói, agora que os kits são por herói
+- [ ] Animações de personalidade por herói (parado, andar, comemoração) e animações de skill por herói
 - [ ] Equipamento por herói ou compartilhado entre eles
 - [ ] Nível máximo e faixas de nível das dungeons
 - [ ] Lista final de feitiços

@@ -20,7 +20,7 @@ Jogo em Unity: dungeon crawler cooperativo isométrico (dungeons estilo WoW + sk
 1. **Orientado a dados.** Heróis, subclasses, skills, itens, talentos, inimigos e dungeons são dados (ScriptableObjects/JSON), não classes.
 2. **Skills = lista de efeitos genéricos** (dano, cura, escudo, empurrão, enraizar, aplicar elemento, invocar...). Skill nova é combinação nova; se faltar algo, crie um efeito genérico novo.
 3. **Tags e modificadores** para estados. As regras checam tags, nunca nomes.
-4. **Proibido caso especial por herói** (`if (heroi == "...")`). As skills são da subclasse e valem para qualquer personagem dela.
+4. **Proibido caso especial por herói** (`if (heroi == "...")`). Cada herói tem kit próprio, mas o kit é só dados: uma lista de skills montadas com efeitos genéricos. Qualquer skill pode ser usada por qualquer personagem (o modo customizado depende disso).
 5. **Teste automático para cada skill.**
 6. **Números fora do código**, em dados.
 7. Módulos com dependência em uma direção (ver [Arquitetura](docs/tecnico/arquitetura.md)). UI sem regra de jogo.

@@ -11,7 +11,7 @@ O problema que jogos como o LoL enfrentam depois de anos não é o servidor — 
 1. **Gameplay orientado a dados.** Heróis, subclasses, habilidades, itens, talentos, inimigos e dungeons são **dados** (ScriptableObjects no Unity, exportáveis para JSON), não classes de código.
 2. **Habilidades compostas por efeitos genéricos.** Uma habilidade é uma lista de efeitos reutilizáveis: dano, cura, escudo, empurrão, puxão, enraizar, atordoar, lentidão, aplicar elemento, invocar, teleporte, buff/debuff de atributo. Uma skill nova é uma combinação nova, não código novo.
 3. **Sistema de tags e modificadores** (inspirado no Gameplay Ability System da Unreal): estados como `Atordoado`, `EmChamas`, `Invisivel`, `Furia.Ativa` são tags; regras checam tags, nunca o nome do herói.
-4. **Nenhum caso especial por herói.** Proibido `if (heroi == "Caleb")`. Se uma subclasse precisa de algo novo (por exemplo, o demônio invocado do Bruxo), cria-se um **efeito genérico novo** que qualquer habilidade poderia usar.
+4. **Nenhum caso especial por herói.** Proibido `if (heroi == "Caleb")`. Cada herói tem kit próprio, mas o kit é só uma lista de skills em dados; qualquer skill pode ser equipada por qualquer personagem (base do modo customizado). Se um herói precisa de algo novo (por exemplo, o demônio invocado do Wix), cria-se um **efeito genérico novo** que qualquer habilidade poderia usar.
 5. **Testes automáticos por habilidade.** Cada skill tem um teste que monta um cenário (lançador, alvo, posição) e confere o resultado. Mudou um efeito? Os testes mostram o que quebrou.
 6. **Números fora do código.** Balanceamento em tabelas de dados, ajustável sem recompilar.
 

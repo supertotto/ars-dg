@@ -10,7 +10,18 @@ São **5 classes base**, cada uma com **3 subclasses de função fixa** (tank, h
 | Ladinos | Energia | Espadachim | Bardo | Assassino |
 | Naturalistas | Essência | Guardião da Floresta | Druida | Ranger |
 
-> **Regra:** as skills são da **subclasse**, valem para qualquer personagem dela (herói ou, no futuro, personagem customizado) e **não dependem da história de nenhum herói**.
+> **Decisão (03/11/2026): cada herói fixo tem o seu próprio kit** (3 skills + ultimate + passiva), especializado na personalidade e na história dele (ex.: o Ignis só usa bola de fogo, então o kit dele é todo de fogo). Os heróis já começam com o kit próprio.
+>
+> A **subclasse** continua definindo a função (tank, healer, DPS), o recurso, o atributo principal, a arma e o acessório.
+>
+> **Os kits por subclasse abaixo são da versão anterior** e serão refeitos herói por herói (em andamento). Skills deles podem ser reaproveitadas nos kits novos.
+
+## Modo customizado (futuro)
+
+- O personagem customizado começa com um **kit básico da subclasse** (ex.: o Mago começa com o Q *Disparo Místico*).
+- Ao atingir certos níveis (ex.: nível 3), ele **escolhe uma das versões dos heróis daquela subclasse** para evoluir aquela skill (ex.: o Q vira *Mísseis Mágicos*, do Caleb, ou *Bola de Fogo*, do Ignis).
+- O elenco fixo vira a **biblioteca de skills** do modo customizado: cada herói novo aumenta as opções.
+- Em aberto: os níveis de escolha, se a ultimate e a passiva também entram nisso, e os kits básicos de cada subclasse.
 
 ## Armas e acessórios
 

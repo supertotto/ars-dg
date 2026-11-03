@@ -4,10 +4,21 @@
   "raca": "humano",
   "subclasse": "mago",
   "funcao": "dps",
+  "kit": {
+    "skill_1": "misseis-magicos",
+    "skill_2": "a-definir",
+    "skill_3": "a-definir",
+    "ultimate": "a-definir",
+    "passiva": "a-definir"
+  },
   "visual": {
     "esqueleto": "humanoide-medio",
     "modelo_padrao": "caleb-padrao",
-    "cores_dominantes": ["roxo", "dourado", "vermelho"]
+    "cores_dominantes": [
+      "roxo",
+      "dourado",
+      "vermelho"
+    ]
   },
   "skins": [],
   "afinidade": {
@@ -21,7 +32,12 @@
     "cosmetico_afinidade": "cosmetico.caleb.afinidade",
     "cosmetico_compra": "cosmetico.caleb.compra"
   },
-  "duplas": ["ignis", "nana", "sir-quixote", "wix"],
+  "duplas": [
+    "ignis",
+    "nana",
+    "sir-quixote",
+    "wix"
+  ],
   "desbloqueio": {
     "roleta": true,
     "preco_ouro": 0,
