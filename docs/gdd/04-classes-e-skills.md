@@ -53,6 +53,26 @@ O caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é pr
 | R | Chuva de Sapinhos | Chuva de sapinhos e o **Cappuccino gigante** atacando os inimigos na área |
 | Passiva | Acerto Épico | Depois de um certo número de skills que acertam, a próxima sai **épica** (mais forte, com visual enorme) e **não gasta Mana** |
 
+### Rex — Ranger · tema: acrobata que nunca erra
+
+| Tecla | Skill | Efeito |
+| --- | --- | --- |
+| Q | (nome a definir) | Flecha que ricocheteia entre inimigos próximos, acertando cada um uma vez e perdendo dano a cada ricochete |
+| W | (nome a definir) | Aumenta a velocidade de ataque; acertos dão velocidade de movimento (não acumula) |
+| E | (nome a definir) | Mortal na direção escolhida, disparando uma flecha no alvo selecionado |
+| R | (nome a definir) | Sequência de disparos críticos com alcance aumentado |
+| Passiva | Foco (provisório) | Tiros seguidos no mesmo alvo aumentam o dano (no Q, só o primeiro alvo conta). Os ataques do Rex **não podem ser esquivados** |
+
+### Kael — Ranger · tema: atirador metódico
+
+| Tecla | Skill | Efeito |
+| --- | --- | --- |
+| Q | (nome a definir) | Flecha carregada que atravessa os inimigos em linha; quanto mais carrega, mais dano |
+| W | (nome a definir) | Chuva de flechas numa área marcada |
+| E | (nome a definir) | Salto para trás, deixando uma armadilha que enraíza |
+| R | (nome a definir) | Disparo canalizado de grande dano num alvo, ignorando parte da armadura |
+| Passiva | (nome a definir) | Mais dano conforme a distância, até um limite, e dano extra contra **alvo parado** (enraizado, conjurando ou sem se mover) — funciona em chefes |
+
 ## Modo customizado (futuro)
 
 - O personagem customizado começa com um **kit básico da subclasse** (ex.: o Mago começa com o Q *Disparo Místico*).
