@@ -16,6 +16,19 @@ São **5 classes base**, cada uma com **3 subclasses de função fixa** (tank, h
 >
 > **Os kits por subclasse abaixo são da versão anterior** e serão refeitos herói por herói (em andamento). Skills deles podem ser reaproveitadas nos kits novos.
 
+## Padrão das teclas (vale para todos os heróis)
+
+Para o jogador não errar a tecla ao trocar de herói (o problema do pulo da Tristana no W e do dash do Lucian no E, no LoL):
+
+| Tecla | Papel |
+| --- | --- |
+| **Q** | Skill principal: o ataque ou a cura principal do herói |
+| **W** | Skill de apoio ou efeito específico do herói |
+| **E** | **Deslocamento**, quando o herói tiver um. Herói sem deslocamento usa o E para outra coisa |
+| **R** | Ultimate, cada uma do seu jeito |
+
+Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, ele fica no **E**.
+
 ## Modo customizado (futuro)
 
 - O personagem customizado começa com um **kit básico da subclasse** (ex.: o Mago começa com o Q *Disparo Místico*).
