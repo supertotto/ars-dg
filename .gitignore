@@ -26,3 +26,4 @@ ferramentas/blender/entrada/*
 ferramentas/blender/saida/*
 !ferramentas/blender/entrada/.gitkeep
 !ferramentas/blender/saida/.gitkeep
+*.slnx

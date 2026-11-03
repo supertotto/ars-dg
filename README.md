@@ -26,6 +26,7 @@ Dungeon crawler cooperativo de alta fantasia em **Unity**, com câmera isométri
 - [Direção de arte](docs/arte/direcao-de-arte.md) — estilo, regras, pipeline, prompt das folhas
 - [Referências visuais](docs/arte/referencias/) — folhas de personagem aprovadas
 - [Arquitetura](docs/tecnico/arquitetura.md) — gameplay orientado a dados, módulos, backend
+- [Projeto Unity](docs/tecnico/unity.md) — pastas, menu ARS e importação automática dos modelos
 - [Modelo de dados](docs/tecnico/modelo-de-dados.md) — formatos de herói, skill, item, talentos ([exemplos](data/exemplos/))
 
 ### [Pendências](docs/pendencias.md)
@@ -46,6 +47,7 @@ docs/
   pendencias.md Decisões em aberto
 data/
   exemplos/     Exemplos de dados (JSON)
+unity/          Projeto Unity
 ferramentas/
   blender/      Script de limpeza dos modelos 3D gerados por IA
 CLAUDE.md       Instruções para o Claude Code
