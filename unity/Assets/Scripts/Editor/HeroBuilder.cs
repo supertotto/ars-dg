@@ -183,7 +183,9 @@ namespace ARS.EditorTools
         static IEnumerable<AnimationClip> ClipesEm(IEnumerable<string> caminhos) =>
             caminhos.SelectMany(c => AssetDatabase.LoadAllAssetsAtPath(c))
                 .OfType<AnimationClip>()
-                .Where(c => !c.name.StartsWith("__preview__"));
+                .Where(c => !c.name.StartsWith("__preview__"))
+                // Ignora "animações" paradas de 1 quadro (a pose do modelo baixado sem animação)
+                .Where(c => c.length >= 0.2f);
 
         static AnimationClip Escolher(List<AnimationClip> clipes, string[] palavras)
         {
