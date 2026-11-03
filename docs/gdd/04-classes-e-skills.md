@@ -29,6 +29,18 @@ Para o jogador não errar a tecla ao trocar de herói (o problema do pulo da Tri
 
 Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, ele fica no **E**.
 
+## Kits por herói (em andamento)
+
+### Ignis — Mago · tema: só bola de fogo
+
+| Tecla | Skill | Efeito |
+| --- | --- | --- |
+| Q | Bola de Fogo | Projétil que explode no impacto e deixa queimadura |
+| W | Órbita de Brasas | Três bolinhas de fogo giram em volta dele e queimam quem encosta; usar o W de novo lança as bolinhas na direção do mouse |
+| E | Bola Propulsora | Explode uma bola nos próprios pés: ele é arremessado para trás e queima quem estava perto |
+| R | Bola de fogo gigante | Em aberto: carregada, caindo do céu ou rolando pela arena |
+| Passiva | — | Em aberto |
+
 ## Modo customizado (futuro)
 
 - O personagem customizado começa com um **kit básico da subclasse** (ex.: o Mago começa com o Q *Disparo Místico*).
