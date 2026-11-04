@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0047a910b6df79d40be2009105f4c9eb, type: 3}
+  m_Name: AcertoEpico_Pronto
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Data.EstadoDef
+  nome: "Acerto \xC9pico (pronto)"
+  descricao: "A pr\xF3xima skill sai \xE9pica: n\xFAmeros maiores, visual maior e sem custo (provis\xF3rio)."
+  tags: 0
+  duracaoPadrao: 0
+  acumulosMaximos: 1
+  modificadores:
+  - tipo: 0
+    valor: 1.5
+  - tipo: 1
+    valor: 2
+  - tipo: 2
+    valor: 1
+  consumidoAoUsarSkill: 1
+  visuaisSubstitutos: []
+  visualExtra: {fileID: 0}

@@ -18,6 +18,7 @@ namespace ARS.UI
         Recurso recurso;
         KitDeSkills kit;
         ComandosDoJogador comandos;
+        Passiva passiva; // claude
         GUIStyle estilo, estiloCaixa;
         Texture2D fundo;
 
@@ -27,6 +28,7 @@ namespace ARS.UI
             recurso = GetComponent<Recurso>();
             kit = GetComponent<KitDeSkills>();
             comandos = GetComponent<ComandosDoJogador>();
+            passiva = GetComponent<Passiva>(); // claude
         }
 
         void OnGUI()
@@ -41,6 +43,9 @@ namespace ARS.UI
                 Linha(ref x, ref y, $"Vida  {Mathf.CeilToInt(vida.Vida)} / {Mathf.CeilToInt(vida.vidaMaxima)}", escala);
             if (recurso != null)
                 Linha(ref x, ref y, $"{recurso.tipo}  {Mathf.FloorToInt(recurso.Atual)} / {Mathf.CeilToInt(recurso.maximo)}", escala);
+            // claude: contador da passiva (só leitura)
+            string resumoPassiva = passiva != null ? passiva.Resumo() : null;
+            if (!string.IsNullOrEmpty(resumoPassiva)) Linha(ref x, ref y, resumoPassiva, escala);
 
             if (kit != null)
             {

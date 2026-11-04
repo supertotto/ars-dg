@@ -9,6 +9,9 @@ namespace ARS.Combat
 
     public enum TipoDeDano { Fisico, Magico }
 
+    // claude: de onde veio um acerto (para passivas)
+    public enum OrigemDoAcerto { AtaqueBasico, Skill }
+
     /// <summary>Tudo que causa ou recebe dano: heróis, inimigos, bonecos de treino.</summary>
     public class Combatente : MonoBehaviour
     {
@@ -33,6 +36,12 @@ namespace ARS.Combat
         public Estados Estados => estados != null ? estados : (estados = Estados.De(this));
 
         public void Interromper() => AoSerInterrompido?.Invoke();
+
+        // claude: aviso de "acertei" (alimenta passivas). Cada uso que acerta avisa uma vez:
+        // um míssil = 1, um ataque básico = 1, uma skill que pega vários inimigos = 1.
+        // O que a skill invoca ou deixa no chão (abelhas, gato) não avisa.
+        public event Action<Combatente, OrigemDoAcerto> AoAcertar;
+        public void RegistrarAcerto(Combatente alvo, OrigemDoAcerto origem) => AoAcertar?.Invoke(alvo, origem);
 
         static readonly List<Combatente> todos = new List<Combatente>();
         /// <summary>Todos os combatentes ativos na cena.</summary>

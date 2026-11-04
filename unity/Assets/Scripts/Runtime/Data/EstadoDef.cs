@@ -21,6 +21,13 @@ namespace ARS.Data
         [Tooltip("Quantas vezes acumula. Reaplicar soma um acúmulo (até o máximo) e renova a duração.")]
         [Min(1)] public int acumulosMaximos = 1;
 
+        // claude: modificadores enquanto o estado dura e se ele acaba ao usar uma skill
+        [Header("Modificadores")]
+        [Tooltip("O que o estado muda enquanto está ativo (ex.: próxima skill mais forte e sem custo).")]
+        public System.Collections.Generic.List<Modificador> modificadores = new System.Collections.Generic.List<Modificador>();
+        [Tooltip("O estado acaba quando o personagem usa uma skill (ex.: \"próxima skill épica\").")]
+        public bool consumidoAoUsarSkill;
+
         [Header("Visual (sem regra de jogo)")]
         // claude: lista; cada aplicação sorteia um (ex.: sapo ou galinha)
         [Tooltip("Troca o visual do personagem enquanto durar (ex.: o bichinho). Com mais de um, sorteia a cada aplicação. Vazio = mantém o visual.")]

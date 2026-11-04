@@ -163,6 +163,7 @@ namespace ARS.EditorTools
             raiz.AddComponent<Recurso>(); // provisório: Mana para todos até existir a ficha do herói
             var kit = raiz.AddComponent<KitDeSkills>();
             AtribuirSkills(nome, kit);
+            AtribuirPassiva(nome, raiz); // claude
             raiz.AddComponent<ComandosDoJogador>();
             raiz.AddComponent<HudProvisorio>();
 
@@ -232,6 +233,19 @@ namespace ARS.EditorTools
         }
 
         static string Nome(SkillDef s) => s != null ? s.nome : "—";
+
+        // claude: a passiva fica na mesma pasta das skills, com "_P_" no nome (ex.: Caleb_P_AcertoEpico)
+        static void AtribuirPassiva(string nome, GameObject raiz)
+        {
+            string pasta = $"{ArsPaths.Dados}/Skills/{nome}";
+            if (!AssetDatabase.IsValidFolder(pasta)) return;
+            var passiva = AssetDatabase.FindAssets("t:PassivaDef", new[] { pasta })
+                .Select(g => AssetDatabase.LoadAssetAtPath<PassivaDef>(AssetDatabase.GUIDToAssetPath(g)))
+                .FirstOrDefault(p => p != null && p.name.ToUpperInvariant().Contains("_P_"));
+            if (passiva == null) return;
+            raiz.AddComponent<Passiva>().definicao = passiva;
+            Debug.Log($"[ARS] {nome}: passiva {passiva.nome}");
+        }
 
         /// <summary>Ataque básico do herói em Assets/Data/Heroes (cria com valores provisórios se não existir).</summary>
         public static AtaqueBasicoDef DefinicaoDeAtaque(string nome)

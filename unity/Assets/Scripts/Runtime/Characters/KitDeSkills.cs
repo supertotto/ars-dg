@@ -65,7 +65,7 @@ namespace ARS.Characters
         public float RecargaRestante(Tecla tecla)
         {
             var estado = estados[(int)tecla];
-            if (estado.skill == null || estado.cargas >= estado.skill.cargas) return 0f;
+            if (estado == null || estado.skill == null || estado.cargas >= estado.skill.cargas) return 0f; // claude: nulo após recompilar no Play
             return Mathf.Max(0f, estado.proximaCargaEm - Time.time);
         }
 
@@ -73,7 +73,8 @@ namespace ARS.Characters
         {
             foreach (var estado in estados)
             {
-                if (estado.skill == null || estado.cargas >= estado.skill.cargas) continue;
+                // claude: estado nulo acontece ao recompilar com o Play ligado (o Unity não guarda esta lista)
+                if (estado == null || estado.skill == null || estado.cargas >= estado.skill.cargas) continue;
                 if (Time.time >= estado.proximaCargaEm)
                 {
                     estado.cargas++;
@@ -96,12 +97,15 @@ namespace ARS.Characters
         public bool Usar(Tecla tecla, Combatente alvoSobCursor, Vector3 cursor)
         {
             var estado = estados[(int)tecla];
+            if (estado == null) return false; // claude: recompilado com o Play ligado; reinicie o Play
             var skill = estado.skill;
             if (skill == null) return Avisar($"{tecla}: sem skill");
             // claude: estados com a tag Sem Skill (ex.: transformado) bloqueiam skills
             if (eu.Estados.Tem(TagDeEstado.SemSkill)) return Avisar("Não pode usar skills agora");
             if (estado.cargas <= 0) return Avisar($"{skill.nome}: recarregando");
-            if (recurso != null && !recurso.TemPelomenos(skill.custo)) return Avisar($"Sem {recurso.tipo} suficiente");
+            // claude: modificador "Skill Sem Custo" (ex.: skill épica) zera o custo
+            float custo = eu.Estados.TemModificador(TipoDeModificador.SkillSemCusto) ? 0f : skill.custo;
+            if (recurso != null && !recurso.TemPelomenos(custo)) return Avisar($"Sem {recurso.tipo} suficiente");
             // claude: no meio do ataque básico (ou de outra skill) a skill fica guardada e sai quando a trava liberar
             if (trava.Ocupado)
             {
@@ -126,9 +130,17 @@ namespace ARS.Characters
             }
 
             // Pagou: gasta recurso e carga
-            if (recurso != null) recurso.Gastar(skill.custo);
+            if (recurso != null) recurso.Gastar(custo);
             if (estado.cargas == skill.cargas) estado.proximaCargaEm = Time.time + skill.recarga;
             estado.cargas--;
+
+            // claude: lê os modificadores (ex.: skill épica) e gasta os estados que acabam ao usar skill
+            var potencia = new Potencia
+            {
+                numeros = eu.Estados.Multiplicador(TipoDeModificador.MultiplicarNumerosDaSkill),
+                visual = eu.Estados.Multiplicador(TipoDeModificador.MultiplicarVisualDaSkill)
+            };
+            eu.Estados.ConsumirAoUsarSkill();
 
             if (animator != null && animator.runtimeAnimatorController != null && animator.isActiveAndEnabled)
                 animator.SetTrigger(ParametroAtacar);
@@ -138,10 +150,13 @@ namespace ARS.Characters
 
             // claude: fica ocupado conjurando; a skill sai no fim da conjuração
             trava.Ocupar(skill.tempoDeConjuracao);
-            if (skill.tempoDeConjuracao > 0f) conjuracao = StartCoroutine(ExecutarDepois(skill, alvo, skill.tempoDeConjuracao));
-            else Executar(skill, alvo);
+            if (skill.tempoDeConjuracao > 0f) conjuracao = StartCoroutine(ExecutarDepois(skill, alvo, skill.tempoDeConjuracao, potencia));
+            else Executar(skill, alvo, potencia);
             return true;
         }
+
+        // claude: quanto a skill foi potencializada por modificadores (1 = normal)
+        struct Potencia { public float numeros; public float visual; }
 
         // claude: conjuração em andamento (para poder interromper)
         Coroutine conjuracao;
@@ -154,19 +169,23 @@ namespace ARS.Characters
         }
 
         // claude: espera a conjuração; se o alvo morrer nesse meio tempo, a skill não sai (carga e custo já foram gastos)
-        System.Collections.IEnumerator ExecutarDepois(SkillDef skill, Combatente alvo, float segundos)
+        System.Collections.IEnumerator ExecutarDepois(SkillDef skill, Combatente alvo, float segundos, Potencia potencia)
         {
             yield return new WaitForSeconds(segundos);
             conjuracao = null;
             if (alvo == null || !alvo.Vivo) yield break;
-            Executar(skill, alvo);
+            Executar(skill, alvo, potencia);
         }
 
-        void Executar(SkillDef skill, Combatente alvo)
+        void Executar(SkillDef skill, Combatente alvo, Potencia potencia)
         {
+            // claude: números multiplicados (skill épica); 1 = os efeitos originais
+            var efeitos = AplicadorDeEfeitos.Multiplicados(skill.efeitos, potencia.numeros);
+
             if (skill.entrega == EntregaDaSkill.Instantanea || alvo == eu)
             {
-                AplicadorDeEfeitos.Aplicar(skill.efeitos, alvo, eu);
+                AplicadorDeEfeitos.Aplicar(efeitos, alvo, eu);
+                if (alvo != eu) eu.RegistrarAcerto(alvo, OrigemDoAcerto.Skill); // claude: 1 acerto por uso
                 return;
             }
 
@@ -178,7 +197,12 @@ namespace ARS.Characters
                               variacao != null ? variacao.tamanho : skill.tamanhoProjetil,
                               variacao != null ? variacao.rastro : skill.rastro,
                               variacao != null ? variacao.visual : skill.visualProjetil,
-                              atingido => AplicadorDeEfeitos.Aplicar(skill.efeitos, atingido, eu));
+                              atingido =>
+                              {
+                                  AplicadorDeEfeitos.Aplicar(efeitos, atingido, eu);
+                                  eu.RegistrarAcerto(atingido, OrigemDoAcerto.Skill); // claude: cada projétil = 1 acerto
+                              },
+                              potencia.visual);
         }
 
         Vector3 PontoDeSaida(PontoDeDisparo ponto)

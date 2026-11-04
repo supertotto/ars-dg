@@ -52,6 +52,34 @@ namespace ARS.Combat
         /// <summary>true se tem todas as tags pedidas (somando as fixas).</summary>
         public bool Tem(TagDeEstado tags) => (tagsAtivas | tagsFixas).Contem(tags);
 
+        // claude: modificadores dos estados ativos
+        /// <summary>Produto dos valores de um tipo de modificador (1 = nenhum).</summary>
+        public float Multiplicador(TipoDeModificador tipo)
+        {
+            float total = 1f;
+            foreach (var a in ativos)
+                foreach (var m in a.def.modificadores)
+                    if (m.tipo == tipo) total *= m.valor;
+            return total;
+        }
+
+        public bool TemModificador(TipoDeModificador tipo)
+        {
+            foreach (var a in ativos)
+                foreach (var m in a.def.modificadores)
+                    if (m.tipo == tipo) return true;
+            return false;
+        }
+
+        /// <summary>Tira os estados que acabam ao usar uma skill (ex.: "próxima skill épica").</summary>
+        public void ConsumirAoUsarSkill()
+        {
+            for (int i = ativos.Count - 1; i >= 0; i--)
+                if (ativos[i].def.consumidoAoUsarSkill) RemoverAtivo(ativos[i]);
+        }
+
+        public bool EstaAtivo(EstadoDef def) => Achar(def) != null;
+
         public int Acumulos(EstadoDef def)
         {
             var ativo = Achar(def);

@@ -110,13 +110,19 @@ namespace ARS.Characters
             if (definicao.usaProjetil)
             {
                 Vector3 saida = PontoDeSaida();
-                Projetil.Disparar(saida, alvo, eu, definicao.dano, definicao.tipo,
-                                  definicao.velocidadeProjetil, definicao.corProjetil,
-                                  definicao.tamanhoProjetil, definicao.rastro, definicao.visualProjetil);
+                // claude: ao acertar, causa o dano e avisa o acerto (alimenta passivas)
+                Projetil.Disparar(saida, alvo, definicao.velocidadeProjetil, definicao.corProjetil,
+                                  definicao.tamanhoProjetil, definicao.rastro, definicao.visualProjetil,
+                                  atingido =>
+                                  {
+                                      atingido.ReceberDano(definicao.dano, definicao.tipo, eu);
+                                      eu.RegistrarAcerto(atingido, OrigemDoAcerto.AtaqueBasico);
+                                  });
             }
             else
             {
                 alvo.ReceberDano(definicao.dano, definicao.tipo, eu);
+                eu.RegistrarAcerto(alvo, OrigemDoAcerto.AtaqueBasico); // claude
             }
         }
 

@@ -72,6 +72,7 @@
 - [ ] Borboletas dos Mísseis Mágicos: forma desenhada por código, cores (rosa, azul, amarelo), 6 por disparo e tamanho, provisórios
 - [ ] Letras do grimório dos Mísseis Mágicos: runas inventadas geradas por código (8 símbolos), cor azul do míssil, 3 runas girando + rastro, provisórios
 - [ ] W do Caleb (Página Errada): 30 de Mana, 10 s de recarga, 7 m, 2 s de transformação, sai na hora (sem projétil), bichinhos com ~0,5 m (pinguim e cachorro com ~0,8 m): provisórios
+- [ ] Passiva do Caleb (Acerto Épico): 5 acertos para encher, skill épica com números ×1,5 e visual ×2, sem custo; acertos não contam enquanto a épica está pronta; o acerto da própria skill épica já conta para a próxima: provisórios
 - [ ] Recurso por classe: hoje todo herói recebe Mana (300, +4/s) até existir a ficha do herói nos dados
 - [ ] Números do ataque básico (alcance 6 m, 1 ataque/s, 20 de dano, projétil): provisórios, iguais para todos por enquanto
 - [ ] Controles e câmera: botão direito anda (provisório, estilo LoL); velocidade 3,5 m/s; câmera com inclinação 50°, rotação 45° e distância 16 m (zoom de 4 a 26 m)

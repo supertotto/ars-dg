@@ -24,14 +24,17 @@ namespace ARS.Combat
         }
 
         /// <summary>Projétil genérico: ao acertar, chama "aoAcertar" com o alvo (ex.: aplicar efeitos de uma skill).</summary>
+        // claude: "escala" aumenta o visual (ex.: skill épica)
         public static void Disparar(Vector3 de, Combatente alvo, float velocidade, Color cor, float tamanho, bool rastro,
-                                    GameObject visual, Action<Combatente> aoAcertar)
+                                    GameObject visual, Action<Combatente> aoAcertar, float escala = 1f)
         {
+            tamanho *= escala;
             GameObject objeto;
             if (visual != null)
             {
                 objeto = Instantiate(visual, de, Quaternion.identity);
                 objeto.name = "Projetil";
+                if (!Mathf.Approximately(escala, 1f)) EscalarVisual(objeto, escala); // claude
                 foreach (var colisor in objeto.GetComponentsInChildren<Collider>()) Destroy(colisor);
                 // Quem move o projétil é este script: física do pack (gravidade, empurrão) fica desligada
                 foreach (var corpo in objeto.GetComponentsInChildren<Rigidbody>())
@@ -71,6 +74,19 @@ namespace ARS.Combat
             projetil.alvo = alvo;
             projetil.aoAcertar = aoAcertar;
             projetil.velocidade = velocidade;
+        }
+
+        // claude: aumenta um visual inteiro, inclusive partículas (que não seguem a escala do objeto por padrão)
+        public static void EscalarVisual(GameObject objeto, float escala)
+        {
+            objeto.transform.localScale *= escala;
+            foreach (var ps in objeto.GetComponentsInChildren<ParticleSystem>())
+            {
+                var main = ps.main;
+                main.scalingMode = ParticleSystemScalingMode.Hierarchy;
+            }
+            foreach (var trilha in objeto.GetComponentsInChildren<TrailRenderer>())
+                trilha.widthMultiplier *= escala;
         }
 
         static Material MaterialColorido(Color cor)

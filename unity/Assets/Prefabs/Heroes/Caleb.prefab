@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 8912165393490426310}
   - component: {fileID: 435406373881699254}
   - component: {fileID: 3854580972097440046}
+  - component: {fileID: 8114337434254742792}
   - component: {fileID: 8096362078845486321}
   - component: {fileID: 8033688983232243362}
   m_Layer: 0
@@ -139,6 +140,19 @@ MonoBehaviour:
   w: {fileID: 11400000, guid: e470f306149c0e140a11a53a30b91d01, type: 2}
   e: {fileID: 0}
   r: {fileID: 0}
+--- !u!114 &8114337434254742792
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301881108601528563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c45265eb8bae3494facb0fd9c7fdc959, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.Passiva
+  definicao: {fileID: 11400000, guid: 85ab3d44844cbfc41b5d95a8bfafd3e1, type: 2}
 --- !u!114 &8096362078845486321
 MonoBehaviour:
   m_ObjectHideFlags: 0
