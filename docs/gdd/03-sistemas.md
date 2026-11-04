@@ -30,7 +30,7 @@ Cada herói tem **8 ações ativas** (uma por botão) e **2 passivas**.
 
 ## Dano e elementos
 
-O dano é só **físico** ou **mágico**. Os elementos não são tipos de dano: cada um aplica um **efeito próprio**, sem combinações entre eles.
+O dano é só **físico** ou **mágico**. Os elementos não são tipos de dano: cada um aplica um **efeito próprio**, sem combinações entre eles. **Todo dano elemental conta como mágico**; uma mesma skill pode misturar dano físico e mágico.
 
 | Elemento | Efeito |
 | --- | --- |
@@ -113,6 +113,7 @@ Com o nivelamento para baixo, os atributos dos nós pequenos são reduzidos, mas
 
 ## Regras de combate
 
+- **Invisibilidade** não dá invulnerabilidade: dano em área ainda acerta quem está invisível.
 - **Controle em chefes:** chefes são **imunes a controle** (atordoar, enraizar, transformar, empurrar…), como no WoW. O máximo que funciona é **interromper** uma magia que o chefe está conjurando.
 - **Golpes em área:** os golpes dos chefes acertam uma área (cone na frente, círculo em volta), não só o tank. Quem estiver na área leva dano — posicionamento vale para todos.
 - **Derrota (estilo WoW):** se o grupo inteiro cair, todos voltam ao último ponto seguro e o chefe reseta, **sem limite de tentativas**. A dungeon nunca falha por derrota.

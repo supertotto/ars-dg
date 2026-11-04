@@ -25,7 +25,11 @@
 
 ## Sistemas
 
-- [ ] Refazer os kits: um kit próprio para cada um dos 20 heróis (em andamento)
+- [ ] Kits dos tanks e healers (os 10 DPS estão fechados)
+- [ ] Quais acertos alimentam passivas, acúmulos, escudos e recuperação de recurso (acertos múltiplos, invocações, dano ao longo do tempo)
+- [ ] Regras de canalização e carregamento: andar, cancelar e ser interrompido
+- [ ] Como reduções de armadura se acumulam
+- [ ] Customizado: alcance e arma do Q do Inquisidor (Trix à distância, Darien corpo a corpo) e compatibilidade de arma com skill
 - [ ] Modo customizado: kit básico de cada subclasse, níveis de escolha, se ultimate e passiva entram na escolha
 - [ ] Árvore de talentos: por subclasse ou por herói, agora que os kits são por herói
 - [ ] Forma da arma: valores dos bônus de cada forma

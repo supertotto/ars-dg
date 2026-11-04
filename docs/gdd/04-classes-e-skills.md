@@ -14,7 +14,7 @@ São **5 classes base**, cada uma com **3 subclasses de função fixa** (tank, h
 >
 > A **subclasse** continua definindo a função (tank, healer, DPS), o recurso, o atributo principal, a arma e o acessório.
 >
-> **Os kits por subclasse abaixo são da versão anterior** e serão refeitos herói por herói (em andamento). Skills deles podem ser reaproveitadas nos kits novos.
+> **Os kits por subclasse mais abaixo são da versão anterior.** Os dos DPS já foram substituídos pelos kits dos heróis; os de tank e healer serão refeitos herói por herói. Skills deles podem ser reaproveitadas.
 
 ## Padrão das teclas (vale para todos os heróis)
 
@@ -29,49 +29,133 @@ Para o jogador não errar a tecla ao trocar de herói (o problema do pulo da Tri
 
 Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, ele fica no **E**.
 
-## Kits por herói (em andamento)
+## Kits dos heróis
+
+Valores de dano, custo, recarga, duração e limites ficam para o balanceamento. Raças e feitiços não fazem parte dos kits. **Todo dano elemental é mágico** (uma skill pode misturar dano físico e mágico). **Invisibilidade não dá invulnerabilidade.**
+
+**DPS: os 10 kits fechados** (03/11/2026). Análise comparativa em [analises/comparacao-dps.md](analises/comparacao-dps.md). Tanks e healers: em andamento.
 
 ### Ignis — Mago · tema: só bola de fogo
 
-| Tecla | Skill | Efeito |
-| --- | --- | --- |
-| Q | Bola de Fogo | Projétil que explode no impacto e deixa queimadura |
-| W | Órbita de Brasas | Três bolinhas de fogo giram em volta dele e queimam quem encosta; usar o W de novo lança as bolinhas na direção do mouse |
-| E | Bola Propulsora | Explode uma bola nos próprios pés: ele é arremessado para trás e queima quem estava perto |
-| R | Bola de Fogo Gigante | Cai do céu numa área marcada: dano concentrado no impacto, seguido de queimadura |
-| Passiva | Sequência Flamejante | Acertos seguidos de bola de fogo aumentam o dano das próximas, até um limite; o bônus some se ele ficar um tempo sem acertar |
+**Recurso:** Mana · **Armas:** cajado e grimório.
 
-### Caleb — Mago · tema: aprendiz atrapalhado
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | Bola de Fogo | Lança um projétil que explode no impacto, causando dano mágico em área e aplicando queimadura. | Projétil, dano, área circular, aplicar elemento Fogo. |
+| W | Órbita de Brasas | Três bolinhas de fogo orbitam ao redor dele e queimam quem encosta. Ao reativar, lança as bolinhas na direção do cursor, com controle manual. | Projéteis em órbita, aplicar elemento Fogo, lançamento direcional. |
+| E | Bola Propulsora | Explode uma bola de fogo nos próprios pés, arremessando-se para trás e queimando os inimigos próximos. | Deslocamento próprio, área circular, aplicar elemento Fogo. |
+| R | Bola de Fogo Gigante | Marca um local e faz uma bola de fogo gigante cair do céu, causando dano mágico e queimadura na área atingida. | Projétil, dano, área circular, aplicar elemento Fogo. |
+| Passiva | Só Sei Essa | Acertos consecutivos de bolas de fogo aumentam o dano das próximas, até um limite. O bônus desaparece após um tempo sem acertar. | Aplicar estado cumulativo, modificar dano, remover estado por inatividade. |
 
-O caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é previsível, e o "erro" aparece na aparência (míssil em forma de sapo, explosão que solta borboletas).
+### Caleb — Mago · tema: magia atrapalhada, aprendizado e um gato caçador
 
-| Tecla | Skill | Efeito |
-| --- | --- | --- |
-| Q | Mísseis Mágicos | Mísseis perseguidores com **3 cargas** independentes: solta um de cada vez ou concentra todos num alvo |
-| W | Transformação | Transforma um inimigo em animal por um instante: ele não ataca nem usa skills. Em chefes, só interrompe magias |
-| E | Teleporte do Cappuccino | Teleporta e causa dano na chegada; o **Cappuccino** (o gato, que não pode ser atacado) fica no ponto de partida. Reativando, o Caleb volta para onde está o gato. No ponto do dano fica um **enxame de abelhas** picando os inimigos por alguns segundos |
-| R | Chuva de Sapinhos | Chuva de sapinhos e o **Cappuccino gigante** atacando os inimigos na área |
-| Passiva | Acerto Épico | Depois de um certo número de skills que acertam, a próxima sai **épica** (mais forte, com visual enorme) e **não gasta Mana** |
+O caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é previsível e o "erro" aparece na aparência.
 
-### Rex — Ranger · tema: acrobata que nunca erra
+**Recurso:** Mana · **Armas:** cajado e grimório.
 
-| Tecla | Skill | Efeito |
-| --- | --- | --- |
-| Q | (nome a definir) | Flecha que ricocheteia entre inimigos próximos, acertando cada um uma vez e perdendo dano a cada ricochete |
-| W | (nome a definir) | Aumenta a velocidade de ataque; acertos dão velocidade de movimento (não acumula) |
-| E | (nome a definir) | Mortal na direção escolhida, disparando uma flecha no alvo selecionado |
-| R | (nome a definir) | Sequência de disparos críticos com alcance aumentado |
-| Passiva | Foco (provisório) | Tiros seguidos no mesmo alvo aumentam o dano (no Q, só o primeiro alvo conta). Os ataques do Rex **não podem ser esquivados** |
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | Mísseis Mágicos | Possui três cargas disparadas separadamente. Cada ativação seleciona um inimigo pelo cursor, em point-and-click, e lança um míssil perseguidor que causa dano mágico. Pode concentrar as cargas em um alvo ou distribuí-las. | Projétil perseguidor, dano, aplicar e consumir estado de cargas. |
+| W | Página Errada | Transforma temporariamente um inimigo em um pequeno animal, impedindo ataques e habilidades, mas permitindo movimento. Em chefes, só interrompe magias (chefes são imunes a controle). | Aplicar estado de transformação e bloqueio de ataques e habilidades. |
+| E | Esqueci o Gato | Teleporta para o local escolhido, causando uma explosão de dano mágico na chegada. O **Cappuccino** (o gato, que não pode ser atacado) fica no ponto de partida, permitindo reativar para retornar até ele durante uma janela. No ponto da explosão fica um **enxame de abelhas** picando os inimigos por alguns segundos. Se o gato participar da R, deixa uma marca de patinha que preserva o retorno. | Teleporte, dano, área circular, invocar enxame (dano ao longo do tempo em área), aplicar estado com posição de retorno. |
+| R | Isso Não Estava no Livro | Faz chover pequenos sapos mágicos na área escolhida. O Cappuccino cresce e corre atrás deles, atacando sapos e inimigos da região. Seus ataques contra inimigos causam dano mágico. Ao terminar, retorna ao tamanho normal. | Invocar, área circular, aplicar estado de crescimento, deslocamento, dano. |
+| Passiva | Acerto Épico | Depois de um certo número de habilidades que acertam, a próxima sai **épica**: mais forte, com visual enorme, e **não gasta Mana**. | Aplicar e consumir estado cumulativo, modificar dano, anular custo de recurso. |
 
-### Kael — Ranger · tema: atirador metódico
+### Brok — Bárbaro · tema: fúria crescente e agressão constante
 
-| Tecla | Skill | Efeito |
-| --- | --- | --- |
-| Q | (nome a definir) | Flecha carregada que atravessa os inimigos em linha; quanto mais carrega, mais dano |
-| W | (nome a definir) | Chuva de flechas numa área marcada |
-| E | (nome a definir) | Salto para trás, deixando uma armadilha que enraíza |
-| R | (nome a definir) | Disparo canalizado de grande dano num alvo, ignorando parte da armadura |
-| Passiva | (nome a definir) | Mais dano conforme a distância, até um limite, e dano extra contra **alvo parado** (enraizado, conjurando ou sem se mover) — funciona em chefes |
+**Recurso:** Fúria · **Armas:** dois machados.
+
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | Talho Duplo | Golpeia um alvo com os dois machados, causando dano físico e aplicando sangramento. | Dano, aplicar estado de sangramento com dano ao longo do tempo. |
+| W | Arremesso | Arremessa um machado que causa dano físico na ida e na volta. Os inimigos atingidos na volta também recebem lentidão. | Projétil com retorno, dano, lentidão. |
+| E | Redemoinho Furioso | Gira enquanto se movimenta livremente, causando dano físico ao redor. Ganha velocidade de movimento e ignora lentidão e enraizamento durante o efeito. | Dano, área circular, modificar velocidade de movimento, aplicar estado de imunidade a lentidão e enraizamento. |
+| R | Fúria Total | Aumenta a velocidade de ataque, impede atordoamento e cura com parte do dano causado. | Modificar velocidade de ataque, aplicar estado de imunidade a atordoamento, cura vinculada ao dano. |
+| Passiva | Sede de Batalha | Cada golpe aumenta o dano, até um limite. O bônus desaparece após um tempo sem bater. | Aplicar estado cumulativo, modificar dano, remover estado por inatividade. |
+
+### Bella — Bárbara · tema: força bruta e um machado maior que ela
+
+**Recurso:** Fúria · **Arma:** machado gigante de duas mãos.
+
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | Racha-Chão | Desce o machado numa pancada que causa dano físico nos inimigos em uma linha curta à frente. | Dano, área em linha. |
+| W | Grito de Desafio | Reduz temporariamente a armadura dos inimigos próximos e fortalece a próxima habilidade de dano, que também aplica lentidão. | Área circular, modificar armadura, aplicar e consumir estado de fortalecimento, lentidão. |
+| E | Salto Brutal | Salta até o local escolhido e aterrissa com o machado, causando dano físico em área. | Deslocamento, dano, área circular. |
+| R | Partir a Arena | Desfere uma pancada devastadora numa linha larga à frente. Causa dano físico maior quanto mais vida cada inimigo atingido tiver perdido e joga os atingidos para o alto. | Dano condicionado à vida perdida, área em linha, empurrão vertical. |
+| Passiva | Quanto Maior, Melhor | Habilidades de dano em área causam mais dano aos inimigos próximos do centro do impacto; nas habilidades em linha, vale o eixo central. Acertar um inimigo nessa região concede um escudo temporário, independentemente da habilidade usada. | Modificar dano conforme posição, escudo condicionado ao acerto. |
+
+### Rex — Ranger · tema: acrobacias e tiros de exibição
+
+**Recurso:** Essência · **Armas:** arco longo e aljava.
+
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | De Tabela | Dispara uma flecha no alvo escolhido, que ricocheteia entre inimigos próximos. Atinge cada inimigo apenas uma vez, sem limite fixo de alvos, causando menos dano físico a cada ricochete. | Projétil com ricochete, dano, redução progressiva de dano. |
+| W | Ritmo de Exibição | Aumenta temporariamente a velocidade de ataque. Acertos durante o efeito concedem velocidade de movimento, sem acumular. | Modificar velocidade de ataque, aplicar estado de velocidade de movimento ao acertar. |
+| E | Mortal de Exibição | Dá um mortal na direção escolhida e, de cabeça para baixo, dispara uma flecha no inimigo selecionado, causando dano físico. | Deslocamento, projétil, dano. |
+| R | Tempestade do Olho de Águia | Dispara continuamente por um período, com todos os tiros críticos e alcance aumentado. | Projéteis, dano, aplicar estado de crítico garantido, modificar alcance. |
+| Passiva | Foco | Tiros consecutivos no mesmo alvo aumentam o dano, até um limite. No Q, apenas o primeiro alvo conta; os ricochetes não acumulam nem interrompem o bônus. Os ataques do Rex **não podem ser esquivados** ("o Rex nunca erra"). | Aplicar estado cumulativo por alvo, modificar dano, filtrar acertos secundários, ignorar esquiva. |
+
+### Kael — Ranger · tema: precisão e distância calculada
+
+**Recurso:** Essência · **Armas:** arco longo e aljava.
+
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | Tiro Perfurante Carregado | Carrega e dispara uma flecha que atravessa os inimigos em linha. Quanto mais carregar, maior o dano físico. | Canalizar, projétil perfurante, dano, área em linha. |
+| W | Chuva de Flechas | Dispara uma chuva de flechas sobre uma área marcada, causando dano físico aos inimigos atingidos. | Projéteis, dano, área circular. |
+| E | Salto Evasivo | Salta para trás e deixa uma armadilha no ponto de partida, que enraíza quem pisar. | Deslocamento, invocar armadilha, enraizar. |
+| R | Tiro Impecável | Mira em um inimigo enquanto canaliza e dispara uma flecha de grande dano físico, ignorando parte da armadura do alvo. | Canalizar, projétil, dano, modificar penetração de armadura para o disparo. |
+| Passiva | Distância Calculada | Seus disparos causam mais dano quanto mais longe estiver do alvo, até um limite. Também causam dano adicional contra **alvos parados**: enraizados, conjurando ou simplesmente sem se mover, inclusive por controle de aliados. Funciona em chefes. | Modificar dano conforme distância e conforme o alvo estar parado. |
+
+### Mina — Assassina · tema: doçura letal e ataques de surpresa
+
+**Recurso:** Energia · **Armas:** duas adagas.
+
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | Apunhalar | Golpeia um inimigo, causando dano físico elevado e dano adicional se atingir pelas costas. | Dano, modificar dano conforme posição. |
+| W | Leque de Lâminas | Lança facas em leque, causando dano físico aos inimigos à frente. | Projéteis, dano, área em cone. |
+| E | Bomba de Fumaça | Lança uma bomba e fica invisível. Ao reativar, aparece atrás de um inimigo escolhido. | Aplicar estado de invisibilidade, teleporte. |
+| R | Execução | Executa inimigos comuns abaixo de um limiar de vida. Contra chefes, causa dano físico elevado que aumenta conforme a vida perdida, sem execução automática. | Dano letal condicionado à vida e ao tipo de alvo, dano físico condicionado à vida perdida. |
+| Passiva | Sangria e Golpe Oculto | Ataques básicos acumulam sangramento. Após ficar invisível ou aparecer atrás de um inimigo, o próximo ataque básico é crítico. O Q não consome o benefício: funcionam tanto AA crítico → Q quanto Q → AA crítico. | Aplicar estado cumulativo de sangramento, dano ao longo do tempo, aplicar e consumir estado de crítico garantido no ataque básico. |
+
+### Grum — Assassino · tema: furtividade barulhenta e emboscadas brutais
+
+**Recurso:** Energia · **Armas:** duas adagas, com armadura pesada.
+
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | Abre Espaço | Acerta uma ombrada seguida de uma punhalada, causando dano físico e interrompendo a canalização do alvo. | Dano, remover estado de canalização. |
+| W | Preparação Suspeita | Fortalece a próxima habilidade de dano para causar dano físico adicional e reduzir temporariamente a armadura dos inimigos atingidos. | Aplicar e consumir estado de fortalecimento, dano, modificar armadura. |
+| E | Furtividade Pesada | Fica invisível e ganha velocidade de movimento. Atacar ou usar uma habilidade ofensiva encerra essa invisibilidade; o ataque ou habilidade que a encerrar causa dano físico adicional. Se usar R, esse bônus vale somente para a primeira punhalada. | Invisibilidade, modificar velocidade de movimento, dano adicional condicionado, remover estado. |
+| R | Ninguém Viu Nada | Fica invisível durante uma sequência rápida de punhaladas no alvo escolhido. O último golpe causa dano físico adicional conforme a vida perdida do alvo. As punhaladas não interrompem a invisibilidade própria da R, que não concede invulnerabilidade. | Aplicar invisibilidade temporária, sequência de dano, dano condicionado à vida perdida. |
+| Passiva | Ninguém Está Olhando | Causa dano adicional aos inimigos que estejam mirando outro personagem. Acertar habilidades em inimigos com armadura reduzida recupera Energia. Na R, somente a primeira punhalada pode ativar essa recuperação, se a condição estiver satisfeita. | Modificar dano conforme alvo do inimigo, verificar armadura reduzida, gerar recurso com restrição de ativação. |
+
+### Trix — Inquisidora · tema: besta de mão e engenhocas antidemônio
+
+**Recurso:** Fé · **Arma principal:** besta de uma mão · **Mão secundária:** armadilha.
+
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | Rajada Sagrada | Dispara virotes em leque, causando dano mágico Sagrado. Marca os inimigos atingidos para receberem mais dano do grupo. | Projéteis, área em cone, dano, aplicar elemento Sagrado, aplicar estado de vulnerabilidade. |
+| W | Engenhoca de Contenção | Coloca uma armadilha que, ao ser acionada, cria uma área de lentidão e causa dano mágico Sagrado em pulsos. | Invocar armadilha, área circular, lentidão, dano periódico, aplicar elemento Sagrado. |
+| E | Recuo Calculado | Dispara um virote de impacto que causa dano físico e empurra o alvo, enquanto o recuo a lança para trás. | Projétil, dano, empurrão, deslocamento próprio. |
+| R | A Caçada | Temporariamente, seus ataques causam dano adicional e ignoram parte da armadura e da resistência mágica dos alvos. Escudos, reduções de dano e invulnerabilidade continuam funcionando normalmente. | Aplicar estado de fortalecimento, dano adicional, modificar penetração de armadura e resistência mágica. |
+| Passiva | Marca do Inquisidor | Ataques consecutivos no mesmo alvo preparam um próximo ataque com dano mágico Sagrado adicional. | Aplicar e consumir estado cumulativo, dano adicional, aplicar elemento Sagrado. |
+
+### Darien — Inquisidor · tema: perseguição e correntes sagradas
+
+**Recurso:** Fé · **Arma principal:** maça · **Acessório secundário:** correntes.
+
+| Tecla | Skill | Efeito | Efeitos genéricos usados |
+| --- | --- | --- | --- |
+| Q | Golpe Purificador | Golpeia um inimigo com a maça, causando dano físico mais uma parcela de dano mágico Sagrado contra qualquer inimigo. Causa dano adicional contra profanos. A parcela Sagrada ativa a cura da passiva. | Dano físico e mágico, aplicar elemento Sagrado, dano adicional condicionado ao tipo de alvo. |
+| W | Correntes da Inquisição | Prende um inimigo com correntes, enraizando-o temporariamente. | Aplicar estado de enraizamento. |
+| E | Corrente de Aproximação | Lança uma corrente em linha reta. Ao atingir um inimigo, puxa a si mesmo até ele, causando dano físico no impacto. | Projétil, deslocamento próprio até o alvo, dano. |
+| R | Correntes do Castigo | Liga os inimigos de uma área. Parte do dano que causa a um dos ligados é reproduzida nos demais como dano mágico Sagrado, sem gerar novas reproduções. Contra um alvo isolado, seus golpes causam dano Sagrado adicional. | Área circular, aplicar estado de ligação, dano condicionado ao dano causado, dano mágico Sagrado adicional. |
+| Passiva | Fé pelo Castigo | Ataques básicos contra inimigos sob efeitos de controle aceleram a recuperação de Fé, inclusive quando o controle vem de aliados. Recupera vida com parte do dano mágico Sagrado que causa; o dano reproduzido pelas correntes da R cura com eficiência reduzida. | Verificar estado de controle, acelerar recuperação de recurso, cura vinculada ao dano Sagrado, modificar eficiência de cura conforme origem do dano. |
 
 ## Modo customizado (futuro)
 
@@ -89,6 +173,18 @@ O caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é pr
 > **Arma de duas mãos** ocupa os dois espaços (arma e acessório) e soma o efeito do acessório na própria arma.
 
 A tabela abaixo é da versão anterior (arma por subclasse) e vale como **categoria** e referência.
+
+Formas já definidas nos kits dos DPS:
+
+| Herói | Arma principal | Segunda mão |
+| --- | --- | --- |
+| Brok (Bárbaro) | Machado | Segundo machado |
+| Bella (Bárbara) | Machado gigante de duas mãos | — (duas mãos) |
+| Ignis e Caleb (Magos) | Cajado | Grimório |
+| Rex e Kael (Rangers) | Arco longo | Aljava |
+| Mina e Grum (Assassinos) | Adaga | Segunda adaga |
+| Trix (Inquisidora) | Besta de uma mão | Armadilha |
+| Darien (Inquisidor) | Maça | Correntes |
 
 A segunda mão é um **acessório próprio da subclasse**. (versão anterior)
 
@@ -136,13 +232,7 @@ A segunda mão é um **acessório próprio da subclasse**. (versão anterior)
 
 ### Bárbaro — DPS de fúria corpo a corpo · principal: Força
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Talho Duplo | Os dois machados juntos, num dano forte num alvo |
-| Skill 2 | Arremesso | Joga um machado, que vai e volta acertando quem estiver no caminho |
-| Skill 3 | Redemoinho Furioso | Gira por alguns segundos, andando livremente, ignorando lentidão e enraizamento e acertando todos em volta (como o giro do Garen) |
-| Ultimate | Fúria Total | Ataca muito mais rápido, não pode ser atordoado e se cura com parte do dano causado |
-| Passiva | Sede de Batalha | Cada golpe aumenta um pouco o dano, até um limite; zera se ficar muito tempo sem bater |
+Substituído pelos kits dos heróis: Brok e Bella.
 
 ## Arcano (Mana)
 
@@ -170,13 +260,7 @@ O demônio invocado tanka; o Bruxo reforça de trás.
 
 ### Mago — DPS de magia à distância · principal: Inteligência
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Bola de Fogo | Explode no impacto, em área pequena, e deixa queimadura |
-| Skill 2 | Chuva de Meteoros | Pedras flamejantes caem numa área marcada depois de um instante |
-| Skill 3 | Piscar | Teleporte curto |
-| Ultimate | Ira dos Céus | Canaliza alguns segundos, parado e vulnerável; um raio cai sobre **todos os inimigos da arena** (inspirada no Zeus do Dota e no Karthus do LoL). Se for interrompido, perde a ultimate |
-| Passiva | Acúmulo Arcano | Cada skill usada aumenta o dano da próxima, até um limite |
+Substituído pelos kits dos heróis: Ignis e Caleb.
 
 ## Sacerdotes (Fé)
 
@@ -202,13 +286,7 @@ O demônio invocado tanka; o Bruxo reforça de trás.
 
 ### Inquisidor — caçador do profano · principal: Força
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Rajada Sagrada | Três virotes em leque; cada inimigo atingido fica marcado e recebe mais dano do grupo |
-| Skill 2 | Golpe Purificador | Golpe de maça com dano extra contra profanos |
-| Skill 3 | Correntes da Inquisição | Prende o alvo no lugar por alguns segundos |
-| Ultimate | A Caçada | Por alguns segundos, todos os ataques causam dano extra e ignoram as defesas |
-| Passiva | Marca do Inquisidor | A cada três ataques no mesmo alvo, o próximo causa dano sagrado extra |
+Substituído pelos kits dos heróis: Trix e Darien.
 
 ## Ladinos (Energia)
 
@@ -234,13 +312,7 @@ O demônio invocado tanka; o Bruxo reforça de trás.
 
 ### Assassino — DPS de explosão · principal: Agilidade
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Apunhalar | Muito mais dano se o ataque vier pelas costas |
-| Skill 2 | Leque de Lâminas | Várias facas em leque, acertando quem estiver à frente |
-| Skill 3 | Bomba de Fumaça | Joga a bomba e fica invisível; ativando de novo, aparece atrás de um inimigo |
-| Ultimate | Execução | Golpe final que executa na hora quem estiver com menos de 5% de vida |
-| Passiva | Sangria e Golpe Oculto | Ataques acumulam sangramento; o primeiro ataque depois de ficar invisível ou aparecer atrás do inimigo é sempre crítico |
+Substituído pelos kits dos heróis: Mina e Grum.
 
 ## Naturalistas (Essência)
 
@@ -266,15 +338,7 @@ O demônio invocado tanka; o Bruxo reforça de trás.
 
 ### Ranger — DPS à distância · principal: Agilidade
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Tiro Perfurante Carregado | Segura e solta: quanto mais carregar, mais dano, atravessando todos os inimigos na linha |
-| Skill 2 | Chuva de Flechas | Flechas caem do céu numa área marcada |
-| Skill 3 | Salto Evasivo | Salta para trás e deixa uma armadilha onde estava, que prende quem pisar |
-| Ultimate | Tempestade do Olho de Águia | Dispara sem parar por alguns segundos, com todos os tiros críticos e mais alcance |
-| Passiva | Foco | Cada tiro seguido no mesmo alvo aumenta um pouco o dano |
-
----
+Substituído pelos kits dos heróis: Rex e Kael.
 
 ## Subclasses guardadas para o futuro
 
