@@ -40,7 +40,7 @@ Jogo em Unity: dungeon crawler cooperativo isométrico (dungeons estilo WoW + sk
   - `// gpt: o que foi feito`
   - Arquivos sem comentário (JSON, assets e cenas do Unity, Markdown) ficam registrados só no commit.
 - **Nos commits:** a mensagem começa com `[claude]` ou `[gpt]`, conforme quem executou.
-- **Delegação:** o Claude Code pode passar tarefas braçais para o GPT pela ferramenta MCP `codex` (configurada em `.mcp.json`). O Claude revisa o resultado antes de commitar, e o commit sai como `[gpt]`.
+- **Delegação:** o Claude Code pode passar tarefas braçais para o GPT pelo terminal, com `codex exec "<tarefa>"`. O Claude revisa o resultado antes de commitar, e o commit sai como `[gpt]`.
 
 ## Documentação
 
