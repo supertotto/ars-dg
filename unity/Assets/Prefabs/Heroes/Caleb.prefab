@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 3854580972097440046}
   - component: {fileID: 8114337434254742792}
   - component: {fileID: 6032197603568355178}
+  - component: {fileID: 6729693473834942953}
   - component: {fileID: 8096362078845486321}
   - component: {fileID: 8033688983232243362}
   m_Layer: 0
@@ -167,6 +168,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.ComCompanheiro
   prefab: {fileID: 2083668431578741527, guid: a3de05a93b80f48429d2c9114b661447, type: 3}
+--- !u!114 &6729693473834942953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301881108601528563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7a58e8d94c83b324db1c307969cb7df1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.Abatido
+  sumirEmSegundos: 0
+  reviverEmSegundos: 5
 --- !u!114 &8096362078845486321
 MonoBehaviour:
   m_ObjectHideFlags: 0

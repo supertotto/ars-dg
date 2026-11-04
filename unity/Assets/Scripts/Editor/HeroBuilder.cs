@@ -165,6 +165,7 @@ namespace ARS.EditorTools
             AtribuirSkills(nome, kit);
             AtribuirPassiva(nome, raiz); // claude
             AtribuirCompanheiro(nome, raiz); // claude
+            raiz.AddComponent<Abatido>().reviverEmSegundos = 5f; // claude: provisório, só para testes (sem sistema de reviver ainda)
             raiz.AddComponent<ComandosDoJogador>();
             raiz.AddComponent<HudProvisorio>();
 

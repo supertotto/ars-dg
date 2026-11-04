@@ -46,6 +46,10 @@
 - [ ] Interações entre elementos
 - [ ] Altura de cada herói e orçamento de triângulos e textura dos modelos (o script de limpeza usa 1,8 m, 15.000 triângulos e 2048 px, provisórios)
 
+- [ ] IA de inimigo: visão 8 m, desiste se for puxado a mais de 20 m de casa (volta e se cura), ameaça = 1 por ponto de dano, decide a cada 0,25 s: provisórios
+- [ ] Vampirinho de teste (modelo do Lorde, Skin 2, 70% do tamanho): 300 de vida, 3 m/s, golpe corpo a corpo de 15 a cada 1,4 s, corpo some 4 s depois de morrer: provisórios. Ainda não está decidido se os mobs usam o modelo do Lorde
+- [ ] Herói abatido volta sozinho depois de 5 s com a vida cheia: só para testes, até existir o sistema de reviver
+
 ## Conteúdo
 
 - [ ] Hub social

@@ -81,6 +81,9 @@ namespace ARS.EditorTools
             // claude: as 3 skins do modelo do Lorde Vampiro, lado a lado, como alvos de treino (ataque básico e skills)
             ColocarAlvosDeTreino("Lorde Vampiro (skins)", ArsPaths.SkinsDoLordeVampiro, new Vector3(-2f, 0f, -3f), 3f);
 
+            // claude: inimigos montados (ARS → Montar inimigos), longe da visão deles, para o jogador ir até lá
+            ColocarInimigos(new Vector3(6f, 0f, 11f));
+
             // Câmera isométrica seguindo o herói controlado
             var camera = Camera.main;
             if (camera != null)
@@ -180,6 +183,26 @@ namespace ARS.EditorTools
                 combatente.alturaDoCorpo = 1.1f;
                 modelo.AddComponent<BonecoDeTreino>();
             }
+        }
+
+        // claude: 2 de cada inimigo montado, lado a lado
+        static void ColocarInimigos(Vector3 centro)
+        {
+            if (!AssetDatabase.IsValidFolder(InimigoBuilder.PastaPrefabs)) return;
+            var prefabs = AssetDatabase.FindAssets("t:Prefab", new[] { InimigoBuilder.PastaPrefabs })
+                .Select(g => AssetDatabase.LoadAssetAtPath<GameObject>(AssetDatabase.GUIDToAssetPath(g)))
+                .Where(p => p != null).ToList();
+            if (prefabs.Count == 0) return;
+            var grupo = new GameObject("Inimigos");
+            int i = 0;
+            foreach (var prefab in prefabs)
+                for (int k = 0; k < 2; k++, i++)
+                {
+                    var inimigo = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                    inimigo.transform.SetParent(grupo.transform);
+                    inimigo.transform.position = centro + new Vector3(i * 1.8f, 0f, (i % 2) * 1.2f);
+                    inimigo.transform.rotation = Quaternion.Euler(0f, 225f, 0f);
+                }
         }
 
         static Material CriarMaterial(string caminho, Color cor)
