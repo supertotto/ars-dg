@@ -60,6 +60,7 @@
 ## Arte
 
 - [ ] Trocar ou manter os pentagramas do Wix e do Abraxas (classificação etária)
+- [ ] Membrana das asas do modelo do Lorde Vampiro (pack `Vampire`): a malha `Glass1` (material `Mat_Vampyr_Glass`) não aparece no URP (face virada para trás); com os dois lados ligados vira placas brancas translúcidas. Decidir: refazer o material, esconder ou manter só os ossos das asas
 
 ## Técnico
 
