@@ -113,8 +113,13 @@ namespace ARS.Characters
             }
 
             Vector3 saida = PontoDeSaida(skill.pontoDeDisparo);
-            Projetil.Disparar(saida, alvo, skill.velocidadeProjetil, skill.corProjetil, skill.tamanhoProjetil,
-                              skill.rastro, skill.visualProjetil,
+            // claude: se a skill tiver variações visuais, sorteia uma por disparo (só muda a aparência)
+            var variacao = VisualDeProjetil.Sortear(skill.variacoesVisuais);
+            Projetil.Disparar(saida, alvo, skill.velocidadeProjetil,
+                              variacao != null ? variacao.cor : skill.corProjetil,
+                              variacao != null ? variacao.tamanho : skill.tamanhoProjetil,
+                              variacao != null ? variacao.rastro : skill.rastro,
+                              variacao != null ? variacao.visual : skill.visualProjetil,
                               atingido => AplicadorDeEfeitos.Aplicar(skill.efeitos, atingido, eu));
         }
 
