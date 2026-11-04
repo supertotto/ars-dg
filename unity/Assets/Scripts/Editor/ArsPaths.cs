@@ -14,6 +14,14 @@ namespace ARS.EditorTools
         public const string Cenas = "Assets/Scenes";
         public const string Dados = "Assets/Data";
 
+        // claude: prefabs do pack Vampire usados como Lorde Vampiro (uma por skin)
+        public static readonly string[] SkinsDoLordeVampiro =
+        {
+            "Assets/Vampire/Prefab/Vampyre Skin1 Prefab.prefab",
+            "Assets/Vampire/Prefab/Vampyre Skin2 Prefab.prefab",
+            "Assets/Vampire/Prefab/Vampyre Skin3 Prefab.prefab",
+        };
+
         public static readonly string[] SubpastasDoHeroi = { "Model", "Textures", "Animations", "Materials" };
 
         /// <summary>Cria a pasta (e as pastas-pai) dentro de Assets, se não existir.</summary>

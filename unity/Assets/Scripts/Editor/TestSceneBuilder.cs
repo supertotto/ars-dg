@@ -78,6 +78,9 @@ namespace ARS.EditorTools
             CriarBonecoDeTreino(new Vector3(4f, 0f, 5f));
             CriarBonecoDeTreino(new Vector3(-3f, 0f, 7f));
 
+            // claude: as 3 skins do modelo do Lorde Vampiro, lado a lado, só visual (sem combate)
+            ColocarModelos("Lorde Vampiro (skins)", ArsPaths.SkinsDoLordeVampiro, new Vector3(-2f, 0f, -3f), 3f);
+
             // Câmera isométrica seguindo o herói controlado
             var camera = Camera.main;
             if (camera != null)
@@ -146,6 +149,25 @@ namespace ARS.EditorTools
             combatente.vidaMaxima = 1000f;
             combatente.alturaDoCorpo = 1.1f;
             boneco.AddComponent<BonecoDeTreino>();
+        }
+
+        // claude: instancia prefabs em fila, virados para a câmera isométrica; avisa se algum caminho não existir
+        static void ColocarModelos(string nomeDoGrupo, string[] caminhos, Vector3 inicio, float espacamento)
+        {
+            var grupo = new GameObject(nomeDoGrupo);
+            for (int i = 0; i < caminhos.Length; i++)
+            {
+                var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(caminhos[i]);
+                if (prefab == null)
+                {
+                    Debug.LogWarning($"[ARS] Prefab não encontrado: {caminhos[i]}");
+                    continue;
+                }
+                var modelo = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
+                modelo.transform.SetParent(grupo.transform);
+                modelo.transform.position = inicio + new Vector3(i * espacamento, 0f, 0f);
+                modelo.transform.rotation = Quaternion.Euler(0f, 225f, 0f); // claude: a câmera olha para 45°, então 225° fica de frente
+            }
         }
 
         static Material CriarMaterial(string caminho, Color cor)
