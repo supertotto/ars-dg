@@ -47,6 +47,7 @@ namespace ARS.Characters
             controle = GetComponent<CharacterController>();
             var combatente = GetComponent<ARS.Combat.Combatente>(); // claude: tags de estado (pode não ter)
             if (combatente != null) estados = combatente.Estados;
+            if (combatente != null) combatente.AoTeleportar += _ => Parar(); // claude: teleportou = para de andar
             animator = GetComponentInChildren<Animator>();
         }
 

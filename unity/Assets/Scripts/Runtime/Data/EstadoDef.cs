@@ -28,6 +28,10 @@ namespace ARS.Data
         [Tooltip("O estado acaba quando o personagem usa uma skill (ex.: \"próxima skill épica\").")]
         public bool consumidoAoUsarSkill;
 
+        // claude: efeitos no dono quando o estado acaba (por tempo ou removido), com o ponto guardado pelo estado
+        [Tooltip("Efeitos aplicados no dono quando o estado acaba, por tempo ou removido (ex.: o companheiro volta a seguir).")]
+        public System.Collections.Generic.List<Efeito> efeitosAoTerminar = new System.Collections.Generic.List<Efeito>();
+
         [Header("Visual (sem regra de jogo)")]
         // claude: lista; cada aplicação sorteia um (ex.: sapo ou galinha)
         [Tooltip("Troca o visual do personagem enquanto durar (ex.: o bichinho). Com mais de um, sorteia a cada aplicação. Vazio = mantém o visual.")]

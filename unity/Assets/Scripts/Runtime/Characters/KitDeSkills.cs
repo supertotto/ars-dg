@@ -102,6 +102,18 @@ namespace ARS.Characters
             if (skill == null) return Avisar($"{tecla}: sem skill");
             // claude: estados com a tag Sem Skill (ex.: transformado) bloqueiam skills
             if (eu.Estados.Tem(TagDeEstado.SemSkill)) return Avisar("Não pode usar skills agora");
+            // claude: dentro da janela de reativação, a tecla faz a segunda ativação (sem custo e sem carga)
+            if (PodeReativar(tecla))
+            {
+                if (trava.Ocupado)
+                {
+                    guardada = new Guardada { tecla = tecla, alvoSobCursor = alvoSobCursor, cursor = cursor };
+                    trava.Reservado = true;
+                    return false;
+                }
+                Reativar(skill);
+                return true;
+            }
             if (estado.cargas <= 0) return Avisar($"{skill.nome}: recarregando");
             // claude: modificador "Skill Sem Custo" (ex.: skill épica) zera o custo
             float custo = eu.Estados.TemModificador(TipoDeModificador.SkillSemCusto) ? 0f : skill.custo;
@@ -115,9 +127,21 @@ namespace ARS.Characters
             }
 
             Combatente alvo = null;
+            // claude: ponto mirado (chão) e ponto de partida (onde o lançador está agora)
+            Vector3 partida = transform.position;
+            Vector3 ponto = cursor;
             if (skill.alvo == AlvoDaSkill.Proprio)
             {
                 alvo = eu;
+                ponto = partida;
+            }
+            else if (skill.alvo == AlvoDaSkill.PontoNoChao)
+            {
+                // mais longe que o alcance = vai até o limite do alcance
+                Vector3 direcao = cursor - partida;
+                direcao.y = 0f;
+                if (direcao.magnitude > skill.alcance) direcao = direcao.normalized * skill.alcance;
+                ponto = partida + direcao;
             }
             else
             {
@@ -127,6 +151,7 @@ namespace ARS.Characters
                 if (alvo == null) return Avisar("Sem alvo");
                 if (DistanciaPlana(transform.position, alvo.transform.position) > skill.alcance)
                     return Avisar("Fora de alcance");
+                ponto = alvo.transform.position;
             }
 
             // Pagou: gasta recurso e carga
@@ -147,13 +172,29 @@ namespace ARS.Characters
                 animator.SetTrigger(ParametroAtacar);
 
             // claude: vira para o alvo ao conjurar (como o ataque básico)
-            if (movimento != null && alvo != eu) movimento.OlharPara(alvo.transform.position);
+            if (movimento != null && alvo != eu) movimento.OlharPara(ponto);
 
             // claude: fica ocupado conjurando; a skill sai no fim da conjuração
             trava.Ocupar(skill.tempoDeConjuracao);
-            if (skill.tempoDeConjuracao > 0f) conjuracao = StartCoroutine(ExecutarDepois(skill, alvo, skill.tempoDeConjuracao, potencia));
-            else Executar(skill, alvo, potencia);
+            if (skill.tempoDeConjuracao > 0f) conjuracao = StartCoroutine(ExecutarDepois(skill, alvo, ponto, partida, skill.tempoDeConjuracao, potencia));
+            else Executar(skill, alvo, ponto, partida, potencia);
             return true;
+        }
+
+        // claude: reativação (ex.: apertar E de novo para voltar até o gato)
+        /// <summary>true se a skill da tecla está na janela de reativação.</summary>
+        public bool PodeReativar(Tecla tecla)
+        {
+            var estado = estados[(int)tecla];
+            var skill = estado != null ? estado.skill : null;
+            return skill != null && skill.janelaDeReativacao != null && eu != null && eu.Estados.EstaAtivo(skill.janelaDeReativacao);
+        }
+
+        void Reativar(SkillDef skill)
+        {
+            var contexto = new ContextoDoEfeito { origem = eu, pontoMirado = transform.position, pontoDePartida = transform.position };
+            AplicadorDeEfeitos.Aplicar(skill.efeitosAoReativar, eu, contexto);
+            eu.Estados.Remover(skill.janelaDeReativacao); // fecha a janela (dispara os "efeitos ao terminar" dela)
         }
 
         // claude: quanto a skill foi potencializada por modificadores (1 = normal)
@@ -170,22 +211,51 @@ namespace ARS.Characters
         }
 
         // claude: espera a conjuração; se o alvo morrer nesse meio tempo, a skill não sai (carga e custo já foram gastos)
-        System.Collections.IEnumerator ExecutarDepois(SkillDef skill, Combatente alvo, float segundos, Potencia potencia)
+        System.Collections.IEnumerator ExecutarDepois(SkillDef skill, Combatente alvo, Vector3 ponto, Vector3 partida,
+                                                       float segundos, Potencia potencia)
         {
             yield return new WaitForSeconds(segundos);
             conjuracao = null;
-            if (alvo == null || !alvo.Vivo) yield break;
-            Executar(skill, alvo, potencia);
+            // skill com alvo: se ele morreu na conjuração, não sai; skill no chão sempre sai
+            if (skill.alvo == AlvoDaSkill.InimigoNoCursor && (alvo == null || !alvo.Vivo)) yield break;
+            Executar(skill, alvo, ponto, partida, potencia);
         }
 
-        void Executar(SkillDef skill, Combatente alvo, Potencia potencia)
+        void Executar(SkillDef skill, Combatente alvo, Vector3 ponto, Vector3 partida, Potencia potencia)
         {
             // claude: números multiplicados (skill épica); 1 = os efeitos originais
             var efeitos = AplicadorDeEfeitos.Multiplicados(skill.efeitos, potencia.numeros);
+            var contexto = new ContextoDoEfeito { origem = eu, pontoMirado = ponto, pontoDePartida = partida };
+
+            // claude: primeiro os efeitos no próprio lançador (ex.: teleportar, deixar o companheiro, criar zona)
+            if (skill.efeitosNoLancador != null && skill.efeitosNoLancador.Count > 0)
+                AplicadorDeEfeitos.Aplicar(AplicadorDeEfeitos.Multiplicados(skill.efeitosNoLancador, potencia.numeros), eu, contexto);
+
+            // claude: área no ponto: todos os inimigos no raio; conta 1 acerto se pegou alguém
+            if (skill.entrega == EntregaDaSkill.AreaNoPonto)
+            {
+                Combatente primeiro = null;
+                var lista = Combatente.Todos;
+                for (int i = lista.Count - 1; i >= 0; i--)
+                {
+                    var c = lista[i];
+                    if (c == null || !c.Vivo || !eu.EhInimigoDe(c)) continue;
+                    if (DistanciaPlana(c.transform.position, ponto) > skill.raioDaArea) continue;
+                    AplicadorDeEfeitos.Aplicar(efeitos, c, contexto);
+                    if (primeiro == null) primeiro = c;
+                }
+                if (primeiro != null) eu.RegistrarAcerto(primeiro, OrigemDoAcerto.Skill);
+                Vector3 centro = ponto + Vector3.up * 0.5f;
+                Projetil.CriarImpacto(skill.visualImpacto, centro, transform.rotation, potencia.visual);
+                if (potencia.extra != null) Projetil.CriarImpacto(potencia.extra.visualNoImpacto, centro, transform.rotation, potencia.visual);
+                return;
+            }
+
+            if (alvo == null) return; // claude: skill no chão sem área: só os efeitos no lançador
 
             if (skill.entrega == EntregaDaSkill.Instantanea || alvo == eu)
             {
-                AplicadorDeEfeitos.Aplicar(efeitos, alvo, eu);
+                AplicadorDeEfeitos.Aplicar(efeitos, alvo, contexto);
                 if (alvo != eu) eu.RegistrarAcerto(alvo, OrigemDoAcerto.Skill); // claude: 1 acerto por uso
                 Projetil.CriarImpacto(skill.visualImpacto, alvo.Centro, transform.rotation, potencia.visual); // claude
                 if (potencia.extra != null) Projetil.CriarImpacto(potencia.extra.visualNoImpacto, alvo.Centro, transform.rotation, potencia.visual);
@@ -202,7 +272,7 @@ namespace ARS.Characters
                               variacao != null ? variacao.visual : skill.visualProjetil,
                               atingido =>
                               {
-                                  AplicadorDeEfeitos.Aplicar(efeitos, atingido, eu);
+                                  AplicadorDeEfeitos.Aplicar(efeitos, atingido, contexto);
                                   eu.RegistrarAcerto(atingido, OrigemDoAcerto.Skill); // claude: cada projétil = 1 acerto
                               },
                               potencia.visual,

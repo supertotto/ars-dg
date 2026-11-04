@@ -23,7 +23,18 @@ namespace ARS.Characters
             if (Companheiro == null) Companheiro = objeto.AddComponent<Companheiro>();
             Companheiro.dono = transform;
             objeto.transform.SetPositionAndRotation(transform.TransformPoint(Companheiro.posicaoAoLado), transform.rotation);
+
+            // claude: obedece às ordens das skills (efeitos Companheiro Fica / Companheiro Segue)
+            var combatente = GetComponent<ARS.Combat.Combatente>();
+            if (combatente != null)
+            {
+                combatente.AoMandarCompanheiroFicar += Ficar;
+                combatente.AoMandarCompanheiroSeguir += Seguir;
+            }
         }
+
+        void Ficar(Vector3 ponto) { if (Companheiro != null) Companheiro.FicarEm(ponto); }
+        void Seguir() { if (Companheiro != null) Companheiro.Seguir(); }
 
         void OnDestroy()
         {

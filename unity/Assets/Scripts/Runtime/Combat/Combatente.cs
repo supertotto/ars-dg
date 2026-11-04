@@ -43,6 +43,24 @@ namespace ARS.Combat
         public event Action<Combatente, OrigemDoAcerto> AoAcertar;
         public void RegistrarAcerto(Combatente alvo, OrigemDoAcerto origem) => AoAcertar?.Invoke(alvo, origem);
 
+        // claude: teleporte (desliga o CharacterController para poder mover) e aviso para quem anda parar
+        public event Action<Vector3> AoTeleportar;
+        public void Teleportar(Vector3 destino)
+        {
+            var controle = GetComponent<CharacterController>();
+            bool ligado = controle != null && controle.enabled;
+            if (ligado) controle.enabled = false;
+            transform.position = destino;
+            if (ligado) controle.enabled = true;
+            AoTeleportar?.Invoke(destino);
+        }
+
+        // claude: ordens para o companheiro (quem tem companheiro escuta)
+        public event Action<Vector3> AoMandarCompanheiroFicar;
+        public event Action AoMandarCompanheiroSeguir;
+        public void MandarCompanheiroFicar(Vector3 ponto) => AoMandarCompanheiroFicar?.Invoke(ponto);
+        public void MandarCompanheiroSeguir() => AoMandarCompanheiroSeguir?.Invoke();
+
         static readonly List<Combatente> todos = new List<Combatente>();
         /// <summary>Todos os combatentes ativos na cena.</summary>
         public static IReadOnlyList<Combatente> Todos => todos;

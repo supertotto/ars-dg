@@ -61,6 +61,7 @@ namespace ARS.UI
                         string cargas = estado.skill.cargas > 1 ? $"  [{estado.cargas}/{estado.skill.cargas}]" : "";
                         string tempo = falta > 0f && estado.cargas == 0 ? $"  {falta:0.0}s" : "";
                         texto = $"{tecla}{cargas}{tempo}\n{estado.skill.nome}";
+                        if (kit.PodeReativar(tecla)) texto = $"{tecla}  VOLTAR\n{estado.skill.nome}"; // claude: janela de reativação
                     }
                     GUI.Box(new Rect(bx, by, largura, altura), texto, estiloCaixa);
                     bx += largura + 8f * escala;

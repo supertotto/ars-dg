@@ -1,0 +1,31 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0047a910b6df79d40be2009105f4c9eb, type: 3}
+  m_Name: EsqueciOGato_Janela
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Data.EstadoDef
+  nome: Esqueci o Gato (pode voltar)
+  descricao: "Janela para reativar a E e voltar ao ponto de partida (onde ficou o gato). Dura\xE7\xE3o provis\xF3ria."
+  tags: 0
+  duracaoPadrao: 4
+  acumulosMaximos: 1
+  modificadores: []
+  consumidoAoUsarSkill: 0
+  efeitosAoTerminar:
+  - tipo: 14
+    valor: 0
+    tipoDeDano: 1
+    duracao: 0
+    estado: {fileID: 0}
+    destino: 0
+    zona: {fileID: 0}
+  visuaisSubstitutos: []
+  visualExtra: {fileID: 0}

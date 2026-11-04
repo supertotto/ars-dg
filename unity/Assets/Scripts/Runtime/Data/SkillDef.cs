@@ -9,13 +9,17 @@ namespace ARS.Data
     {
         [Tooltip("O inimigo sob o cursor (ou o mais perto dele).")]
         InimigoNoCursor,
-        Proprio      // (a fazer: Direcao, PontoNoChao, AreaCirculo...)
+        Proprio,     // (a fazer: Direcao...)
+        // claude: um lugar do chão (até o alcance; mais longe = no limite do alcance)
+        [Tooltip("Um ponto do chão sob o cursor (limitado ao alcance).")]
+        PontoNoChao
     }
 
     public enum EntregaDaSkill
     {
         Instantanea, // os efeitos acontecem na hora
-        Projetil     // os efeitos acontecem quando o projétil acerta
+        Projetil,    // os efeitos acontecem quando o projétil acerta
+        AreaNoPonto  // claude: os efeitos acontecem em todos os inimigos no raio em volta do ponto (conta 1 acerto)
     }
 
     /// <summary>
@@ -59,7 +63,21 @@ namespace ARS.Data
         [Tooltip("Se tiver itens, cada disparo sorteia um deles (pelo peso) no lugar do visual, cor, tamanho e rastro acima.")]
         public List<VisualDeProjetil> variacoesVisuais = new List<VisualDeProjetil>();
 
+        // claude: raio da área (entrega Área No Ponto)
+        [Tooltip("Raio em metros (só para Área No Ponto).")]
+        public float raioDaArea = 2.5f;
+
         [Header("O que faz")]
         public List<Efeito> efeitos = new List<Efeito> { new Efeito() };
+        // claude: efeitos no próprio lançador, antes dos efeitos no alvo (ex.: teleporte, marcar ponto de volta)
+        [Tooltip("Efeitos aplicados no próprio lançador, na ordem, antes dos efeitos no alvo (ex.: teleportar).")]
+        public List<Efeito> efeitosNoLancador = new List<Efeito>();
+
+        // claude: segunda ativação dentro de uma janela (ex.: E do Caleb volta até o gato)
+        [Header("Reativação")]
+        [Tooltip("Estado que abre a janela de reativação. Enquanto o lançador tiver este estado, apertar a tecla de novo faz a reativação (sem custo e sem gastar carga). Vazio = sem reativação.")]
+        public EstadoDef janelaDeReativacao;
+        [Tooltip("Efeitos no lançador ao reativar (ex.: teleportar até o ponto marcado pelo estado da janela).")]
+        public List<Efeito> efeitosAoReativar = new List<Efeito>();
     }
 }
