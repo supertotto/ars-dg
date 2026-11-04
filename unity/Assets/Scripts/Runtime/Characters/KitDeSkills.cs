@@ -27,6 +27,7 @@ namespace ARS.Characters
         readonly Estado[] estados = new Estado[4];
         Combatente eu;
         Recurso recurso;
+        Movimento movimento; // claude: para virar o personagem para o alvo da skill
         Animator animator;
         TravaDeAcao trava; // claude: uma ação por vez (sem skill no meio do ataque básico)
 
@@ -49,6 +50,7 @@ namespace ARS.Characters
         {
             eu = GetComponent<Combatente>();
             recurso = GetComponent<Recurso>();
+            movimento = GetComponent<Movimento>(); // claude
             animator = GetComponentInChildren<Animator>();
             trava = TravaDeAcao.De(gameObject); // claude
             var skills = new[] { q, w, e, r };
@@ -127,6 +129,9 @@ namespace ARS.Characters
 
             if (animator != null && animator.runtimeAnimatorController != null && animator.isActiveAndEnabled)
                 animator.SetTrigger(ParametroAtacar);
+
+            // claude: vira para o alvo ao conjurar (como o ataque básico)
+            if (movimento != null && alvo != eu) movimento.OlharPara(alvo.transform.position);
 
             // claude: fica ocupado conjurando; a skill sai no fim da conjuração
             trava.Ocupar(skill.tempoDeConjuracao);
