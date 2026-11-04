@@ -57,6 +57,8 @@ Ao arrastar um FBX do Mixamo para as pastas acima, o projeto já configura sozin
 - Personagem preso no lugar (**Bake Into Pose**): quem move o herói é o jogo
 - O clipe "mixamo.com" é renomeado com o nome do arquivo; no modelo do herói, vira "parado"
 
+**Animação lançada de lado:** algumas magias do Mixamo giram o corpo (o herói lança para o lado e fica de costas para o alvo). Corrija girando o clipe no Inspector do FBX (**Root Transform Rotation → Offset**) até a mão que lança apontar para a frente. O `standing 1H cast spell 01` usa **+90°**. O menu **ARS → Reconfigurar FBX** mantém esse giro.
+
 Os nomes dos arquivos importam: `andar`/`walk`, `correr`/`run`, `parado`/`idle`. Em packs, os nomes com "forward" são preferidos e os com "left/right/back/strafe/turn" ficam de lado.
 
 ## Valores provisórios

@@ -113,6 +113,12 @@ namespace ARS.EditorTools
                     EditorUtility.DisplayProgressBar("ARS", "Reconfigurando " + caminho, (float)i / caminhos.Count);
                     if (!(AssetImporter.GetAtPath(caminho) is ModelImporter importador)) continue;
 
+                    // claude: guarda o giro feito à mão em cada clipe (ex.: magia do Mixamo lançada de lado)
+                    var giros = importador.clipAnimations
+                        .Where(c => Mathf.Abs(c.rotationOffset) > 0.01f)
+                        .GroupBy(c => c.takeName + "|" + c.firstFrame + "|" + c.lastFrame)
+                        .ToDictionary(g => g.Key, g => g.First().rotationOffset);
+
                     // 1ª passada: rig Humanoid (os clipes só ficam humanoides depois disso)
                     ConfigurarModelo(importador, caminho);
                     importador.clipAnimations = new ModelImporterClipAnimation[0];
@@ -120,6 +126,15 @@ namespace ARS.EditorTools
 
                     // 2ª passada: nome, loop e Bake Into Pose
                     ConfigurarClipes(importador, caminho);
+                    // claude: devolve os giros guardados
+                    if (giros.Count > 0)
+                    {
+                        var clipes = importador.clipAnimations;
+                        foreach (var c in clipes)
+                            if (giros.TryGetValue(c.takeName + "|" + c.firstFrame + "|" + c.lastFrame, out float giro))
+                                c.rotationOffset = giro;
+                        importador.clipAnimations = clipes;
+                    }
                     importador.SaveAndReimport();
                 }
             }
