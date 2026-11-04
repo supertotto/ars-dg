@@ -9,6 +9,7 @@ Jogo em Unity: dungeon crawler cooperativo isométrico (dungeons estilo WoW + sk
 ## Antes de mexer em algo
 
 - Leia o documento do GDD relacionado à tarefa.
+- Mecânicas de dungeons e chefes: consulte [Dungeons, etapa a etapa](docs/gdd/08-dungeons-etapa-a-etapa.md) (cada chefe, fase e o que falta definir).
 - Confira [Pendências](docs/pendencias.md): o que está lá **não foi decidido**.
 
 ## Decisões criativas
