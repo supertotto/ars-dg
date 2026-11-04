@@ -1,3 +1,4 @@
+// claude: arquivo criado pelo Claude (app claude.ai)
 using System;
 using UnityEngine;
 

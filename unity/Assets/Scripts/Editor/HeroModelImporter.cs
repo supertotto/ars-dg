@@ -1,3 +1,4 @@
+// claude: arquivo criado pelo Claude (app claude.ai)
 using System.Linq;
 using UnityEditor;
 using UnityEngine;

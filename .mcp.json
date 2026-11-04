@@ -1,0 +1,12 @@
+{
+  "mcpServers": {
+    "codex": {
+      "command": "cmd",
+      "args": [
+        "/c",
+        "codex",
+        "mcp-server"
+      ]
+    }
+  }
+}

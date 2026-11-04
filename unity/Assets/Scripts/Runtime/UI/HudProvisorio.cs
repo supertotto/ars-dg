@@ -1,3 +1,4 @@
+// claude: arquivo criado pelo Claude (app claude.ai)
 using ARS.Characters;
 using ARS.Combat;
 using UnityEngine;
