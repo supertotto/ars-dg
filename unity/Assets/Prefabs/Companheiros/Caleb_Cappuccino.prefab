@@ -53,8 +53,8 @@ MonoBehaviour:
   distanciaParaTeleportar: 15
   distanciaParada: 0.25
   velocidadeGiro: 540
-  escalaNaCaca: 2
-  alcanceDoAtaque: 1
+  escalaNaCaca: 6
+  alcanceDoAtaque: 2
   marcaAoSairDoPosto: {fileID: 1815006453573042324, guid: eb01f4a7435c68344956c032e44e01b0, type: 3}
 --- !u!1001 &7941524685361622834
 PrefabInstance:
