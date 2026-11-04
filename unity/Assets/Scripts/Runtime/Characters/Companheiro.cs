@@ -125,6 +125,7 @@ namespace ARS.Characters
             proximoAtaque = Time.time;
             presa = null;
             pontoDoSapo = PontoAleatorio();
+            fase = FaseDaCaca.IndoAoInimigo; // claude
             transform.localScale = escalaNormal * escalaNaCaca;
         }
 
@@ -176,41 +177,95 @@ namespace ARS.Characters
                 return;
             }
 
-            // escolhe a presa: inimigo vivo mais perto dentro do raio; sem inimigo, um "sapo"
-            if (presa == null || !presa.Vivo || Fora(presa.transform.position)) presa = InimigoMaisPerto();
+            // claude: ciclo bote no inimigo → corrida até um sapo → bote... (sem inimigo: só sapos)
+            if (fase == FaseDaCaca.Saltando) { Saltar(); return; }
 
-            Vector3 alvo = presa != null ? presa.transform.position : pontoDoSapo;
-            Vector3 direcao = alvo - transform.position;
-            direcao.y = 0f;
-            float distancia = direcao.magnitude;
-            float velocidade = 0f;
-
-            if (presa != null)
+            if (fase == FaseDaCaca.IndoAoInimigo)
             {
-                if (distancia > alcanceDoAtaque)
+                if (presa == null || !presa.Vivo || Fora(presa.transform.position)) presa = InimigoMaisPerto();
+                if (presa == null) { fase = FaseDaCaca.IndoAoSapo; }
+                else
                 {
-                    velocidade = velocidadeCorrendo;
-                    Andar(direcao, distancia - alcanceDoAtaque * 0.8f, velocidade);
+                    Vector3 ate = presa.transform.position - transform.position; ate.y = 0f;
+                    float dist = ate.magnitude;
+                    if (dist <= distanciaDoBote && Time.time >= proximoAtaque) { ComecarBote(ate); return; }
+                    Andar(ate, Mathf.Max(0f, dist - alcanceDoAtaque), velocidadeCorrendo);
+                    NoChao();
+                    Animar(velocidadeCorrendo);
+                    return;
                 }
-                else if (Time.time >= proximoAtaque)
+            }
+
+            // indo ao sapo
+            Vector3 direcao = pontoDoSapo - transform.position; direcao.y = 0f;
+            float distancia = direcao.magnitude;
+            if (distancia <= distanciaParada * escalaNaCaca)
+            {
+                pontoDoSapo = PontoAleatorio();
+                fase = FaseDaCaca.IndoAoInimigo; // pegou o sapo: próximo bote
+            }
+            else Andar(direcao, distancia, velocidadeCorrendo);
+            NoChao();
+            Animar(velocidadeCorrendo);
+        }
+
+        // claude: bote = salto em arco por cima do inimigo, mordendo no meio e caindo do outro lado
+        [Tooltip("Distância em que começa o bote no inimigo.")]
+        public float distanciaDoBote = 3f;
+        [Tooltip("Quanto passa do inimigo ao cair do bote.")]
+        public float distanciaAlemDoAlvo = 2f;
+        public float alturaDoBote = 1.2f;
+        public float duracaoDoBote = 0.45f;
+
+        enum FaseDaCaca { IndoAoInimigo, Saltando, IndoAoSapo }
+        FaseDaCaca fase;
+        Vector3 inicioDoBote, fimDoBote;
+        float progressoDoBote;
+        bool mordeu;
+
+        void ComecarBote(Vector3 ateOInimigo)
+        {
+            fase = FaseDaCaca.Saltando;
+            inicioDoBote = transform.position;
+            fimDoBote = presa.transform.position + ateOInimigo.normalized * distanciaAlemDoAlvo;
+            fimDoBote.y = centroDaCaca.y;
+            progressoDoBote = 0f;
+            mordeu = false;
+            proximoAtaque = Time.time + Mathf.Max(0.05f, zonaDaCaca.intervalo);
+            transform.rotation = Quaternion.LookRotation(ateOInimigo, Vector3.up);
+        }
+
+        void Saltar()
+        {
+            progressoDoBote += Time.deltaTime / Mathf.Max(0.05f, duracaoDoBote);
+            float t = Mathf.Clamp01(progressoDoBote);
+            var p = Vector3.Lerp(inicioDoBote, fimDoBote, t);
+            p.y = centroDaCaca.y + Mathf.Sin(t * Mathf.PI) * alturaDoBote;
+            transform.position = p;
+            Animar(velocidadeCorrendo);
+
+            if (!mordeu && t >= 0.5f)
+            {
+                mordeu = true;
+                if (presa != null && presa.Vivo)
                 {
-                    proximoAtaque = Time.time + Mathf.Max(0.05f, zonaDaCaca.intervalo);
                     var contexto = new ContextoDoEfeito { origem = donoCombatente, pontoMirado = presa.transform.position, pontoDePartida = transform.position };
                     AplicadorDeEfeitos.Aplicar(efeitosDoAtaque, presa, contexto);
                 }
-                if (direcao.sqrMagnitude > 0.0001f)
-                    transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.LookRotation(direcao, Vector3.up), velocidadeGiro * Time.deltaTime);
             }
-            else
+            if (t >= 1f)
             {
-                if (distancia <= distanciaParada) pontoDoSapo = PontoAleatorio();
-                else { velocidade = velocidadeCorrendo; Andar(direcao, distancia, velocidade); }
+                NoChao();
+                pontoDoSapo = PontoAleatorio();
+                fase = FaseDaCaca.IndoAoSapo;
             }
+        }
 
+        void NoChao()
+        {
             var p = transform.position;
             p.y = centroDaCaca.y;
             transform.position = p;
-            Animar(velocidade);
         }
 
         void TerminarCaca()
