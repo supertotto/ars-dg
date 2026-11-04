@@ -35,6 +35,7 @@ Assets/
 
 - **Botão direito no chão:** anda. **Botão direito num inimigo:** ataca sozinho até receber outra ordem (estilo LoL).
 - O ataque básico de cada herói é um dado em `Assets/Data/Heroes/<Herói>_AtaqueBasico.asset` (alcance, intervalo, dano, projétil). Criado com valores **provisórios** na primeira montagem; ajuste no Inspector.
+- **Uma ação por vez** (`TravaDeAcao`): durante o balanço do ataque básico ou a conjuração de uma skill (`tempoDeConjuracao` no `SkillDef`), o herói não faz outra ação. Skill apertada nesse meio tempo fica guardada e sai assim que a trava libera (vale a última apertada); mandar andar descarta a skill guardada. O ataque básico não passa na frente de uma skill guardada.
 - A animação de ataque é escolhida pelo nome do arquivo: `attack`, `atacar`, `ataque`, `cast` ou `spell`. Coloque na pasta `Animations` do herói.
 - A cena de teste tem **bonecos de treino**: mostram a vida, os números de dano e voltam à vida cheia depois de 3 segundos sem apanhar.
 

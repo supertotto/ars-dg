@@ -29,6 +29,17 @@ namespace ARS.Characters
         Recurso recurso;
         Animator animator;
         TravaDeAcao trava; // claude: uma ação por vez (sem skill no meio do ataque básico)
+
+        // claude: skill apertada enquanto ocupado; a última apertada vale
+        class Guardada { public Tecla tecla; public Combatente alvoSobCursor; public Vector3 cursor; }
+        Guardada guardada;
+
+        /// <summary>Esquece a skill guardada (ex.: o jogador mandou andar).</summary>
+        public void DescartarGuardada()
+        {
+            guardada = null;
+            if (trava != null) trava.Reservado = false;
+        }
         static readonly int ParametroAtacar = Animator.StringToHash("Atacar");
 
         public string UltimaMensagem { get; private set; }
@@ -68,6 +79,14 @@ namespace ARS.Characters
                 }
             }
             if (Time.time > mensagemAte) UltimaMensagem = null;
+
+            // claude: trava liberou: solta a skill guardada (as checagens de alvo, alcance e custo valem de novo)
+            if (guardada != null && !trava.Ocupado)
+            {
+                var g = guardada;
+                DescartarGuardada();
+                Usar(g.tecla, g.alvoSobCursor, g.cursor);
+            }
         }
 
         /// <summary>Tenta usar a skill da tecla. "cursor" = ponto do chão sob o mouse.</summary>
@@ -76,10 +95,15 @@ namespace ARS.Characters
             var estado = estados[(int)tecla];
             var skill = estado.skill;
             if (skill == null) return Avisar($"{tecla}: sem skill");
-            // claude: no meio do ataque básico (ou de outra skill) a skill é recusada
-            if (trava.Ocupado) return Avisar("Ocupado");
             if (estado.cargas <= 0) return Avisar($"{skill.nome}: recarregando");
             if (recurso != null && !recurso.TemPelomenos(skill.custo)) return Avisar($"Sem {recurso.tipo} suficiente");
+            // claude: no meio do ataque básico (ou de outra skill) a skill fica guardada e sai quando a trava liberar
+            if (trava.Ocupado)
+            {
+                guardada = new Guardada { tecla = tecla, alvoSobCursor = alvoSobCursor, cursor = cursor };
+                trava.Reservado = true;
+                return false;
+            }
 
             Combatente alvo = null;
             if (skill.alvo == AlvoDaSkill.Proprio)

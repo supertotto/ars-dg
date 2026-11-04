@@ -13,6 +13,9 @@ namespace ARS.Characters
 
         public bool Ocupado => Time.time < livreEm;
 
+        // claude: uma skill guardada esperando a trava liberar; o ataque básico não passa na frente dela
+        public bool Reservado { get; set; }
+
         /// <summary>Fica ocupado por "segundos" a partir de agora (nunca encurta uma trava maior).</summary>
         public void Ocupar(float segundos) => livreEm = Mathf.Max(livreEm, Time.time + Mathf.Max(0f, segundos));
 

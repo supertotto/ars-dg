@@ -85,7 +85,7 @@ namespace ARS.Characters
             movimento.OlharPara(alvo.transform.position);
 
             // claude: no meio de uma skill, espera; o ataque volta sozinho quando ela termina
-            if (Time.time >= proximoAtaque && !trava.Ocupado)
+            if (Time.time >= proximoAtaque && !trava.Ocupado && !trava.Reservado)
             {
                 proximoAtaque = Time.time + definicao.intervalo;
                 golpeSaiEm = Time.time + definicao.tempoDoGolpe;

@@ -66,7 +66,7 @@
 
 - [ ] Testes automáticos das skills (regra do CLAUDE.md): instalar o Unity Test Framework e criar o primeiro teste (Mísseis Mágicos)
 - [ ] Números do Q do Caleb (20 de Mana, 4 s por carga, 3 cargas, 8 m, 35 de dano, 0,3 s de conjuração): provisórios
-- [ ] Uma ação por vez: skill apertada no meio do ataque básico é recusada ("Ocupado"); decidir se deve ficar guardada e sair logo depois. Se o alvo morrer durante a conjuração, a carga e a Mana se perdem (provisório)
+- [ ] Uma ação por vez: se o alvo morrer durante a conjuração, a carga e a Mana se perdem (provisório)
 - [ ] Chance de cada visual dos Mísseis Mágicos (sapinho, borboletas, letras, míssil): provisório, todos com peso 1
 - [ ] Sapinho dos Mísseis Mágicos: tamanho (0,2 do modelo, ~0,3 m) e sem rastro, provisórios
 - [ ] Borboletas dos Mísseis Mágicos: forma desenhada por código, cores (rosa, azul, amarelo), 6 por disparo e tamanho, provisórios

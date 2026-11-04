@@ -62,6 +62,7 @@ namespace ARS.Characters
                 if (acerto.collider.GetComponentInParent<Combatente>() != null) continue;
                 if (acerto.collider.isTrigger) continue;
                 if (ataque != null) ataque.Cancelar();
+                if (kit != null) kit.DescartarGuardada(); // claude: andar desiste da skill guardada
                 movimento.MoverPara(acerto.point);
                 return;
             }
