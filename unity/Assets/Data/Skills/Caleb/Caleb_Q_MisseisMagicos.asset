@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6034d0403b6439e8e37c58f06b6d319, type: 3}
   m_Name: Caleb_Q_MisseisMagicos
   m_EditorClassIdentifier: 
-  nome: Mísseis Mágicos
-  descricao: "Mísseis perseguidores com 3 cargas independentes: solta um de cada vez ou concentra todos num alvo. (Números provisórios.)"
+  nome: "M\xEDsseis M\xE1gicos"
+  descricao: "M\xEDsseis perseguidores com 3 cargas independentes: solta um de cada vez ou concentra todos num alvo. (N\xFAmeros provis\xF3rios.)"
   custo: 20
   recarga: 4
   cargas: 3
@@ -22,10 +22,10 @@ MonoBehaviour:
   raioDeBuscaNoCursor: 3
   entrega: 1
   velocidadeProjetil: 16
-  visualProjetil: {fileID: 0}
-  corProjetil: {r: 1, g: 0.85, b: 0.4, a: 1}
+  visualProjetil: {fileID: 4021103657954561961, guid: 5c755f9bc5253ea418e919994537dcc7, type: 3}
+  corProjetil: {r: 1, g: 0, b: 0, a: 1}
   tamanhoProjetil: 0.3
-  rastro: 1
+  rastro: 0
   pontoDeDisparo: 0
   efeitos:
   - tipo: 0

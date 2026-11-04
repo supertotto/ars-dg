@@ -13,7 +13,10 @@ GameObject:
   - component: {fileID: 3281302703964392579}
   - component: {fileID: 4329325481034155517}
   - component: {fileID: 8912165393490426310}
+  - component: {fileID: 435406373881699254}
+  - component: {fileID: 3854580972097440046}
   - component: {fileID: 8096362078845486321}
+  - component: {fileID: 8033688983232243362}
   m_Layer: 0
   m_Name: Caleb
   m_TagString: Untagged
@@ -105,6 +108,37 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.AtaqueBasico
   definicao: {fileID: 11400000, guid: 3015884863b2a444f98eee1c8688bfe3, type: 2}
+--- !u!114 &435406373881699254
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301881108601528563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 759c75fae7d25554387036edbd59882a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Combat.Recurso
+  tipo: 1
+  maximo: 300
+  regeneracao: 4
+--- !u!114 &3854580972097440046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301881108601528563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e3f202f630643534189052fe0d911db3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.KitDeSkills
+  q: {fileID: 11400000, guid: 95f73d93583549d7b20af518024c1582, type: 2}
+  w: {fileID: 0}
+  e: {fileID: 0}
+  r: {fileID: 0}
 --- !u!114 &8096362078845486321
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -120,6 +154,19 @@ MonoBehaviour:
   clicavel:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &8033688983232243362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 301881108601528563}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9cca34ca64e7f544aa51173d6907e369, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: ARS.Runtime::ARS.UI.HudProvisorio
+  tamanhoDaLetra: 26
 --- !u!1001 &8024684772149348667
 PrefabInstance:
   m_ObjectHideFlags: 0
