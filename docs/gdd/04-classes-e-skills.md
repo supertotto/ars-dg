@@ -53,6 +53,8 @@ O caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é pr
 
 **Recurso:** Mana · **Armas:** cajado e grimório.
 
+**Cappuccino:** o gato (laranja e branco) acompanha o Caleb andando ao lado dele o tempo todo e não pode ser atacado. Só sai de perto na E (fica no ponto de partida) e na R (caça os sapos).
+
 | Tecla | Skill | Efeito | Efeitos genéricos usados |
 | --- | --- | --- | --- |
 | Q | Mísseis Mágicos | Possui três cargas disparadas separadamente. Cada ativação seleciona um inimigo pelo cursor, em point-and-click, e lança um míssil perseguidor que causa dano mágico. Pode concentrar as cargas em um alvo ou distribuí-las. **Visual:** cada míssil sai com uma aparência sorteada (sapinho, borboletas, letras do grimório ou o próprio míssil mágico); só muda a aparência. Cada visual tem o seu impacto: o míssil estoura em brilho arcano, o sapinho some num "puf" de fumaça, as borboletas se espalham e as runas estouram em letras. | Projétil perseguidor, dano, aplicar e consumir estado de cargas. |

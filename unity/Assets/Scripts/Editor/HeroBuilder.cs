@@ -164,6 +164,7 @@ namespace ARS.EditorTools
             var kit = raiz.AddComponent<KitDeSkills>();
             AtribuirSkills(nome, kit);
             AtribuirPassiva(nome, raiz); // claude
+            AtribuirCompanheiro(nome, raiz); // claude
             raiz.AddComponent<ComandosDoJogador>();
             raiz.AddComponent<HudProvisorio>();
 
@@ -233,6 +234,21 @@ namespace ARS.EditorTools
         }
 
         static string Nome(SkillDef s) => s != null ? s.nome : "—";
+
+        // claude: companheiro em Assets/Prefabs/Companheiros/<Herói>_<Nome>.prefab (ex.: Caleb_Cappuccino)
+        static void AtribuirCompanheiro(string nome, GameObject raiz)
+        {
+            const string pasta = "Assets/Prefabs/Companheiros";
+            if (!AssetDatabase.IsValidFolder(pasta)) return;
+            var prefab = AssetDatabase.FindAssets("t:Prefab", new[] { pasta })
+                .Select(g => AssetDatabase.GUIDToAssetPath(g))
+                .Where(c => System.IO.Path.GetFileName(c).StartsWith(nome + "_"))
+                .Select(c => AssetDatabase.LoadAssetAtPath<GameObject>(c))
+                .FirstOrDefault(p => p != null && p.GetComponent<Companheiro>() != null);
+            if (prefab == null) return;
+            raiz.AddComponent<ComCompanheiro>().prefab = prefab;
+            Debug.Log($"[ARS] {nome}: companheiro {prefab.name}");
+        }
 
         // claude: a passiva fica na mesma pasta das skills, com "_P_" no nome (ex.: Caleb_P_AcertoEpico)
         static void AtribuirPassiva(string nome, GameObject raiz)

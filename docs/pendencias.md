@@ -74,6 +74,7 @@
 - [ ] W do Caleb (Página Errada): 30 de Mana, 10 s de recarga, 7 m, 2 s de transformação, sai na hora (sem projétil), bichinhos com ~0,5 m (pinguim e cachorro com ~0,8 m): provisórios
 - [ ] Passiva do Caleb (Acerto Épico): 5 acertos para encher, skill épica com números ×1,5 e visual ×2, sem custo; acertos não contam enquanto a épica está pronta; o acerto da própria skill épica já conta para a próxima: provisórios
 - [ ] Visual épico: camada dourada (faíscas do pacote Hovl) no projétil e no impacto, tamanhos provisórios; vale para a skill épica de qualquer herói
+- [ ] Cappuccino: modelo do gato do pacote ithappy pintado de laranja (laranja do tigre); fica 0,9 m ao lado e 0,5 m atrás, anda a 2 m/s, corre a 5 m/s se ficar 2,5 m para trás, aparece ao lado se ficar a 15 m: provisórios
 - [ ] Recurso por classe: hoje todo herói recebe Mana (300, +4/s) até existir a ficha do herói nos dados
 - [ ] Números do ataque básico (alcance 6 m, 1 ataque/s, 20 de dano, projétil): provisórios, iguais para todos por enquanto
 - [ ] Visual do ataque básico do Caleb: bolinha dourada de 0,15 m com rastro roxo de 0,15 s (cores e tamanhos provisórios)
