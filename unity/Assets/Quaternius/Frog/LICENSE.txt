@@ -1,0 +1,4 @@
+Frog - Quaternius (https://quaternius.com)
+Fonte: https://poly.pizza/m/9Z2V8fpazF
+Licença: Public Domain (CC0 1.0) - uso livre, sem obrigação de crédito.
+Convertido de GLB para FBX no Blender 5.2 (sem outras mudanças).

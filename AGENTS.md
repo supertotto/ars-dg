@@ -48,7 +48,7 @@ Jogo em Unity: dungeon crawler cooperativo isométrico (dungeons estilo WoW + sk
 
 ### Cuidados
 
-- Packs de terceiros em `Assets/` (`Eric VFX Studio`, `GabrielAguiarProductions`, `Hovl Studio`, `JMO Assets`, `Vampire`): não editar, só usar (exceto converter materiais para URP).
+- Packs de terceiros em `Assets/` (`Eric VFX Studio`, `GabrielAguiarProductions`, `Hovl Studio`, `JMO Assets`, `Quaternius`, `Vampire`): não editar, só usar (exceto converter materiais para URP).
 - Arquivos de arte e áudio grandes vão pelo **Git LFS** (ver `.gitattributes`).
 - Nunca apague nem edite `.meta` à mão; o Unity os gera e eles guardam as referências.
 - **MCP for Unity** (pacote `com.coplaydev.unity-mcp`, fixado no `manifest.json`): com o Unity aberto, **Window → MCP for Unity → Start Server**. O Claude Code acessa por `http://127.0.0.1:8080/mcp` (servidor `UnityMCP`).
