@@ -40,6 +40,12 @@ MonoBehaviour:
     tamanho: 0.3
     rastro: 0
     peso: 1
+  - nome: Borboletas
+    visual: {fileID: 955643875894724336, guid: 6690bb93c79349949a16077599287a3b, type: 3}
+    cor: {r: 1, g: 1, b: 1, a: 1}
+    tamanho: 0.3
+    rastro: 0
+    peso: 1
   efeitos:
   - tipo: 0
     valor: 35
