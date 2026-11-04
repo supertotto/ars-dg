@@ -12,7 +12,8 @@ namespace ARS.Data
     {
         MultiplicarNumerosDaSkill,  // dano, cura e duração dos efeitos da próxima skill
         MultiplicarVisualDaSkill,   // tamanho do visual (projétil, impacto) da próxima skill
-        SkillSemCusto               // a próxima skill não gasta recurso
+        SkillSemCusto,              // a próxima skill não gasta recurso
+        AdicionarVisualNaSkill      // claude: visual extra no projétil e no impacto (ex.: camada dourada da skill épica)
     }
 
     [Serializable]
@@ -21,5 +22,11 @@ namespace ARS.Data
         public TipoDeModificador tipo;
         [Tooltip("Multiplicador (para os tipos \"Multiplicar\"). Ignorado em Skill Sem Custo.")]
         public float valor = 1f;
+
+        // claude: só para Adicionar Visual Na Skill
+        [Tooltip("Visual extra preso ao projétil (só Adicionar Visual Na Skill).")]
+        public GameObject visualNoProjetil;
+        [Tooltip("Visual extra somado ao impacto (só Adicionar Visual Na Skill).")]
+        public GameObject visualNoImpacto;
     }
 }

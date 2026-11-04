@@ -138,7 +138,8 @@ namespace ARS.Characters
             var potencia = new Potencia
             {
                 numeros = eu.Estados.Multiplicador(TipoDeModificador.MultiplicarNumerosDaSkill),
-                visual = eu.Estados.Multiplicador(TipoDeModificador.MultiplicarVisualDaSkill)
+                visual = eu.Estados.Multiplicador(TipoDeModificador.MultiplicarVisualDaSkill),
+                extra = eu.Estados.PrimeiroModificador(TipoDeModificador.AdicionarVisualNaSkill) // claude: camada visual extra
             };
             eu.Estados.ConsumirAoUsarSkill();
 
@@ -156,7 +157,7 @@ namespace ARS.Characters
         }
 
         // claude: quanto a skill foi potencializada por modificadores (1 = normal)
-        struct Potencia { public float numeros; public float visual; }
+        struct Potencia { public float numeros; public float visual; public Modificador extra; }
 
         // claude: conjuração em andamento (para poder interromper)
         Coroutine conjuracao;
@@ -187,6 +188,7 @@ namespace ARS.Characters
                 AplicadorDeEfeitos.Aplicar(efeitos, alvo, eu);
                 if (alvo != eu) eu.RegistrarAcerto(alvo, OrigemDoAcerto.Skill); // claude: 1 acerto por uso
                 Projetil.CriarImpacto(skill.visualImpacto, alvo.Centro, transform.rotation, potencia.visual); // claude
+                if (potencia.extra != null) Projetil.CriarImpacto(potencia.extra.visualNoImpacto, alvo.Centro, transform.rotation, potencia.visual);
                 return;
             }
 
@@ -204,7 +206,9 @@ namespace ARS.Characters
                                   eu.RegistrarAcerto(atingido, OrigemDoAcerto.Skill); // claude: cada projétil = 1 acerto
                               },
                               potencia.visual,
-                              variacao != null && variacao.impacto != null ? variacao.impacto : skill.visualImpacto); // claude
+                              variacao != null && variacao.impacto != null ? variacao.impacto : skill.visualImpacto, // claude
+                              potencia.extra != null ? potencia.extra.visualNoProjetil : null,
+                              potencia.extra != null ? potencia.extra.visualNoImpacto : null);
         }
 
         Vector3 PontoDeSaida(PontoDeDisparo ponto)

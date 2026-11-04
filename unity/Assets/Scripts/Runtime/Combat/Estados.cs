@@ -63,6 +63,15 @@ namespace ARS.Combat
             return total;
         }
 
+        // claude: primeiro modificador ativo de um tipo (ex.: o visual extra da skill épica), ou null
+        public Modificador PrimeiroModificador(TipoDeModificador tipo)
+        {
+            foreach (var a in ativos)
+                foreach (var m in a.def.modificadores)
+                    if (m.tipo == tipo) return m;
+            return null;
+        }
+
         public bool TemModificador(TipoDeModificador tipo)
         {
             foreach (var a in ativos)

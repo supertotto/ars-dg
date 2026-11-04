@@ -20,10 +20,20 @@ MonoBehaviour:
   modificadores:
   - tipo: 0
     valor: 1.5
+    visualNoProjetil: {fileID: 0}
+    visualNoImpacto: {fileID: 0}
   - tipo: 1
     valor: 2
+    visualNoProjetil: {fileID: 0}
+    visualNoImpacto: {fileID: 0}
   - tipo: 2
     valor: 1
+    visualNoProjetil: {fileID: 0}
+    visualNoImpacto: {fileID: 0}
+  - tipo: 3
+    valor: 1
+    visualNoProjetil: {fileID: 3989928083333992683, guid: eeaf56c1df8292443be421ce3348f324, type: 3}
+    visualNoImpacto: {fileID: 1908705650721584185, guid: 1d0333d65f0374944a370e951a3dfd4e, type: 3}
   consumidoAoUsarSkill: 1
   visuaisSubstitutos: []
   visualExtra: {fileID: 0}

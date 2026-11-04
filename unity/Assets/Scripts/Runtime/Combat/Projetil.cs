@@ -13,6 +13,7 @@ namespace ARS.Combat
         float vidaRestante = 5f;
         GameObject impacto;   // claude: efeito no ponto do acerto
         float escalaImpacto = 1f;
+        GameObject extraImpacto; // claude: visual extra somado ao impacto (ex.: skill épica)
 
         static Material materialBase;
 
@@ -29,7 +30,8 @@ namespace ARS.Combat
         // claude: "escala" aumenta o visual (ex.: skill épica)
         public static void Disparar(Vector3 de, Combatente alvo, float velocidade, Color cor, float tamanho, bool rastro,
                                     GameObject visual, Action<Combatente> aoAcertar, float escala = 1f,
-                                    GameObject impacto = null)
+                                    GameObject impacto = null, GameObject extraNoProjetil = null,
+                                    GameObject extraNoImpacto = null)
         {
             tamanho *= escala;
             GameObject objeto;
@@ -79,6 +81,13 @@ namespace ARS.Combat
             projetil.velocidade = velocidade;
             projetil.impacto = impacto; // claude
             projetil.escalaImpacto = escala;
+            projetil.extraImpacto = extraNoImpacto;
+            // claude: visual extra preso ao projétil (ex.: brilho dourado da skill épica)
+            if (extraNoProjetil != null)
+            {
+                var extra = Instantiate(extraNoProjetil, objeto.transform.position, objeto.transform.rotation, objeto.transform);
+                if (!Mathf.Approximately(escala, 1f)) EscalarVisual(extra, escala);
+            }
         }
 
         // claude: cria um efeito de impacto e garante que ele some (mesmo que o prefab não se destrua sozinho)
@@ -142,6 +151,7 @@ namespace ARS.Combat
             {
                 aoAcertar?.Invoke(alvo);
                 CriarImpacto(impacto, transform.position, transform.rotation, escalaImpacto); // claude
+                CriarImpacto(extraImpacto, transform.position, transform.rotation, escalaImpacto);
                 Destroy(gameObject);
             }
         }
