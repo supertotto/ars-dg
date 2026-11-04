@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nome: "M\xEDsseis M\xE1gicos"
   descricao: "M\xEDsseis perseguidores com 3 cargas independentes: solta um de cada vez ou concentra todos num alvo. (N\xFAmeros provis\xF3rios.)"
-  icone: {fileID: 21300000, guid: e1d9de82dc0721142b5d3863a1007e1f, type: 3}
+  icone: {fileID: 21300000, guid: beebbdaf080282245a5bb461dbef887c, type: 3}
   custo: 20
   recarga: 4
   cargas: 3

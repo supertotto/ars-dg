@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ARS.Runtime::ARS.Data.PassivaDef
   nome: "Acerto \xC9pico"
   descricao: "Depois de alguns acertos (skill ou ataque b\xE1sico), a pr\xF3xima skill sai \xE9pica: mais forte, visual maior e sem custo."
-  icone: {fileID: 21300000, guid: cf6b02648f21be743b310f1417d6255e, type: 3}
+  icone: {fileID: 21300000, guid: 7fb9486600d94e54f9a296d4d85ee9f0, type: 3}
   gatilho: 0
   contador: {fileID: 11400000, guid: be4d3e94c57ed8f418446dcfc83d02aa, type: 2}
   aoCompletar: {fileID: 11400000, guid: 91b093ad34cddb341ba053ed60fadc5b, type: 2}

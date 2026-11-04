@@ -25,7 +25,8 @@ namespace ARS.EditorTools
 
         // Peças de arte (nome do arquivo em Assets/UI/HUD) e bordas do 9-slice (esq., baixo, dir., cima, em pixels da imagem)
         const string ArtePainel = "hud_painel", ArteMolduraSkill = "hud_moldura_skill",
-            ArteMolduraPassiva = "hud_moldura_passiva", ArteMolduraBarra = "hud_moldura_barra", ArteFundoBarra = "hud_barra_fundo";
+            ArteMolduraPassiva = "hud_moldura_passiva", ArteMolduraBarra = "hud_moldura_barra", ArteFundoBarra = "hud_barra_fundo",
+            ArtePreenchimento = "hud_barra_preenchimento", ArteBrilho = "hud_brilho";
         static readonly Vector4 BordaPainel = new Vector4(95f, 66f, 95f, 66f);
         static readonly Vector4 BordaMolduraBarra = new Vector4(85f, 24f, 85f, 24f);
 
@@ -59,8 +60,8 @@ namespace ARS.EditorTools
             var molduraBarra = Arte(ArteMolduraBarra);
             var fundoBarra = Arte(ArteFundoBarra);
             var circulo = SpriteGerado("Circulo", 128, Circulo);
-            var preenchimento = SpriteGerado("Preenchimento", 64, Preenchimento);
-            var brilhoQuadrado = SpriteGerado("BrilhoQuadrado", 128, BrilhoQuadrado);
+            var preenchimento = Arte(ArtePreenchimento) ?? SpriteGerado("Preenchimento", 64, Preenchimento);
+            var brilhoQuadrado = Arte(ArteBrilho) ?? SpriteGerado("BrilhoQuadrado", 128, BrilhoQuadrado);
             var brilhoRedondo = SpriteGerado("BrilhoRedondo", 128, BrilhoRedondo);
 
             var raiz = new GameObject("HUD", typeof(RectTransform)) { layer = CamadaUI };
@@ -102,7 +103,11 @@ namespace ARS.EditorTools
             hud.passivaBrilho = Imagem(Esticar(Novo("Brilho", passiva), -Passiva * 0.3f), brilhoRedondo, new Color(1f, 0.85f, 0.35f));
             hud.passivaBrilho.enabled = false;
             Imagem(Esticar(Novo("Fundo", passiva), Passiva * 0.16f), circulo, new Color(0.06f, 0.06f, 0.08f));
-            hud.passivaIcone = Imagem(Esticar(Novo("Icone", passiva), Passiva * 0.27f), null, Color.white);
+            // máscara redonda: a pintura do ícone não passa da moldura
+            var mascara = Esticar(Novo("Mascara", passiva), Passiva * 0.17f);
+            Imagem(mascara, circulo, Color.white);
+            mascara.gameObject.AddComponent<Mask>().showMaskGraphic = false;
+            hud.passivaIcone = Imagem(Esticar(Novo("Icone", mascara), 0f), null, Color.white);
             hud.passivaIcone.preserveAspect = true;
             Imagem(Esticar(Novo("Moldura", passiva), 0f), molduraPassiva ?? circulo, Color.white);
             var contador = Novo("Contador", passiva);
@@ -144,7 +149,7 @@ namespace ARS.EditorTools
             var botao = raiz.gameObject.AddComponent<BotaoDeSkill>();
             botao.tecla = tecla;
 
-            botao.brilho = Imagem(Esticar(Novo("Brilho", raiz), -Botao * 0.18f), brilho, new Color(1f, 0.85f, 0.35f));
+            botao.brilho = Imagem(Esticar(Novo("Brilho", raiz), -Botao * 0.2f), brilho, Color.white);
             botao.brilho.enabled = false;
             Imagem(Esticar(Novo("Fundo", raiz), recuo * 0.9f), branco, new Color(0.06f, 0.06f, 0.08f));
             botao.icone = Imagem(Esticar(Novo("Icone", raiz), recuo), null, Color.white);

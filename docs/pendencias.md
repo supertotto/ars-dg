@@ -71,9 +71,6 @@
 - [ ] Membrana das asas do modelo do Lorde Vampiro (pack `Vampire`): a malha `Glass1` (material `Mat_Vampyr_Glass`) não aparece no URP (face virada para trás); com os dois lados ligados vira placas brancas translúcidas. Decidir: refazer o material, esconder ou manter só os ossos das asas
 
 - [ ] HUD: arte gerada por IA aplicada (painel escuro com ouro). Layout (retrato à esquerda, passiva, Q/W/E/R, barras embaixo das skills), tamanhos, cores das barras (vida vermelha, mana azul) e fonte: provisórios
-- [ ] HUD: faltam da lista de prompts o preenchimento da barra (hoje feito por código), o brilho (hoje por código) e os ícones pintados das skills do Caleb
-- [ ] Retrato do Caleb: a imagem tem 112×126 px (fica borrada); gerar uma versão quadrada de 512 px
-- [ ] Ícones das skills do Caleb (game-icons.net): Q magic-swirl, W frog-prince, E cat, R burning-book, passiva star-swirl: provisórios
 
 ## Técnico
 
@@ -93,7 +90,7 @@
 - [ ] R do Caleb (Isso Não Estava no Livro): 100 de Mana, 60 s de recarga, 9 m, 0,5 s de conjuração, área de 3,5 m por 6 s, gato 6× maior (~2,2 m, maior que o Caleb), caçada em ciclo bote → sapo: bote a partir de 3 m, salto de 1,2 m de altura em 0,45 s passando 2 m do inimigo, mordida de 25 de dano no meio do salto, no máximo um bote a cada 0,6 s: provisórios. A R não conta acerto para a passiva (quem acerta é o gato)
 - [ ] Visual da R: círculo de runas verde (pacote Hovl, pintado da cor dos sapos) do tamanho da área, chuva de sapinhos (modelo da Q, em verde-claro pelas cores gravadas nos vértices) e patinha laranja desenhada por código: provisórios
 - [ ] HUD usa o `Text` antigo da uGUI com a fonte padrão; trocar por TextMeshPro quando a fonte do jogo for escolhida
-- [ ] Apagar `HudProvisorio.cs` pelo Unity (não é mais usado)
+- [ ] Apagar pelo Unity o que não é mais usado: `HudProvisorio.cs`, os ícones de `Assets/UI/Icones/game-icons/` e os sprites gerados `Assets/UI/Base/Preenchimento.png` e `BrilhoQuadrado.png` (a arte da IA entrou no lugar)
 - [ ] Recurso por classe: hoje todo herói recebe Mana (300, +4/s) até existir a ficha do herói nos dados
 - [ ] Números do ataque básico (alcance 6 m, 1 ataque/s, 20 de dano, projétil): provisórios, iguais para todos por enquanto
 - [ ] Visual do ataque básico do Caleb: bolinha dourada de 0,15 m com rastro roxo de 0,15 s (cores e tamanhos provisórios)

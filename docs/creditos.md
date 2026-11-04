@@ -4,7 +4,7 @@ Arte grátis usada no jogo e a licença de cada uma. Ao usar um arquivo novo, re
 
 ## Ícones — game-icons.net
 
-Licença: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Exige crédito ao autor nos créditos do jogo.
+Licença: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Exige crédito ao autor nos créditos do jogo. Hoje **não são usados** no jogo (os ícones pintados da IA entraram no lugar); se forem apagados do projeto, esta seção sai.
 
 | Arquivo (`Assets/UI/Icones/game-icons/`) | Autor |
 | --- | --- |
@@ -18,4 +18,4 @@ Autores: Lorc (http://lorcblog.blogspot.com), Delapouite (https://delapouite.com
 
 ## Arte própria gerada por IA
 
-Arte do HUD (`Assets/UI/HUD/`) e retrato do Caleb (`Assets/UI/Retratos/Caleb.png`): geradas pelo Totto em IA de imagem. Sem crédito de terceiros.
+Arte do HUD (`Assets/UI/HUD/`), ícones das skills do Caleb (`Assets/UI/Icones/Caleb/`) e retrato do Caleb (`Assets/UI/Retratos/Caleb.png`): geradas pelo Totto em IA de imagem. Sem crédito de terceiros.
