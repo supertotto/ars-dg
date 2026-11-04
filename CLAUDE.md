@@ -1,5 +1,7 @@
 # Instruções para o Claude Code
 
+> O `AGENTS.md` tem o mesmo conteúdo para o Codex. Ao mudar um, mude o outro.
+
 ## Contexto
 
 Jogo em Unity: dungeon crawler cooperativo isométrico (dungeons estilo WoW + skills estilo MOBA). Toda a documentação está em `docs/`, em português. Comece pelo [README](README.md) e pela [Visão geral](docs/gdd/01-visao-geral.md).
@@ -25,6 +27,11 @@ Jogo em Unity: dungeon crawler cooperativo isométrico (dungeons estilo WoW + sk
 6. **Números fora do código**, em dados.
 7. Módulos com dependência em uma direção (ver [Arquitetura](docs/tecnico/arquitetura.md)). UI sem regra de jogo.
 8. Equipamento separado do visual (o visual vem das skins).
+
+## Trabalho em dupla com o Codex
+
+- Mais de um agente mexe neste repositório. Antes de começar: `git pull`. Ao terminar: commit pequeno com mensagem clara.
+- Nunca trabalhem os dois ao mesmo tempo nos mesmos arquivos.
 
 ## Documentação
 
