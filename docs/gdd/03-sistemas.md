@@ -114,7 +114,8 @@ Com o nivelamento para baixo, os atributos dos nós pequenos são reduzidos, mas
 ## Regras de combate
 
 - **Invisibilidade** não dá invulnerabilidade: dano em área ainda acerta quem está invisível.
-- **Controle em chefes:** chefes são **imunes a controle** (atordoar, enraizar, transformar, empurrar…), como no WoW. O máximo que funciona é **interromper** uma magia que o chefe está conjurando.
+- **Controle em chefes:** chefes são **imunes a controle** (atordoar, enraizar, lentidão, transformar, empurrar…), como no WoW. Funciona **interromper** uma magia que o chefe está conjurando, quando ela for interrompível.
+- **Taunt não é controle:** é só a ferramenta do tank para segurar a ameaça (não deixar o dragão soltar o sopro no healer) e **funciona em chefes**.
 - **Golpes em área:** os golpes dos chefes acertam uma área (cone na frente, círculo em volta), não só o tank. Quem estiver na área leva dano — posicionamento vale para todos.
 - **Derrota (estilo WoW):** se o grupo inteiro cair, todos voltam ao último ponto seguro e o chefe reseta, **sem limite de tentativas**. A dungeon nunca falha por derrota.
 

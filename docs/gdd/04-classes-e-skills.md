@@ -14,7 +14,7 @@ São **5 classes base**, cada uma com **3 subclasses de função fixa** (tank, h
 >
 > A **subclasse** continua definindo a função (tank, healer, DPS), o recurso, o atributo principal, a arma e o acessório.
 >
-> **Os kits por subclasse mais abaixo são da versão anterior.** Os dos DPS já foram substituídos pelos kits dos heróis; os de tank e healer serão refeitos herói por herói. Skills deles podem ser reaproveitadas.
+> **Os kits por subclasse mais abaixo são da versão anterior.** Os dos DPS e dos tanks já foram substituídos pelos kits dos heróis; os de healer serão refeitos herói por herói. Skills deles podem ser reaproveitadas.
 
 ## Padrão das teclas (vale para todos os heróis)
 
@@ -33,7 +33,7 @@ Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, 
 
 Valores de dano, custo, recarga, duração e limites ficam para o balanceamento. Raças e feitiços não fazem parte dos kits. **Todo dano elemental é mágico** (uma skill pode misturar dano físico e mágico). **Invisibilidade não dá invulnerabilidade.**
 
-**DPS: os 10 kits fechados** (03/11/2026). Análise comparativa em [analises/comparacao-dps.md](analises/comparacao-dps.md). Tanks e healers: em andamento.
+**DPS: os 10 kits fechados** (03/11/2026). Análise comparativa em [analises/comparacao-dps.md](analises/comparacao-dps.md). Tanks: fechados (abaixo). Healers: em andamento.
 
 ### Ignis — Mago · tema: só bola de fogo
 
@@ -157,6 +157,260 @@ O caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é pr
 | R | Correntes do Castigo | Liga os inimigos de uma área. Parte do dano que causa a um dos ligados é reproduzida nos demais como dano mágico Sagrado, sem gerar novas reproduções. Contra um alvo isolado, seus golpes causam dano Sagrado adicional. | Área circular, aplicar estado de ligação, dano condicionado ao dano causado, dano mágico Sagrado adicional. |
 | Passiva | Fé pelo Castigo | Ataques básicos contra inimigos sob efeitos de controle aceleram a recuperação de Fé, inclusive quando o controle vem de aliados. Recupera vida com parte do dano mágico Sagrado que causa; o dano reproduzido pelas correntes da R cura com eficiência reduzida. | Verificar estado de controle, acelerar recuperação de recurso, cura vinculada ao dano Sagrado, modificar eficiência de cura conforme origem do dano. |
 
+## Kits dos tanks
+
+**Os 5 kits fechados** (04/11/2026). Análise comparativa em [analises/comparacao-tanks.md](analises/comparacao-tanks.md).
+
+- **Taunt não é controle:** serve só para segurar a ameaça e **funciona em chefes** (ver [Sistemas](03-sistemas.md)).
+- A autocura dos tanks **ajuda, mas não substitui o healer**; isso se ajusta nos números.
+- Maximilian (Espadachim) e Wix & Abraxas (Bruxo) são os tanks **mecânicos**, para jogadores mais habilidosos. O Maximilian se inspira na Fiora e no Master Yi do LoL; o risco da semelhança foi aceito.
+- Os nomes de todas as skills serão revisados antes da versão final.
+
+### Quixote — Cavaleiro protetor
+
+**Classe:** Guerreiro · **Subclasse:** Cavaleiro (Tank) · **Recurso:** Fúria · **Atributo principal:** Vigor.  
+**Equipamento:** espada longa e escudo pesado.  
+**Identidade:** proteção direta de aliados, bloqueio frontal, interceptação e mitigação coletiva.
+
+#### Q — Golpe de Escudo
+- Golpeia o alvo com o escudo, causando **dano físico**.
+- Aplica **Taunt** e **lentidão** no inimigo atingido.
+- Contra chefes, o Taunt funciona; a lentidão não restringe seu movimento.
+
+#### W — Nem Um Passo Atrás
+- Assume uma postura defensiva frontal, **bloqueando/reduzindo fortemente o dano vindo da frente** durante uma janela curta.
+- A proteção depende da direção do ataque; não é invulnerabilidade integral.
+- Bloqueios bem-sucedidos alimentam a passiva, concedendo um escudo menor ao próprio Quixote.
+
+#### E — Interceptar
+- Avança até um **aliado selecionado** para interceptar o perigo e protegê-lo.
+- A proteção efetivamente fornecida ao aliado contribui para a passiva.
+- Ferramenta de resposta a ameaças sobre Healers e DPS, não apenas de deslocamento.
+
+#### R — Bastião
+- **Finca a espada no chão**, criando uma **zona defensiva**.
+- Aliados dentro da área recebem **redução de dano** enquanto o efeito durar.
+- O dano evitado aos aliados pela Ultimate alimenta a passiva de Quixote.
+
+#### Passiva — Em Nome da Honra
+- Parte do **dano que Quixote impede de atingir aliados** com E e R é convertida em **escudo para ele mesmo**, com limite.
+- Bloqueios bem-sucedidos com W concedem um escudo próprio menor.
+- A passiva recompensa proteger companheiros, em vez de apenas receber dano.
+
+**Pontos fortes:** salvar aliados, antecipar dano de grupo, proteger posições.  
+**Pontos de atenção:** depende de posicionamento e timing; seus escudos não devem tornar o grupo invulnerável quando combinados ao R.
+
+
+### Wix & Abraxas — Bruxo e demônio
+
+**Classe:** Arcano · **Subclasse:** Bruxo (Tank) · **Recurso:** Mana.  
+**Equipamento:** foice e coração demoníaco em recipiente.  
+**Identidade:** duas unidades, maldições, transferência de vida, gerenciamento de ameaça e plano de contingência quando Abraxas cai.
+
+#### Mecânica estrutural
+- O kit possui **duas configurações**, conforme **Abraxas esteja ativo ou ausente**.
+- Wix e Abraxas precisam ser gerenciados como unidades distintas. A ausência do demônio altera W, E, R e a função da passiva.
+- O efeito **Hex** acumula até **5 cargas** nos inimigos por ataques básicos; o Q pode detoná-las.
+
+#### Com Abraxas ativo
+
+##### Q — Foice mágica / detonação de Hex
+- Ataque **mágico à distância** com a foice.
+- **Detona cargas de Hex** do alvo, causando efeito ofensivo adicional.
+- A detonação também **cura Wix**, conectando o ataque ao sustain.
+
+##### W — Sacrifício de Sangue
+- Wix **gasta parte da própria vida para curar Abraxas**.
+- A transferência gera **crédito de sangue**, limitado, para a economia defensiva do kit.
+- O uso exige avaliar a vida dos dois personagens.
+
+##### E — Investida de Abraxas
+- Abraxas **avança atravessando inimigos**.
+- A colisão pode **interromper conjurações interrompíveis**, inclusive de chefes.
+- Ao chegar ao destino, aplica **Taunt em área** e recebe mitigação temporária.
+- Wix recebe aumento temporário de velocidade.
+
+##### R — Maldição em Área
+- Aplica uma maldição em área que **acelera o acúmulo de Hex**.
+- Fortalece as **detonações de Hex pelo Q** durante o efeito.
+- É uma Ultimate de pressão e manutenção do ciclo de maldições, não uma invulnerabilidade.
+
+##### Passiva — Hex
+- **Ataques básicos aplicam Hex**, até **5 cargas** por inimigo.
+- O Q explora as cargas acumuladas para dano e sustentação de Wix.
+
+#### Sem Abraxas
+
+##### Q — Foice mágica / detonação de Hex
+- Mantém o ataque mágico à distância e a interação com Hex.
+
+##### W — Escudo de Wix
+- Wix utiliza **Mana para criar um escudo próprio**, substituindo a cura do demônio.
+
+##### E — Investida pelo Coração
+- Wix executa um **dash impulsionado pelo coração demoníaco**.
+- A investida **interrompe canalizações interrompíveis** e aplica **Taunt**, inclusive contra chefes no que diz respeito à provocação.
+
+##### R — Defesa de Emergência
+- Concede um **escudo emergencial** a Wix.
+- **Acelera o retorno/reconstituição de Abraxas**.
+
+##### Passiva — Sobrevivência sem Abraxas
+- Quando o demônio deixa o combate, **a ameaça dele é transferida automaticamente para Wix**.
+- Wix recebe **escudo e mitigação** para sobreviver à transição.
+- Abraxas passa por um processo de reconstituição para retornar.
+
+**Pontos fortes:** versatilidade, aggro entre duas unidades, interrupção e maldições.  
+**Pontos de atenção:** alta complexidade; o demônio não pode equivaler a um segundo Tank completo sem contrapartida; calibrar custo de vida, crédito de sangue e reconstrução.
+
+> **Nota de nomenclatura:** os nomes descritivos das habilidades de Wix & Abraxas acima identificam seus efeitos fechados; a nomenclatura final individual de todas elas não está consolidada neste resumo.
+
+
+### Gunnar — Paladino do Fogo Sagrado
+
+**Classe:** Sacerdotes · **Subclasse:** Paladino (Tank) · **Recurso:** Fé.  
+**Equipamento:** martelo de guerra e égide de luz.  
+**Identidade:** resistência pela ofensiva sagrada, queimaduras que geram ameaça e autocura, grande impacto contra demônios e mortos-vivos.
+
+#### Q — Martelada Incandescente
+- Desfere um golpe de martelo que causa **dano físico + dano mágico Sagrado**.
+- Aplica **Fogo Sagrado**, um efeito de queimadura.
+- Ataques básicos **renovam a queimadura** já aplicada.
+
+#### W — Égide Radiante
+- Cria uma **égide que absorve dano**.
+- Quando a égide é **destruída**, Gunnar recebe **cura própria**.
+- A capacidade do escudo e a cura terão limites de balanceamento.
+
+#### E — Martelada Santa
+- Gunnar **salta até o local escolhido** e golpeia o chão com o martelo.
+- Causa **dano físico e mágico Sagrado em área**.
+- **Atordoa inimigos comuns**.
+- **Interrompe conjurações interrompíveis**, inclusive de chefes, sem atordoá-los.
+- Aplica **Fogo Sagrado em área**.
+
+#### R — Julgamento Final
+- Executa um **golpe colossal único** de martelo, no estilo de um *Divine Smite*.
+- Causa **dano físico + dano mágico Sagrado**.
+- Causa **dano adicional contra demônios e mortos-vivos**.
+- **Interrompe canalizações interrompíveis**.
+- Gunnar recebe **autocura** e **mitigação durante a animação**.
+
+#### Passiva — Fé Inabalável
+- Inimigos afetados por **Fogo Sagrado** são **provocados a atacar Gunnar (Taunt)**.
+- Os pulsos de queimadura **curam Gunnar**, com limite para evitar crescimento descontrolado em grupos numerosos.
+- **Duração do Taunt e duração da queimadura são independentes**: renovar Fogo Sagrado com ataques básicos não pode manter um chefe permanentemente provocado sem janela de resposta.
+
+**Pontos fortes:** sustentação em combate prolongado, aggro por queimadura, chefes demoníacos ou mortos-vivos.  
+**Pontos de atenção:** limitar cura de múltiplas queimaduras; manter janelas de Taunt justas.
+
+
+### Maximilian — Mestre da Esgrima
+
+**Classe:** Ladinos · **Subclasse:** Espadachim (Tank) · **Recurso:** Energia · **Atributo principal:** Agilidade.  
+**Equipamento:** rapieira e adaga de aparar.  
+**Identidade:** Tank técnico, alto teto de habilidade, aparadas, esquivas direcionais, ataques posicionais e autocura crescente por Elegância.
+
+#### Q — Dança das Estocadas
+- Executa uma **sequência veloz de estocadas** entre os inimigos em um raio, lembrando o ritmo de uma sequência de ataques múltiplos.
+- Aplica **dano físico e Taunt a todos os inimigos elegíveis na área**, sem limite fixo de quatro alvos.
+- A sequência possui **pelo menos quatro estocadas**: se houver um inimigo, ele recebe quatro; se houver dois, dois golpes cada; se houver quatro, um cada; se houver mais de quatro, cada inimigo é atingido ao menos uma vez.
+- **Acertos repetidos no mesmo alvo têm dano reduzido**, para que a habilidade não vire explosão de DPS em um único boss.
+- Maximilian fica **brevemente inalvejável durante a execução** e retorna próximo ao alvo inicial.
+- A duração total da animação é limitada, ajustando a velocidade visual conforme a quantidade de alvos.
+- O Q é uma ferramenta principal de **aggro em área**.
+
+#### W — Aparar
+- Maximilian levanta a **adaga de aparar** por uma janela curta, bloqueando o ataque recebido.
+- Uma aparada bem-sucedida produz **contra-ataque automático de rapieira**.
+- A **aparada perfeita**, feita no momento preciso, fortalece a resposta e pode **interromper canalizações interrompíveis**, inclusive de chefes.
+- A janela deve permitir uso funcional por jogadores iniciantes, enquanto o timing perfeito recompensa especialistas.
+
+#### E — Passo de Esgrima
+- **Dash curto direcional com duas cargas**, utilizável para frente, trás ou lados.
+- Oferece uma breve janela para **esquivar de ataques esquiváveis**.
+- **Esquiva perfeita reduz parte da recarga do W**.
+- Após o dash, o **próximo ataque básico** é fortalecido **se acertar o flanco ou as costas**: ganha dano físico, ameaça adicional e **autocura**.
+- Acerto pelas costas tem benefício superior ao acerto pelo flanco.
+- Ataque frontal não recebe o benefício posicional e consome a oportunidade de ataque fortalecido.
+- A melhoria não acumula entre dashes; a autocura possui limite e pode considerar a vida perdida de Maximilian.
+- Funciona contra chefes, respeitando posicionamento e esquivabilidade.
+
+#### Passiva — Elegância Impecável
+- Maximilian **acumula Elegância** por ações de esgrima bem-sucedidas: aparadas, esquivas e ataques posicionais; execuções perfeitas rendem mais.
+- **Oito pontos** são a referência conceitual atual para o máximo; a pontuação exata de cada ação fica para balanceamento.
+- **Cada ponto acumulado aumenta progressivamente a autocura dos ataques básicos**.
+- Ao atingir o máximo, a autocura permanece **no máximo enquanto Elegância estiver cheia**.
+- **Ataques básicos NÃO gastam Elegância**: atacam, curam e podem contribuir para acumulá-la.
+- O ataque básico fortalecido pelo E mantém sua própria autocura, compatível com o bônus da passiva.
+- **Somente a Ultimate consome e zera Elegância.**
+
+#### R — Dança dos Pontos Vitais
+- O R fica **bloqueado até Elegância atingir o máximo** (referência: 8 pontos).
+- Ao ativar, Maximilian executa uma **rajada espetacular de estocadas** contra inimigos próximos, causando **dano físico** e gerando ameaça adicional.
+- Concede **escudo a si mesmo e aos aliados que estiverem próximos no instante da ativação**.
+- **Aliados distantes não recebem o escudo**; o efeito não é global.
+- **Consome todos os pontos de Elegância e zera a barra**. Consequentemente, a autocura crescente da passiva recomeça do patamar inicial.
+- A Ultimate também respeita sua **recarga normal**.
+- A mecânica não exige acertar pontos vitais em posições fixas ao redor do alvo: a diferenciação está em construir Elegância por boa execução e decidir quando trocar sustain pessoal por proteção do grupo.
+
+**Pontos fortes:** alta recompensa por domínio mecânico, mobilidade, aggro em área, defesa reativa e escudo coletivo pontual.  
+**Pontos de atenção:** garantir que o jogador menos experiente consiga operar o kit; equilibrar o incentivo de guardar Elegância cheia versus ativar o R.
+
+
+### Flora — Guardiã da Floresta
+
+**Classe:** Naturalistas · **Subclasse:** Guardião da Floresta (Tank) · **Recurso:** Essência · **Atributo principal:** Vigor.  
+**Equipamento:** clava de madeira viva e escudo de casca.  
+**Identidade:** ex-lenhadora brabona, Tank de iniciação agressiva, escudo regenerativo, controle territorial com risco para aliados e reflexão universal de dano.
+
+#### Q — Sai da Minha Mata!
+- Flora **golpeia um inimigo com a Clava Viva**, causando **dano físico no alvo principal**.
+- Solta um berro que aplica **Taunt em área** nos inimigos ao redor dela.
+- **Enraíza brevemente inimigos comuns**.
+- Contra chefes, o **Taunt funciona**, mas o enraizamento não.
+- O Taunt em área **não depende de acertar o golpe principal**, para manter a confiabilidade da ferramenta de aggro.
+
+#### W — Pele de Casca
+- Reveste o corpo com uma **camada de madeira viva que funciona como escudo**.
+- O escudo **se regenera gradualmente** enquanto estiver ativo.
+- **Cada ataque básico acertado acelera a regeneração do escudo**.
+- A regeneração não supera a capacidade máxima do escudo.
+- Se o escudo for **completamente destruído**, a habilidade termina.
+- Recompensa uma Tank que **continua atacando** em vez de recuar.
+
+#### E — Investida Selvagem
+- Flora **avança na direção escolhida com o escudo à frente**.
+- A investida causa **dano físico** e **empurra inimigos comuns** no trajeto.
+- **Uma muralha de espinheiros cresce ao longo do trajeto atrás dela**; Flora termina à frente da barreira.
+- A muralha permanece por um período e **bloqueia a passagem de TODOS**: inimigos, aliados e da própria Flora.
+- Inimigos que encostam na muralha sofrem **dano mágico de Natureza**, com limite de ativações.
+- **Chefes não são empurrados nem bloqueados** pela muralha: atravessam-na, recebendo o dano aplicável.
+- A barreira é relativamente curta, ligada ao trajeto da investida, e **pode prejudicar o próprio grupo** se mal posicionada. Não existe passagem gratuita para aliados.
+
+#### R — Fúria da Floresta
+- Flora **transforma temporariamente a clava e o escudo em versões gigantescas de madeira viva**, com raízes, galhos e espinhos.
+- Seus **ataques básicos ganham alcance e acertam múltiplos inimigos em arco frontal**, causando dano físico.
+- Cada inimigo atingido gera **ameaça adicional**.
+- A regeneração do escudo de **W — Pele de Casca é fortalecida**.
+- Flora recebe **redução de dano** durante a transformação.
+- Pode continuar usando **E — Investida Selvagem** normalmente.
+- Todos os benefícios ofensivos e defensivos funcionam contra chefes, sem depender de controle convencional.
+- A transformação tem duração limitada e **não concede invulnerabilidade**.
+
+#### Passiva — Espinhos
+- **Sempre que Flora recebe dano de um inimigo**, seus espinhos causam **dano mágico de Natureza ao agressor**.
+- A reflexão funciona contra **ataques físicos corpo a corpo, projéteis físicos à distância, magias, projéteis mágicos, habilidades diretas e ataques de chefes**.
+- **Dano periódico** (queimaduras, venenos etc.) também pode ativar a reflexão, mas com **limite de frequência**.
+- O agressor sofre a reflexão **mesmo que esteja distante** de Flora.
+- A passiva funciona **sem exigir W ativo**.
+- O dano refletido **gera ameaça** contra o agressor.
+- **Dano refletido não ativa outra reflexão**, evitando ciclos infinitos.
+- Frequência e escala de dano precisam de limites para impedir abuso contra ataques muito rápidos ou de múltiplos acertos.
+
+**Pontos fortes:** aggro mesmo sob ataques à distância, avanço agressivo, controle de corredores, defesa sustentada por ataques básicos.  
+**Pontos de atenção:** a muralha bloqueia aliados; limites de reflexão e regeneração são críticos para balanceamento.
+
 ## Modo customizado (futuro)
 
 - O personagem customizado começa com um **kit básico da subclasse** (ex.: o Mago começa com o Q *Disparo Místico*).
@@ -212,13 +466,7 @@ A segunda mão é um **acessório próprio da subclasse**. (versão anterior)
 
 ### Cavaleiro — tank do bloqueio · principal: Vigor
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Golpe de Escudo | Dano, provoca o alvo e o deixa mais lento |
-| Skill 2 | Muralha | Bloqueia quase todo o dano frontal por alguns segundos, andando devagar |
-| Skill 3 | Interceptar | Corre até um aliado e fica entre ele e o perigo |
-| Ultimate | Bastião | Finca a espada no chão e cria uma área em que os aliados recebem muito menos dano |
-| Passiva | Escudo Erguido | Bloqueia automaticamente parte dos ataques que vêm de frente |
+Substituído pelo kit do herói: Quixote.
 
 ### Lanceiro — healer de posicionamento · principal: Sabedoria
 
@@ -238,15 +486,7 @@ Substituído pelos kits dos heróis: Brok e Bella.
 
 ### Bruxo — tank pelo demônio · principal: Inteligência
 
-O demônio invocado tanka; o Bruxo reforça de trás.
-
-| Espaço | Com o demônio | Sem o demônio |
-| --- | --- | --- |
-| Skill 1 | Ordem de Provocar: o rugido do demônio provoca os inimigos em volta | Fuga: um salto para escapar |
-| Skill 2 | Pacto de Sangue: o Bruxo gasta a própria vida para curar o demônio | Contrato de Emergência: um escudo no próprio Bruxo |
-| Skill 3 | Ceifada: gira a foice e dispara uma lâmina de ar à distância que reduz o dano dos inimigos atingidos | Ceifada, com recarga menor |
-| Ultimate | Contrato Infernal: liga os inimigos próximos ao demônio, e o dano que ele recebe é dividido entre eles | Indisponível até o demônio voltar |
-| Passiva | **Estilo Kled:** quando a vida do demônio acaba, ele some e o Bruxo luta sozinho, mais fraco; enquanto luta, enche uma barra (causando dano ou com o tempo) que, completa, invoca o demônio de volta | — |
+Substituído pelo kit do herói: Wix & Abraxas.
 
 ### Invocador — healer de espíritos · principal: Sabedoria
 
@@ -266,13 +506,7 @@ Substituído pelos kits dos heróis: Ignis e Caleb.
 
 ### Paladino — tank que se sustenta com a luz · principal: Vigor
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Juízo | Bate o martelo no chão e solta uma onda de luz que provoca os inimigos em volta |
-| Skill 2 | Égide Radiante | Escudo de luz que absorve dano e, quando quebra, cura o Paladino |
-| Skill 3 | Smite | Como o Divine Smite do D&D: o próximo golpe do martelo vem carregado de luz e causa dano extra grande, maior contra mortos-vivos e demônios |
-| Ultimate | Julgamento Final | Salta alto e cai com o martelo, abrindo uma cratera de luz que cura aliados e fere inimigos |
-| Passiva | Fé Inabalável e Martírio | Recupera parte do dano que causa, e recebe mais cura quanto menos vida tiver |
+Substituído pelo kit do herói: Gunnar.
 
 ### Clérigo — healer de cura forte e purificação · principal: Sabedoria
 
@@ -292,13 +526,7 @@ Substituído pelos kits dos heróis: Trix e Darien.
 
 ### Espadachim — tank de esquiva, estilo Fiora · principal: Agilidade
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Saudação do Duelista | Saúda os inimigos com a rapieira e provoca todos em volta |
-| Skill 2 | Aparar | Bloqueia todo o dano por um instante e contra-ataca; se aparar um golpe forte, atordoa o atacante |
-| Skill 3 | Avanço | Avança em linha reta, atravessando os inimigos |
-| Ultimate | Dança dos Pontos Vitais | Por alguns segundos, esquiva de todos os ataques; cada esquiva gera um contra-ataque num ponto vital, com dano extra e cura nos aliados próximos |
-| Passiva | Ritmo e Pés Ligeiros | Cada esquiva ou golpe aparado reduz a recarga das skills; esquiva mais se tiver se movido recentemente |
+Substituído pelo kit do herói: Maximilian.
 
 ### Bardo — healer pela música · principal: Sabedoria
 
@@ -318,13 +546,7 @@ Substituído pelos kits dos heróis: Mina e Grum.
 
 ### Guardião da Floresta — tank de controle do campo · principal: Vigor
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Rugido da Mata | Provoca os inimigos em volta e os enraíza por um instante |
-| Skill 2 | Pele de Casca | Camada de casca que absorve dano e vai se regenerando |
-| Skill 3 | Muralha de Espinheiros | Parede de espinhos que bloqueia a passagem dos inimigos |
-| Ultimate | Despertar da Floresta | Árvores e raízes ganham vida e prendem todos os inimigos da área |
-| Passiva | Espinhos | Quem o ataca corpo a corpo leva parte do dano de volta |
+Substituído pelo kit do herói: Flora.
 
 ### Druida — healer de cura contínua · principal: Sabedoria
 
