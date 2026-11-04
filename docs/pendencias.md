@@ -25,7 +25,11 @@
 
 ## Sistemas
 
-- [ ] Kits dos tanks e healers (os 10 DPS estão fechados)
+- [ ] Kits dos healers (DPS e tanks fechados)
+- [ ] Revisar os nomes de todas as skills antes da versão final (inclui os nomes ainda abertos de Wix & Abraxas)
+- [ ] Autocura dos tanks x importância do healer: ajustar nos números
+- [ ] Ameaça (aggro): coeficientes, prioridade de alvo e regras de renovação do Taunt
+- [ ] IA aliada jogando os heróis mecânicos (Maximilian, Wix & Abraxas, Bella, Kael)
 - [ ] Quais acertos alimentam passivas, acúmulos, escudos e recuperação de recurso (acertos múltiplos, invocações, dano ao longo do tempo)
 - [ ] Regras de canalização e carregamento: andar, cancelar e ser interrompido
 - [ ] Como reduções de armadura se acumulam
