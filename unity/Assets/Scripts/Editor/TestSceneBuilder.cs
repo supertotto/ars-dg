@@ -75,11 +75,9 @@ namespace ARS.EditorTools
             }
 
             // Bonecos de treino para testar o ataque básico (botão direito em cima deles)
-            CriarBonecoDeTreino(new Vector3(4f, 0f, 5f));
-            CriarBonecoDeTreino(new Vector3(-3f, 0f, 7f));
-
-            // claude: as 3 skins do modelo do Lorde Vampiro, lado a lado, como alvos de treino (ataque básico e skills)
-            ColocarAlvosDeTreino("Lorde Vampiro (skins)", ArsPaths.SkinsDoLordeVampiro, new Vector3(-2f, 0f, -3f), 3f);
+            // claude: do lado oposto aos inimigos (no lugar das skins do Lorde Vampiro, que saíram da cena)
+            CriarBonecoDeTreino(new Vector3(-2f, 0f, -3f));
+            CriarBonecoDeTreino(new Vector3(4f, 0f, -3f));
 
             // claude: inimigos montados (ARS → Montar inimigos), longe da visão deles, para o jogador ir até lá
             ColocarInimigos(new Vector3(6f, 0f, 11f));
@@ -152,37 +150,6 @@ namespace ARS.EditorTools
             combatente.vidaMaxima = 1000f;
             combatente.alturaDoCorpo = 1.1f;
             boneco.AddComponent<BonecoDeTreino>();
-        }
-
-        // claude: instancia prefabs em fila, virados para a câmera isométrica, cada um como boneco de treino
-        // (inimigo com colisor para o clique e para as skills); avisa se algum caminho não existir
-        static void ColocarAlvosDeTreino(string nomeDoGrupo, string[] caminhos, Vector3 inicio, float espacamento)
-        {
-            var grupo = new GameObject(nomeDoGrupo);
-            for (int i = 0; i < caminhos.Length; i++)
-            {
-                var prefab = AssetDatabase.LoadAssetAtPath<GameObject>(caminhos[i]);
-                if (prefab == null)
-                {
-                    Debug.LogWarning($"[ARS] Prefab não encontrado: {caminhos[i]}");
-                    continue;
-                }
-                var modelo = (GameObject)PrefabUtility.InstantiatePrefab(prefab);
-                modelo.transform.SetParent(grupo.transform);
-                modelo.transform.position = inicio + new Vector3(i * espacamento, 0f, 0f);
-                modelo.transform.rotation = Quaternion.Euler(0f, 225f, 0f); // claude: a câmera olha para 45°, então 225° fica de frente
-
-                // claude: mesmo colisor e mesmos valores (provisórios) do boneco de treino de cápsula
-                var colisor = modelo.AddComponent<CapsuleCollider>();
-                colisor.height = 2f;
-                colisor.radius = 0.5f;
-                colisor.center = new Vector3(0f, 1f, 0f);
-                var combatente = modelo.AddComponent<Combatente>();
-                combatente.equipe = Equipe.Inimigos;
-                combatente.vidaMaxima = 1000f;
-                combatente.alturaDoCorpo = 1.1f;
-                modelo.AddComponent<BonecoDeTreino>();
-            }
         }
 
         // claude: 2 de cada inimigo montado, lado a lado
