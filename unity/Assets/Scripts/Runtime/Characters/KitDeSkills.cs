@@ -28,6 +28,7 @@ namespace ARS.Characters
         Combatente eu;
         Recurso recurso;
         Animator animator;
+        TravaDeAcao trava; // claude: uma ação por vez (sem skill no meio do ataque básico)
         static readonly int ParametroAtacar = Animator.StringToHash("Atacar");
 
         public string UltimaMensagem { get; private set; }
@@ -38,6 +39,7 @@ namespace ARS.Characters
             eu = GetComponent<Combatente>();
             recurso = GetComponent<Recurso>();
             animator = GetComponentInChildren<Animator>();
+            trava = TravaDeAcao.De(gameObject); // claude
             var skills = new[] { q, w, e, r };
             for (int i = 0; i < 4; i++)
                 estados[i] = new Estado { skill = skills[i], cargas = skills[i] != null ? skills[i].cargas : 0 };
@@ -74,6 +76,8 @@ namespace ARS.Characters
             var estado = estados[(int)tecla];
             var skill = estado.skill;
             if (skill == null) return Avisar($"{tecla}: sem skill");
+            // claude: no meio do ataque básico (ou de outra skill) a skill é recusada
+            if (trava.Ocupado) return Avisar("Ocupado");
             if (estado.cargas <= 0) return Avisar($"{skill.nome}: recarregando");
             if (recurso != null && !recurso.TemPelomenos(skill.custo)) return Avisar($"Sem {recurso.tipo} suficiente");
 
@@ -100,8 +104,19 @@ namespace ARS.Characters
             if (animator != null && animator.runtimeAnimatorController != null && animator.isActiveAndEnabled)
                 animator.SetTrigger(ParametroAtacar);
 
-            Executar(skill, alvo);
+            // claude: fica ocupado conjurando; a skill sai no fim da conjuração
+            trava.Ocupar(skill.tempoDeConjuracao);
+            if (skill.tempoDeConjuracao > 0f) StartCoroutine(ExecutarDepois(skill, alvo, skill.tempoDeConjuracao));
+            else Executar(skill, alvo);
             return true;
+        }
+
+        // claude: espera a conjuração; se o alvo morrer nesse meio tempo, a skill não sai (carga e custo já foram gastos)
+        System.Collections.IEnumerator ExecutarDepois(SkillDef skill, Combatente alvo, float segundos)
+        {
+            yield return new WaitForSeconds(segundos);
+            if (alvo == null || !alvo.Vivo) yield break;
+            Executar(skill, alvo);
         }
 
         void Executar(SkillDef skill, Combatente alvo)

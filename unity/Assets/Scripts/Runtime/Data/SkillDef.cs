@@ -34,6 +34,9 @@ namespace ARS.Data
         public float recarga = 4f;
         [Tooltip("1 = skill normal. Mais de 1 = cargas que voltam uma de cada vez.")]
         [Min(1)] public int cargas = 1;
+        // claude: tempo em que o personagem fica ocupado conjurando (sem ataque básico nem outra skill)
+        [Tooltip("Segundos entre apertar a tecla e a skill sair. Nesse tempo o personagem não ataca nem usa outra skill.")]
+        [Min(0f)] public float tempoDeConjuracao = 0.3f;
 
         [Header("Alvo")]
         public AlvoDaSkill alvo = AlvoDaSkill.InimigoNoCursor;

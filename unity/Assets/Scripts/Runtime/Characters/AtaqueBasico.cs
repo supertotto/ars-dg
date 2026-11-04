@@ -21,6 +21,7 @@ namespace ARS.Characters
         Combatente eu;
         Animator animator;
         bool animatorTemAtaque;
+        TravaDeAcao trava; // claude: uma ação por vez (não ataca no meio de uma skill)
 
         Combatente alvo;
         float proximoAtaque;
@@ -33,6 +34,7 @@ namespace ARS.Characters
             movimento = GetComponent<Movimento>();
             eu = GetComponent<Combatente>();
             animator = GetComponentInChildren<Animator>();
+            trava = TravaDeAcao.De(gameObject); // claude
             if (animator != null && animator.runtimeAnimatorController != null)
                 foreach (var p in animator.parameters)
                     if (p.nameHash == ParametroAtacar) animatorTemAtaque = true;
@@ -47,6 +49,8 @@ namespace ARS.Characters
         public void Cancelar()
         {
             alvo = null;
+            // claude: cancelar um golpe no balanço libera a trava para a skill
+            if (golpeSaiEm >= 0f && trava != null) trava.Liberar();
             golpeSaiEm = -1f;
             if (animatorTemAtaque && animator.isActiveAndEnabled) animator.ResetTrigger(ParametroAtacar);
         }
@@ -80,10 +84,12 @@ namespace ARS.Characters
             movimento.Parar();
             movimento.OlharPara(alvo.transform.position);
 
-            if (Time.time >= proximoAtaque)
+            // claude: no meio de uma skill, espera; o ataque volta sozinho quando ela termina
+            if (Time.time >= proximoAtaque && !trava.Ocupado)
             {
                 proximoAtaque = Time.time + definicao.intervalo;
                 golpeSaiEm = Time.time + definicao.tempoDoGolpe;
+                trava.Ocupar(definicao.tempoDoGolpe);
                 if (animatorTemAtaque && animator.isActiveAndEnabled) animator.SetTrigger(ParametroAtacar);
             }
         }
