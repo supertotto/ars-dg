@@ -22,8 +22,9 @@ namespace ARS.Data
         [Min(1)] public int acumulosMaximos = 1;
 
         [Header("Visual (sem regra de jogo)")]
-        [Tooltip("Troca o visual do personagem enquanto durar (ex.: o bichinho). Vazio = mantém o visual.")]
-        public GameObject visualSubstituto;
+        // claude: lista; cada aplicação sorteia um (ex.: sapo ou galinha)
+        [Tooltip("Troca o visual do personagem enquanto durar (ex.: o bichinho). Com mais de um, sorteia a cada aplicação. Vazio = mantém o visual.")]
+        public GameObject[] visuaisSubstitutos = new GameObject[0];
         [Tooltip("Visual extra preso ao personagem enquanto durar (ex.: aura, fumaça).")]
         public GameObject visualExtra;
     }

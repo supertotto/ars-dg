@@ -136,7 +136,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: ARS.Runtime::ARS.Characters.KitDeSkills
   q: {fileID: 11400000, guid: 95f73d93583549d7b20af518024c1582, type: 2}
-  w: {fileID: 0}
+  w: {fileID: 11400000, guid: e470f306149c0e140a11a53a30b91d01, type: 2}
   e: {fileID: 0}
   r: {fileID: 0}
 --- !u!114 &8096362078845486321
