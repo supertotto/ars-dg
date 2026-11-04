@@ -52,6 +52,9 @@ namespace ARS.Data
         public float tamanhoProjetil = 0.3f;
         public bool rastro = true;
         public PontoDeDisparo pontoDeDisparo = PontoDeDisparo.MaoDireita;
+        // claude: efeito no ponto do acerto
+        [Tooltip("Efeito que aparece onde a skill acerta. Vazio = nenhum.")]
+        public GameObject visualImpacto;
         // claude: lista de aparências sorteadas a cada disparo; vazia = usa o visual único acima
         [Tooltip("Se tiver itens, cada disparo sorteia um deles (pelo peso) no lugar do visual, cor, tamanho e rastro acima.")]
         public List<VisualDeProjetil> variacoesVisuais = new List<VisualDeProjetil>();

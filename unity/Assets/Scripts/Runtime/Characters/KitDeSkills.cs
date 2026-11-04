@@ -186,6 +186,7 @@ namespace ARS.Characters
             {
                 AplicadorDeEfeitos.Aplicar(efeitos, alvo, eu);
                 if (alvo != eu) eu.RegistrarAcerto(alvo, OrigemDoAcerto.Skill); // claude: 1 acerto por uso
+                Projetil.CriarImpacto(skill.visualImpacto, alvo.Centro, transform.rotation, potencia.visual); // claude
                 return;
             }
 
@@ -202,7 +203,8 @@ namespace ARS.Characters
                                   AplicadorDeEfeitos.Aplicar(efeitos, atingido, eu);
                                   eu.RegistrarAcerto(atingido, OrigemDoAcerto.Skill); // claude: cada projétil = 1 acerto
                               },
-                              potencia.visual);
+                              potencia.visual,
+                              variacao != null && variacao.impacto != null ? variacao.impacto : skill.visualImpacto); // claude
         }
 
         Vector3 PontoDeSaida(PontoDeDisparo ponto)

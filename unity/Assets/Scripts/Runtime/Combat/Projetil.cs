@@ -11,6 +11,8 @@ namespace ARS.Combat
         Action<Combatente> aoAcertar;
         float velocidade;
         float vidaRestante = 5f;
+        GameObject impacto;   // claude: efeito no ponto do acerto
+        float escalaImpacto = 1f;
 
         static Material materialBase;
 
@@ -26,7 +28,8 @@ namespace ARS.Combat
         /// <summary>Projétil genérico: ao acertar, chama "aoAcertar" com o alvo (ex.: aplicar efeitos de uma skill).</summary>
         // claude: "escala" aumenta o visual (ex.: skill épica)
         public static void Disparar(Vector3 de, Combatente alvo, float velocidade, Color cor, float tamanho, bool rastro,
-                                    GameObject visual, Action<Combatente> aoAcertar, float escala = 1f)
+                                    GameObject visual, Action<Combatente> aoAcertar, float escala = 1f,
+                                    GameObject impacto = null)
         {
             tamanho *= escala;
             GameObject objeto;
@@ -74,6 +77,23 @@ namespace ARS.Combat
             projetil.alvo = alvo;
             projetil.aoAcertar = aoAcertar;
             projetil.velocidade = velocidade;
+            projetil.impacto = impacto; // claude
+            projetil.escalaImpacto = escala;
+        }
+
+        // claude: cria um efeito de impacto e garante que ele some (mesmo que o prefab não se destrua sozinho)
+        public static void CriarImpacto(GameObject prefab, Vector3 posicao, Quaternion rotacao, float escala = 1f)
+        {
+            if (prefab == null) return;
+            var efeito = Instantiate(prefab, posicao, rotacao);
+            if (!Mathf.Approximately(escala, 1f)) EscalarVisual(efeito, escala);
+            float duracao = 0.5f;
+            foreach (var ps in efeito.GetComponentsInChildren<ParticleSystem>())
+            {
+                var main = ps.main;
+                duracao = Mathf.Max(duracao, main.duration + main.startLifetime.constantMax);
+            }
+            Destroy(efeito, Mathf.Min(duracao + 0.5f, 10f));
         }
 
         // claude: aumenta um visual inteiro, inclusive partículas (que não seguem a escala do objeto por padrão)
@@ -121,6 +141,7 @@ namespace ARS.Combat
             if ((destino - posicao).sqrMagnitude < 0.04f)
             {
                 aoAcertar?.Invoke(alvo);
+                CriarImpacto(impacto, transform.position, transform.rotation, escalaImpacto); // claude
                 Destroy(gameObject);
             }
         }

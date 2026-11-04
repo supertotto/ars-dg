@@ -17,43 +17,50 @@ MonoBehaviour:
   custo: 20
   recarga: 4
   cargas: 3
+  tempoDeConjuracao: 0.3
   alvo: 0
   alcance: 8
   raioDeBuscaNoCursor: 3
   entrega: 1
-  velocidadeProjetil: 16
+  velocidadeProjetil: 10
   visualProjetil: {fileID: 7626139322179216226, guid: dc33e45a4bb28854c941caca0629dcce, type: 3}
   corProjetil: {r: 0, g: 0.72156864, b: 1, a: 1}
   tamanhoProjetil: 0.3
   rastro: 1
   pontoDeDisparo: 0
+  visualImpacto: {fileID: 0}
   variacoesVisuais:
   - nome: "M\xEDssil m\xE1gico"
     visual: {fileID: 7626139322179216226, guid: dc33e45a4bb28854c941caca0629dcce, type: 3}
     cor: {r: 0, g: 0.72156864, b: 1, a: 1}
     tamanho: 0.3
     rastro: 1
+    impacto: {fileID: 1679831458560377842, guid: c213cc6e7328a0e438e16af099ab70b7, type: 3}
     peso: 1
   - nome: Sapinho
     visual: {fileID: 4256389913381977675, guid: 536b2700b4c70b241acaf3dc6112f4b7, type: 3}
     cor: {r: 0.45, g: 0.8, b: 0.35, a: 1}
     tamanho: 0.3
     rastro: 0
+    impacto: {fileID: 5269128143749454392, guid: 928656f9953275e45a865f951c1559e5, type: 3}
     peso: 1
   - nome: Borboletas
     visual: {fileID: 955643875894724336, guid: 6690bb93c79349949a16077599287a3b, type: 3}
     cor: {r: 1, g: 1, b: 1, a: 1}
     tamanho: 0.3
     rastro: 0
+    impacto: {fileID: 6756014570762878003, guid: aeb96f80ca9d7e24d9db2285fd10ff52, type: 3}
     peso: 1
   - nome: "Letras do grim\xF3rio"
     visual: {fileID: 7700256581350987883, guid: acc7fe46588bd3d4abcf3c9dcf0359cd, type: 3}
     cor: {r: 1, g: 1, b: 1, a: 1}
     tamanho: 0.3
     rastro: 0
+    impacto: {fileID: 5324355520102513620, guid: b656e3c885640fc4ba7b7c50d3ee7a60, type: 3}
     peso: 1
   efeitos:
   - tipo: 0
     valor: 35
     tipoDeDano: 1
     duracao: 0
+    estado: {fileID: 0}

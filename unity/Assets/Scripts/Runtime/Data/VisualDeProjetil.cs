@@ -19,6 +19,9 @@ namespace ARS.Data
         public Color cor = Color.white;
         public float tamanho = 0.3f;
         public bool rastro = true;
+        // claude: efeito no ponto do acerto (vazio = usa o impacto da skill)
+        [Tooltip("Efeito que aparece onde o projétil acerta (ex.: puf de fumaça). Vazio = o impacto da skill.")]
+        public GameObject impacto;
         [Tooltip("Chance relativa de sair esta variação (2 = o dobro de uma com peso 1).")]
         [Min(0f)] public float peso = 1f;
 
