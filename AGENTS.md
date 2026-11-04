@@ -51,7 +51,7 @@ Jogo em Unity: dungeon crawler cooperativo isométrico (dungeons estilo WoW + sk
 - Packs de terceiros em `Assets/` (`Eric VFX Studio`, `GabrielAguiarProductions`, `Hovl Studio`, `JMO Assets`): não editar, só usar.
 - Arquivos de arte e áudio grandes vão pelo **Git LFS** (ver `.gitattributes`).
 - Nunca apague nem edite `.meta` à mão; o Unity os gera e eles guardam as referências.
-- Neste PC o `git` não está no PATH do PowerShell; use o terminal Bash para comandos git.
+- **MCP for Unity** (pacote `com.coplaydev.unity-mcp`, fixado no `manifest.json`): com o Unity aberto, **Window → MCP for Unity → Start Server**. O Claude Code acessa por `http://127.0.0.1:8080/mcp` (servidor `UnityMCP`).
 
 ## Trabalho em dupla com o Claude Code
 
