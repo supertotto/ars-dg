@@ -64,7 +64,7 @@
 
 ## Técnico
 
-- [ ] Testes automáticos das skills (regra do CLAUDE.md): instalar o Unity Test Framework e criar o primeiro teste (Mísseis Mágicos)
+- [ ] Testes por skill (regra do CLAUDE.md): cenário com lançador e alvo para cada skill (a estrutura de testes e os testes de estados, efeitos e passiva já existem)
 - [ ] Números do Q do Caleb (20 de Mana, 4 s por carga, 3 cargas, 8 m, 35 de dano, 0,3 s de conjuração): provisórios
 - [ ] Uma ação por vez: se o alvo morrer durante a conjuração, a carga e a Mana se perdem (provisório)
 - [ ] Chance de cada visual dos Mísseis Mágicos (sapinho, borboletas, letras, míssil): provisório, todos com peso 1

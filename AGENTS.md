@@ -42,8 +42,8 @@ Jogo em Unity: dungeon crawler cooperativo isométrico (dungeons estilo WoW + sk
 ### Estado atual (diferenças em relação à arquitetura)
 
 - Os módulos da [Arquitetura](docs/tecnico/arquitetura.md) (`Core`, `Abilities`, `AI`, `Dungeons`, `Net`) **ainda não existem**; tudo está num assembly só. `Data` e `Combat` se referenciam (ex.: `TipoDeDano` está em `Combat`), o que precisa ser resolvido antes de separar assemblies.
-- Ainda **não há testes automáticos** nem assembly de testes (regra 5 pendente). Quando criar, use o Unity Test Runner (EditMode) num asmdef próprio.
-- Não há tags/modificadores implementados ainda (regra 3).
+- **Testes:** EditMode (Unity Test Framework) no asmdef `ARS.Tests.EditMode`, em `Assets/Tests/EditMode/`. Cobrem estados, efeitos, sorteio de visuais e passiva. Ainda faltam testes por skill (cenário lançador + alvo), como pede a regra 5. Rodar: **Window → General → Test Runner**.
+- Tags e modificadores: `TagDeEstado`, `EstadoDef` e `Modificador` em `Data`, `Estados` em `Combat` (ver [Projeto Unity](docs/tecnico/unity.md)).
 - Todos os números atuais (skills, ataque básico, câmera, velocidade) são **provisórios**.
 
 ### Cuidados
