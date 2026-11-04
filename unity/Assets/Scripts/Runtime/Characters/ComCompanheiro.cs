@@ -30,7 +30,14 @@ namespace ARS.Characters
             {
                 combatente.AoMandarCompanheiroFicar += Ficar;
                 combatente.AoMandarCompanheiroSeguir += Seguir;
+                combatente.AoMandarCompanheiroCacar += Cacar; // claude
             }
+        }
+
+        // claude: caçada (ex.: R do Caleb); o dano sai em nome do dono
+        void Cacar(Vector3 centro, ARS.Data.ZonaDef zona, float multiplicador, float duracao)
+        {
+            if (Companheiro != null) Companheiro.Cacar(centro, zona, multiplicador, duracao, GetComponent<ARS.Combat.Combatente>());
         }
 
         void Ficar(Vector3 ponto) { if (Companheiro != null) Companheiro.FicarEm(ponto); }

@@ -33,7 +33,7 @@ namespace ARS.Combat
                 if (duracao <= 0f && e.tipo == TipoDeEfeito.AplicarEstado && e.estado != null && e.estado.duracaoPadrao > 0f)
                     duracao = e.estado.duracaoPadrao;
                 // claude: zona sem duração própria usa a da zona: multiplica essa
-                if (duracao <= 0f && e.tipo == TipoDeEfeito.CriarZona && e.zona != null)
+                if (duracao <= 0f && (e.tipo == TipoDeEfeito.CriarZona || e.tipo == TipoDeEfeito.CompanheiroCaca) && e.zona != null)
                     duracao = e.zona.duracao;
                 copia.Add(new Efeito
                 {
@@ -98,6 +98,11 @@ namespace ARS.Combat
                         break;
                     case TipoDeEfeito.CompanheiroSegue:
                         alvo.MandarCompanheiroSeguir();
+                        break;
+                    case TipoDeEfeito.CompanheiroCaca: // claude
+                        if (efeito.zona == null) Debug.LogWarning("[ARS] Companheiro Caça sem zona definida.");
+                        else alvo.MandarCompanheiroCacar(contexto.pontoMirado, efeito.zona,
+                                                         efeito.valor > 0f ? efeito.valor : 1f, efeito.duracao);
                         break;
                     default:
                         if (avisados.Add(efeito.tipo))

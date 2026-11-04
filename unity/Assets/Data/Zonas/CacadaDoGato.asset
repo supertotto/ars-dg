@@ -1,0 +1,27 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4d3456820b2984d9d2074290893abc, type: 3}
+  m_Name: CacadaDoGato
+  m_EditorClassIdentifier: ARS.Runtime::ARS.Data.ZonaDef
+  nome: "Ca\xE7ada do gato"
+  raio: 3.5
+  duracao: 6
+  intervalo: 0.6
+  efeitosPorTique:
+  - tipo: 0
+    valor: 25
+    tipoDeDano: 1
+    duracao: 0
+    estado: {fileID: 0}
+    destino: 0
+    zona: {fileID: 0}
+  visual: {fileID: 0}

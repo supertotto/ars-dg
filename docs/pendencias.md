@@ -77,6 +77,8 @@
 - [ ] Cappuccino: modelo do gato do pacote ithappy pintado de laranja (laranja do tigre); fica 0,9 m ao lado e 0,5 m atrás, anda a 2 m/s, corre a 5 m/s se ficar 2,5 m para trás, aparece ao lado se ficar a 15 m: provisórios
 - [ ] E do Caleb (Esqueci o Gato): 40 de Mana, 12 s de recarga, 7 m (mirar mais longe teleporta até o limite), explosão de 60 de dano em 2,5 m, janela de volta de 4 s, abelhas: 4 s, 8 de dano a cada 0,5 s em 2,5 m: provisórios
 - [ ] Visual da E: chegada com o "puf" mágico grande (pacote JMO) e saída sem efeito; abelhas desenhadas por código (2 quadros): provisórios
+- [ ] R do Caleb (Isso Não Estava no Livro): 100 de Mana, 60 s de recarga, 9 m, 0,5 s de conjuração, área de 3,5 m por 6 s, gato 2× maior, mordida de 25 de dano a cada 0,6 s: provisórios. A R não conta acerto para a passiva (quem acerta é o gato)
+- [ ] Visual da R: chuva de sapinhos (modelo da Q, em verde-claro pelas cores gravadas nos vértices) e patinha laranja desenhada por código: provisórios
 - [ ] Recurso por classe: hoje todo herói recebe Mana (300, +4/s) até existir a ficha do herói nos dados
 - [ ] Números do ataque básico (alcance 6 m, 1 ataque/s, 20 de dano, projétil): provisórios, iguais para todos por enquanto
 - [ ] Visual do ataque básico do Caleb: bolinha dourada de 0,15 m com rastro roxo de 0,15 s (cores e tamanhos provisórios)

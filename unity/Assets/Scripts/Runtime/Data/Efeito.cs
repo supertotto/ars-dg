@@ -27,7 +27,8 @@ namespace ARS.Data
         Teleportar,       // leva o alvo até o "destino" abaixo
         CriarZona,        // cria a "zona" no ponto mirado (dano/efeitos por tique em área); valor = multiplicador dos tiques
         CompanheiroFica,  // o companheiro do alvo fica parado no ponto de partida
-        CompanheiroSegue  // o companheiro do alvo volta a acompanhá-lo
+        CompanheiroSegue, // o companheiro do alvo volta a acompanhá-lo
+        CompanheiroCaca   // claude: o companheiro caça na área da "zona" (raio, duração, ataque a cada intervalo); valor = multiplicador do dano
     }
 
     // claude: para onde vai um efeito de posição (ex.: Teleportar)

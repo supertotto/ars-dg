@@ -60,6 +60,10 @@ namespace ARS.Combat
         public event Action AoMandarCompanheiroSeguir;
         public void MandarCompanheiroFicar(Vector3 ponto) => AoMandarCompanheiroFicar?.Invoke(ponto);
         public void MandarCompanheiroSeguir() => AoMandarCompanheiroSeguir?.Invoke();
+        // claude: caçar numa área (centro, zona com raio/duração/ataques, multiplicador do dano, duração; 0 = a da zona)
+        public event Action<Vector3, ARS.Data.ZonaDef, float, float> AoMandarCompanheiroCacar;
+        public void MandarCompanheiroCacar(Vector3 centro, ARS.Data.ZonaDef zona, float multiplicador, float duracao) =>
+            AoMandarCompanheiroCacar?.Invoke(centro, zona, multiplicador, duracao);
 
         static readonly List<Combatente> todos = new List<Combatente>();
         /// <summary>Todos os combatentes ativos na cena.</summary>
