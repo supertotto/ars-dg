@@ -12,6 +12,8 @@ namespace ARS.UI
     {
         [Tooltip("Prefab gerado por ARS → Montar HUD.")]
         public HudDoJogador prefabDoHud;
+        [Tooltip("Foto do herói no HUD (Assets/UI/Retratos/<Herói>.png).")]
+        public Sprite retrato; // claude: provisório aqui até existir a ficha do herói nos dados
 
         ComandosDoJogador comandos;
         HudDoJogador hud;

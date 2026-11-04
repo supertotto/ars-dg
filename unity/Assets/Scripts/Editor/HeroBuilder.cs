@@ -167,7 +167,10 @@ namespace ARS.EditorTools
             AtribuirCompanheiro(nome, raiz); // claude
             raiz.AddComponent<Abatido>().reviverEmSegundos = 5f; // claude: provisório, só para testes (sem sistema de reviver ainda)
             raiz.AddComponent<ComandosDoJogador>();
-            raiz.AddComponent<ComHud>().prefabDoHud = HudBuilder.ObterOuCriar(); // claude: HUD em uGUI no lugar do HudProvisorio
+            // claude: HUD em uGUI no lugar do HudProvisorio; retrato em Assets/UI/Retratos/<Herói>.png
+            var comHud = raiz.AddComponent<ComHud>();
+            comHud.prefabDoHud = HudBuilder.ObterOuCriar();
+            comHud.retrato = AssetDatabase.LoadAssetAtPath<Sprite>($"{ArsPaths.Ui}/Retratos/{nome}.png");
 
             ArsPaths.GarantirPasta(ArsPaths.Prefabs);
             string caminhoPrefab = $"{ArsPaths.Prefabs}/{nome}.prefab";

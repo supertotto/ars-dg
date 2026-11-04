@@ -15,3 +15,7 @@ Licença: [CC BY 3.0](https://creativecommons.org/licenses/by/3.0/). Exige créd
 | `frog-prince.png` | Delapouite |
 
 Autores: Lorc (http://lorcblog.blogspot.com), Delapouite (https://delapouite.com). Fonte: https://game-icons.net
+
+## Arte própria gerada por IA
+
+Arte do HUD (`Assets/UI/HUD/`) e retrato do Caleb (`Assets/UI/Retratos/Caleb.png`): geradas pelo Totto em IA de imagem. Sem crédito de terceiros.

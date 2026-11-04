@@ -70,7 +70,9 @@
 - [ ] Trocar ou manter os pentagramas do Wix e do Abraxas (classificação etária)
 - [ ] Membrana das asas do modelo do Lorde Vampiro (pack `Vampire`): a malha `Glass1` (material `Mat_Vampyr_Glass`) não aparece no URP (face virada para trás); com os dois lados ligados vira placas brancas translúcidas. Decidir: refazer o material, esconder ou manter só os ossos das asas
 
-- [ ] Visual do HUD: layout, cores, fonte e molduras provisórios (caixas lisas); falta escolher a arte (Kenney UI Pack + RPG Expansion, CC0, a baixar)
+- [ ] HUD: arte gerada por IA aplicada (painel escuro com ouro). Layout (retrato à esquerda, passiva, Q/W/E/R, barras embaixo das skills), tamanhos, cores das barras (vida vermelha, mana azul) e fonte: provisórios
+- [ ] HUD: faltam da lista de prompts o preenchimento da barra (hoje feito por código), o brilho (hoje por código) e os ícones pintados das skills do Caleb
+- [ ] Retrato do Caleb: a imagem tem 112×126 px (fica borrada); gerar uma versão quadrada de 512 px
 - [ ] Ícones das skills do Caleb (game-icons.net): Q magic-swirl, W frog-prince, E cat, R burning-book, passiva star-swirl: provisórios
 
 ## Técnico

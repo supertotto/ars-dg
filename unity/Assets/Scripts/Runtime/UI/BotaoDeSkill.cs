@@ -22,10 +22,10 @@ namespace ARS.UI
         public Text textoDaTecla;
         public Text textoDoTempo;
         public Text textoDasCargas;
+        [Tooltip("Brilho ligado na janela de reativação.")]
+        public Image brilho; // claude: substitui a troca de cor da moldura (arte nova)
 
         [Header("Cores (provisórias)")]
-        public Color corDaMoldura = new Color(0.35f, 0.35f, 0.4f);
-        public Color corDaMolduraReativar = new Color(1f, 0.8f, 0.2f);
         public Color corDoIcone = Color.white;
         public Color corSemRecurso = new Color(0.35f, 0.45f, 1f);
 
@@ -60,8 +60,7 @@ namespace ARS.UI
                 textoDoTempo.text = semCargas ? (falta >= 1f ? Mathf.CeilToInt(falta).ToString() : falta.ToString("0.0")) : "";
             if (textoDasCargas != null)
                 textoDasCargas.text = skill != null && skill.cargas > 1 ? estado.cargas.ToString() : "";
-            if (moldura != null)
-                moldura.color = skill != null && kit.PodeReativar(tecla) ? corDaMolduraReativar : corDaMoldura;
+            if (brilho != null) brilho.enabled = skill != null && kit.PodeReativar(tecla); // claude
         }
     }
 }

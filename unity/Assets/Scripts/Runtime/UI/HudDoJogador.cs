@@ -17,13 +17,15 @@ namespace ARS.UI
         [Tooltip("Um botão por tecla (Q, W, E, R).")]
         public BotaoDeSkill[] botoes;
 
+        [Tooltip("Foto do herói (vem do Com Hud do herói).")]
+        public Image retrato; // claude
+
         [Header("Passiva")]
         public GameObject passivaRaiz;
-        public Image passivaMoldura;
         public Image passivaIcone;
         public Text passivaTexto;
-        public Color corDaPassiva = new Color(0.35f, 0.35f, 0.4f);
-        public Color corDaPassivaPronta = new Color(1f, 0.8f, 0.2f);
+        [Tooltip("Brilho ligado quando a passiva está pronta.")]
+        public Image passivaBrilho; // claude: substitui a troca de cor da moldura
 
         [Header("Mensagens")]
         public Text mensagem;
@@ -45,6 +47,13 @@ namespace ARS.UI
             passiva = heroi != null ? heroi.GetComponent<Passiva>() : null;
 
             if (barraDeRecurso != null) barraDeRecurso.gameObject.SetActive(recurso != null);
+            // claude: retrato do herói
+            var comHud = heroi != null ? heroi.GetComponent<ComHud>() : null;
+            if (retrato != null)
+            {
+                retrato.sprite = comHud != null ? comHud.retrato : null;
+                retrato.enabled = retrato.sprite != null;
+            }
             bool temPassiva = passiva != null && passiva.definicao != null;
             if (passivaRaiz != null) passivaRaiz.SetActive(temPassiva);
             if (temPassiva && passivaIcone != null)
@@ -68,7 +77,7 @@ namespace ARS.UI
             if (passiva != null && passiva.Progresso(out int atual, out int total, out bool pronta))
             {
                 if (passivaTexto != null) passivaTexto.text = pronta ? "!" : $"{atual}/{total}";
-                if (passivaMoldura != null) passivaMoldura.color = pronta ? corDaPassivaPronta : corDaPassiva;
+                if (passivaBrilho != null) passivaBrilho.enabled = pronta; // claude
             }
 
             if (mensagem != null) mensagem.text = kit != null ? kit.UltimaMensagem ?? "" : "";
