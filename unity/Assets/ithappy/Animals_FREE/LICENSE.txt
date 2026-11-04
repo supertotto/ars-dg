@@ -1,0 +1,4 @@
+Animals FREE - ithappy
+Fonte: CGTrader (https://www.cgtrader.com/free-3d-models/animal/mammal/animals-free), pacote Unity_6_Animals_Free_v2.3.unitypackage
+Licença: Royalty Free License (no AI) - uso em jogo comercial permitido; não redistribuir os arquivos soltos nem usar para treinar IA.
+Importado só em parte: modelos, material, textura e animações. Scripts, prefabs de demonstração, cenas, skybox e conversores de pipeline ficaram de fora.
