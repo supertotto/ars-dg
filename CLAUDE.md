@@ -28,6 +28,31 @@ Jogo em Unity: dungeon crawler cooperativo isométrico (dungeons estilo WoW + sk
 7. Módulos com dependência em uma direção (ver [Arquitetura](docs/tecnico/arquitetura.md)). UI sem regra de jogo.
 8. Equipamento separado do visual (o visual vem das skins).
 
+## Mapa do código
+
+- **Projeto Unity em `unity/`:** Unity 6 (6000.6.7f1), URP 17.6, Input System. Detalhes de pastas, menu **ARS** e importação de FBX em [Projeto Unity](docs/tecnico/unity.md).
+- **Assemblies:** `ARS.Runtime` (namespace raiz `ARS`, em `Assets/Scripts/Runtime/`) e `ARS.Editor` (namespace `ARS.EditorTools`, só editor, depende do Runtime). Pastas do Runtime: `Data`, `Combat`, `Characters`, `Camera` (`ARS.CameraSystem`), `Effects`, `UI`.
+- **Fluxo de uma skill:** `SkillDef` / `AtaqueBasicoDef` (ScriptableObjects em `Assets/Data/`) → `KitDeSkills` / `AtaqueBasico` → na hora ou via `Projetil` → `AplicadorDeEfeitos.Aplicar` (um `switch` por `TipoDeEfeito`) → `Combatente.ReceberDano` / `Curar`.
+- **Efeito genérico novo:** valor novo em `TipoDeEfeito` ([Efeito.cs](unity/Assets/Scripts/Runtime/Data/Efeito.cs)) + `case` em [AplicadorDeEfeitos.cs](unity/Assets/Scripts/Runtime/Combat/AplicadorDeEfeitos.cs). Hoje só **Dano** e **Cura** têm código; os outros estão marcados "(a fazer)" e só geram aviso.
+- **Tecla da skill vem do nome do asset:** `<Herói>_Q_<Nome>` (Q/W/E/R). **ARS → Montar heróis** liga as skills e o ataque básico ao prefab.
+- **Ferramentas de editor** (`Assets/Scripts/Editor/`): `HeroBuilder` (pastas, montar heróis), `HeroModelImporter` (Humanoid, loop, Bake Into Pose na importação), `TestSceneBuilder` (gera `Scenes/Teste.unity`), `VitrineDeEfeitos` (cena `Vitrine.unity` com os VFX de uma pasta), `ArsPaths` (caminhos fixos).
+- **Formato de dados de referência:** `data/exemplos/*.json`, descrito em [Modelo de dados](docs/tecnico/modelo-de-dados.md).
+- **Pipeline de arte:** `ferramentas/blender/` limpa modelos gerados por IA antes do Mixamo (ver o README da pasta).
+
+### Estado atual (diferenças em relação à arquitetura)
+
+- Os módulos da [Arquitetura](docs/tecnico/arquitetura.md) (`Core`, `Abilities`, `AI`, `Dungeons`, `Net`) **ainda não existem**; tudo está num assembly só. `Data` e `Combat` se referenciam (ex.: `TipoDeDano` está em `Combat`), o que precisa ser resolvido antes de separar assemblies.
+- Ainda **não há testes automáticos** nem assembly de testes (regra 5 pendente). Quando criar, use o Unity Test Runner (EditMode) num asmdef próprio.
+- Não há tags/modificadores implementados ainda (regra 3).
+- Todos os números atuais (skills, ataque básico, câmera, velocidade) são **provisórios**.
+
+### Cuidados
+
+- Packs de terceiros em `Assets/` (`Eric VFX Studio`, `GabrielAguiarProductions`, `Hovl Studio`, `JMO Assets`): não editar, só usar.
+- Arquivos de arte e áudio grandes vão pelo **Git LFS** (ver `.gitattributes`).
+- Nunca apague nem edite `.meta` à mão; o Unity os gera e eles guardam as referências.
+- Neste PC o `git` não está no PATH do PowerShell; use o terminal Bash para comandos git.
+
 ## Trabalho em dupla com o Codex
 
 - Mais de um agente mexe neste repositório. Antes de começar: `git pull`. Ao terminar: commit pequeno com mensagem clara.
