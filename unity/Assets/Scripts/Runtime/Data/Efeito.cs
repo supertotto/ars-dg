@@ -19,7 +19,10 @@ namespace ARS.Data
         Enraizar,         // (a fazer)
         Empurrar,         // (a fazer)
         AplicarElemento,  // (a fazer)
-        Invocar           // (a fazer)
+        Invocar,          // (a fazer)
+        // claude: estados e interrupção (novos valores sempre no fim, para não mudar os dados salvos)
+        AplicarEstado,    // aplica o "estado" abaixo (controle não pega em imunes)
+        Interromper       // corta a conjuração do alvo (pega até em imunes a controle)
     }
 
     /// <summary>Um efeito genérico com seus números (todos provisórios).</summary>
@@ -30,7 +33,10 @@ namespace ARS.Data
         [Tooltip("Quantidade: dano, cura, escudo, % de lentidão...")]
         public float valor = 30f;
         public TipoDeDano tipoDeDano = TipoDeDano.Magico;
-        [Tooltip("Duração em segundos (para efeitos que duram).")]
+        [Tooltip("Duração em segundos (para efeitos que duram). Em Aplicar Estado, 0 = duração padrão do estado.")]
         public float duracao;
+        // claude: estado usado por Aplicar Estado
+        [Tooltip("Estado aplicado (só para Aplicar Estado).")]
+        public EstadoDef estado;
     }
 }

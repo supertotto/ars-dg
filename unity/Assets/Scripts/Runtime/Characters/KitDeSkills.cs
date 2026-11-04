@@ -53,6 +53,7 @@ namespace ARS.Characters
             movimento = GetComponent<Movimento>(); // claude
             animator = GetComponentInChildren<Animator>();
             trava = TravaDeAcao.De(gameObject); // claude
+            eu.AoSerInterrompido += Interrompido; // claude
             var skills = new[] { q, w, e, r };
             for (int i = 0; i < 4; i++)
                 estados[i] = new Estado { skill = skills[i], cargas = skills[i] != null ? skills[i].cargas : 0 };
@@ -97,6 +98,8 @@ namespace ARS.Characters
             var estado = estados[(int)tecla];
             var skill = estado.skill;
             if (skill == null) return Avisar($"{tecla}: sem skill");
+            // claude: estados com a tag Sem Skill (ex.: transformado) bloqueiam skills
+            if (eu.Estados.Tem(TagDeEstado.SemSkill)) return Avisar("Não pode usar skills agora");
             if (estado.cargas <= 0) return Avisar($"{skill.nome}: recarregando");
             if (recurso != null && !recurso.TemPelomenos(skill.custo)) return Avisar($"Sem {recurso.tipo} suficiente");
             // claude: no meio do ataque básico (ou de outra skill) a skill fica guardada e sai quando a trava liberar
@@ -135,15 +138,26 @@ namespace ARS.Characters
 
             // claude: fica ocupado conjurando; a skill sai no fim da conjuração
             trava.Ocupar(skill.tempoDeConjuracao);
-            if (skill.tempoDeConjuracao > 0f) StartCoroutine(ExecutarDepois(skill, alvo, skill.tempoDeConjuracao));
+            if (skill.tempoDeConjuracao > 0f) conjuracao = StartCoroutine(ExecutarDepois(skill, alvo, skill.tempoDeConjuracao));
             else Executar(skill, alvo);
             return true;
+        }
+
+        // claude: conjuração em andamento (para poder interromper)
+        Coroutine conjuracao;
+
+        // claude: interrompido: a skill em conjuração não sai (carga e custo já foram gastos) e a guardada é esquecida
+        void Interrompido()
+        {
+            if (conjuracao != null) { StopCoroutine(conjuracao); conjuracao = null; trava.Liberar(); }
+            DescartarGuardada();
         }
 
         // claude: espera a conjuração; se o alvo morrer nesse meio tempo, a skill não sai (carga e custo já foram gastos)
         System.Collections.IEnumerator ExecutarDepois(SkillDef skill, Combatente alvo, float segundos)
         {
             yield return new WaitForSeconds(segundos);
+            conjuracao = null;
             if (alvo == null || !alvo.Vivo) yield break;
             Executar(skill, alvo);
         }

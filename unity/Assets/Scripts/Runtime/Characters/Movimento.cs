@@ -24,6 +24,7 @@ namespace ARS.Characters
         Vector3? destino;
         float paradaAtual;
         float velocidadeVertical;
+        ARS.Combat.Estados estados; // claude
 
         public bool EmMovimento => destino.HasValue;
 
@@ -44,6 +45,8 @@ namespace ARS.Characters
         void Awake()
         {
             controle = GetComponent<CharacterController>();
+            var combatente = GetComponent<ARS.Combat.Combatente>(); // claude: tags de estado (pode não ter)
+            if (combatente != null) estados = combatente.Estados;
             animator = GetComponentInChildren<Animator>();
         }
 
@@ -69,7 +72,10 @@ namespace ARS.Characters
         {
             Vector3 deslocamento = Vector3.zero;
 
-            if (destino.HasValue)
+            // claude: estados com a tag Sem Movimento seguram o personagem no lugar
+            bool preso = estados != null && estados.Tem(ARS.Data.TagDeEstado.SemMovimento);
+
+            if (destino.HasValue && !preso)
             {
                 Vector3 direcao = destino.Value - transform.position;
                 direcao.y = 0f;

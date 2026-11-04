@@ -35,6 +35,7 @@ namespace ARS.Characters
             eu = GetComponent<Combatente>();
             animator = GetComponentInChildren<Animator>();
             trava = TravaDeAcao.De(gameObject); // claude
+            eu.AoSerInterrompido += CancelarGolpe; // claude: interrompido no balanço = golpe não sai
             if (animator != null && animator.runtimeAnimatorController != null)
                 foreach (var p in animator.parameters)
                     if (p.nameHash == ParametroAtacar) animatorTemAtaque = true;
@@ -44,6 +45,13 @@ namespace ARS.Characters
         {
             if (novoAlvo == null || !novoAlvo.Vivo || !eu.EhInimigoDe(novoAlvo)) return;
             alvo = novoAlvo;
+        }
+
+        // claude: corta só o golpe em andamento; o alvo continua (volta a atacar quando puder)
+        void CancelarGolpe()
+        {
+            if (golpeSaiEm >= 0f) trava.Liberar();
+            golpeSaiEm = -1f;
         }
 
         public void Cancelar()
@@ -85,7 +93,8 @@ namespace ARS.Characters
             movimento.OlharPara(alvo.transform.position);
 
             // claude: no meio de uma skill, espera; o ataque volta sozinho quando ela termina
-            if (Time.time >= proximoAtaque && !trava.Ocupado && !trava.Reservado)
+            // claude: estados com a tag Sem Ataque (ex.: transformado) impedem o ataque básico
+            if (Time.time >= proximoAtaque && !trava.Ocupado && !trava.Reservado && !eu.Estados.Tem(TagDeEstado.SemAtaque))
             {
                 proximoAtaque = Time.time + definicao.intervalo;
                 golpeSaiEm = Time.time + definicao.tempoDoGolpe;

@@ -25,6 +25,14 @@ namespace ARS.Combat
         /// <summary>(quantidade, tipo, quem causou)</summary>
         public event Action<float, TipoDeDano, Combatente> AoReceberDano;
         public event Action<Combatente> AoMorrer;
+        // claude: corta a conjuração em andamento (skill ou golpe); quem conjura escuta este evento
+        public event Action AoSerInterrompido;
+
+        // claude: estados e tags do combatente (criado na hora, se o prefab não tiver)
+        Estados estados;
+        public Estados Estados => estados != null ? estados : (estados = Estados.De(this));
+
+        public void Interromper() => AoSerInterrompido?.Invoke();
 
         static readonly List<Combatente> todos = new List<Combatente>();
         /// <summary>Todos os combatentes ativos na cena.</summary>
