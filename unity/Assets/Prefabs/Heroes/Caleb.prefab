@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 6032197603568355178}
   - component: {fileID: 6729693473834942953}
   - component: {fileID: 8096362078845486321}
-  - component: {fileID: 8033688983232243362}
+  - component: {fileID: 8081759125651684258}
   m_Layer: 0
   m_Name: Caleb
   m_TagString: Untagged
@@ -197,7 +197,7 @@ MonoBehaviour:
   clicavel:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &8033688983232243362
+--- !u!114 &8081759125651684258
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -206,10 +206,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 301881108601528563}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9cca34ca64e7f544aa51173d6907e369, type: 3}
+  m_Script: {fileID: 11500000, guid: 2a9027e79e92763489b458672f4b7308, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: ARS.Runtime::ARS.UI.HudProvisorio
-  tamanhoDaLetra: 26
+  m_EditorClassIdentifier: ARS.Runtime::ARS.UI.ComHud
+  prefabDoHud: {fileID: 3027621098708739088, guid: c7a98f5687d4bb748bdb0c92c465b403, type: 3}
 --- !u!1001 &8024684772149348667
 PrefabInstance:
   m_ObjectHideFlags: 0

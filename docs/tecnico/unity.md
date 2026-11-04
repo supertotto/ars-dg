@@ -15,6 +15,8 @@ Assets/
     Common/       animações usadas por todos (tomar dano, cair…)
     ...           packs do Mixamo ("Without Skin")
   Prefabs/Heroes/ prefabs montados automaticamente
+  Prefabs/UI/     HUD.prefab (gerado por ARS → Montar HUD, depois editado à mão)
+  UI/             imagens da interface (entram como Sprite); ícones em UI/Icones/
   Scenes/         Teste.unity (cena de teste)
   Scripts/
     Runtime/      código do jogo (ARS.Runtime)
@@ -29,6 +31,7 @@ Assets/
 | Novo herói (criar pastas)… | Pede o nome e cria `Characters/<Herói>/Model`, `Textures`, `Animations`, `Materials` |
 | Reconfigurar FBX (Humanoid e animações) | Refaz a configuração de todos os FBX. Use se as animações não tocarem (por exemplo, se os arquivos entraram antes das ferramentas) |
 | Montar heróis | Para cada herói com FBX em `Model/`: cria o material com a textura, o Animator (parado/andar/correr) e o prefab com movimento por clique |
+| Montar HUD | Gera `Prefabs/UI/HUD.prefab` (barras de vida e recurso, passiva, botões Q/W/E/R). Se já existir, pede confirmação: refazer apaga os ajustes de design feitos no prefab |
 | Criar cena de teste | Chão, blocos, luz, câmera isométrica e os heróis montados. Botão direito anda, rodinha dá zoom |
 
 ## Combate (primeira versão)
@@ -50,7 +53,8 @@ Assets/
 - Efeitos com código hoje: **Dano** e **Cura**. Os outros (escudo, lentidão, atordoar, enraizar, empurrar, elemento, invocar) já existem nos dados e serão implementados um a um.
 - **Q, W, E, R** usam a skill no inimigo sob o cursor (ou o mais perto do cursor).
 - Para criar uma skill nova: botão direito na pasta → **Create → ARS → Skill**.
-- HUD provisório com letras grandes: vida, Mana e as 4 teclas com cargas e recarga (o tamanho da letra fica no componente **Hud Provisorio**).
+- HUD em uGUI (`ARS.UI`): o herói tem **Com Hud**, que cria o `HUD.prefab` quando ele é o controlado pelo jogador. O HUD só lê o herói: vida, recurso, passiva (ícone + contador) e as 4 teclas (ícone da skill, sombra e tempo de recarga, cargas, cor azul sem recurso, moldura amarela na janela de reativação). O ícone é o campo **Icone** da skill e da passiva. Design e cores se ajustam no prefab.
+- Ícones grátis: o pack completo do game-icons.net fica fora do repositório, em `D:\totto\Documents\ARS\recursos\game-icons`. Copie só os usados para `Assets/UI/Icones/game-icons/` e registre o autor em [Créditos](../creditos.md).
 
 ## Importação automática
 

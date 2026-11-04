@@ -2,7 +2,8 @@
     "name": "ARS.Editor",
     "rootNamespace": "ARS.EditorTools",
     "references": [
-        "ARS.Runtime"
+        "ARS.Runtime",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [
         "Editor"

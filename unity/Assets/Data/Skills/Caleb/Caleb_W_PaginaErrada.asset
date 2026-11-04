@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: ARS.Runtime::ARS.Data.SkillDef
   nome: "P\xE1gina Errada"
   descricao: "Transforma um inimigo num bichinho: n\xE3o ataca nem usa skills, mas anda. Em chefes s\xF3 interrompe a magia. (N\xFAmeros provis\xF3rios.)"
+  icone: {fileID: 21300000, guid: be95edf6b3fe6d3478aa713dba165f9d, type: 3}
   custo: 30
   recarga: 10
   cargas: 1
@@ -28,15 +29,24 @@ MonoBehaviour:
   tamanhoProjetil: 0.3
   rastro: 1
   pontoDeDisparo: 0
+  visualImpacto: {fileID: 0}
   variacoesVisuais: []
+  raioDaArea: 2.5
   efeitos:
   - tipo: 10
     valor: 0
     tipoDeDano: 1
     duracao: 0
     estado: {fileID: 0}
+    destino: 0
+    zona: {fileID: 0}
   - tipo: 9
     valor: 0
     tipoDeDano: 1
     duracao: 0
     estado: {fileID: 11400000, guid: 4eb4d8cd962dab84d93d1dbd49eb8b01, type: 2}
+    destino: 0
+    zona: {fileID: 0}
+  efeitosNoLancador: []
+  janelaDeReativacao: {fileID: 0}
+  efeitosAoReativar: []

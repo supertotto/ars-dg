@@ -2,7 +2,8 @@
     "name": "ARS.Runtime",
     "rootNamespace": "ARS",
     "references": [
-        "Unity.InputSystem"
+        "Unity.InputSystem",
+        "UnityEngine.UI"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

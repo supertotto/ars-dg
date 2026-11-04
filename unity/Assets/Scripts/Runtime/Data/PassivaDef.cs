@@ -21,6 +21,7 @@ namespace ARS.Data
     {
         public string nome = "Nova passiva";
         [TextArea] public string descricao;
+        [Tooltip("Ícone mostrado no HUD.")] public Sprite icone; // claude: ícone do HUD (o visual é dado)
 
         public GatilhoDaPassiva gatilho = GatilhoDaPassiva.AcertoDeSkillOuAtaqueBasico;
         [Tooltip("Estado que conta os acertos. Os acúmulos máximos dele = quantos acertos para completar.")]

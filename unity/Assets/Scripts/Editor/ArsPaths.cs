@@ -13,6 +13,8 @@ namespace ARS.EditorTools
         public const string Prefabs = "Assets/Prefabs/Heroes";
         public const string Cenas = "Assets/Scenes";
         public const string Dados = "Assets/Data";
+        public const string Ui = "Assets/UI"; // claude: imagens da interface (entram como Sprite)
+        public const string HudPrefab = "Assets/Prefabs/UI/HUD.prefab"; // claude
 
         // claude: prefabs do pack Vampire usados como Lorde Vampiro (uma por skin)
         public static readonly string[] SkinsDoLordeVampiro =

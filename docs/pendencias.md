@@ -70,6 +70,9 @@
 - [ ] Trocar ou manter os pentagramas do Wix e do Abraxas (classificação etária)
 - [ ] Membrana das asas do modelo do Lorde Vampiro (pack `Vampire`): a malha `Glass1` (material `Mat_Vampyr_Glass`) não aparece no URP (face virada para trás); com os dois lados ligados vira placas brancas translúcidas. Decidir: refazer o material, esconder ou manter só os ossos das asas
 
+- [ ] Visual do HUD: layout, cores, fonte e molduras provisórios (caixas lisas); falta escolher a arte (Kenney UI Pack + RPG Expansion, CC0, a baixar)
+- [ ] Ícones das skills do Caleb (game-icons.net): Q magic-swirl, W frog-prince, E cat, R burning-book, passiva star-swirl: provisórios
+
 ## Técnico
 
 - [ ] Testes por skill (regra do CLAUDE.md): cenário com lançador e alvo para cada skill (a estrutura de testes e os testes de estados, efeitos e passiva já existem)
@@ -87,6 +90,8 @@
 - [ ] Visual da E: chegada com o "puf" mágico grande (pacote JMO) e saída sem efeito; abelhas desenhadas por código (2 quadros): provisórios
 - [ ] R do Caleb (Isso Não Estava no Livro): 100 de Mana, 60 s de recarga, 9 m, 0,5 s de conjuração, área de 3,5 m por 6 s, gato 6× maior (~2,2 m, maior que o Caleb), caçada em ciclo bote → sapo: bote a partir de 3 m, salto de 1,2 m de altura em 0,45 s passando 2 m do inimigo, mordida de 25 de dano no meio do salto, no máximo um bote a cada 0,6 s: provisórios. A R não conta acerto para a passiva (quem acerta é o gato)
 - [ ] Visual da R: círculo de runas verde (pacote Hovl, pintado da cor dos sapos) do tamanho da área, chuva de sapinhos (modelo da Q, em verde-claro pelas cores gravadas nos vértices) e patinha laranja desenhada por código: provisórios
+- [ ] HUD usa o `Text` antigo da uGUI com a fonte padrão; trocar por TextMeshPro quando a fonte do jogo for escolhida
+- [ ] Apagar `HudProvisorio.cs` pelo Unity (não é mais usado)
 - [ ] Recurso por classe: hoje todo herói recebe Mana (300, +4/s) até existir a ficha do herói nos dados
 - [ ] Números do ataque básico (alcance 6 m, 1 ataque/s, 20 de dano, projétil): provisórios, iguais para todos por enquanto
 - [ ] Visual do ataque básico do Caleb: bolinha dourada de 0,15 m com rastro roxo de 0,15 s (cores e tamanhos provisórios)

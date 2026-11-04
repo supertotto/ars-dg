@@ -167,7 +167,7 @@ namespace ARS.EditorTools
             AtribuirCompanheiro(nome, raiz); // claude
             raiz.AddComponent<Abatido>().reviverEmSegundos = 5f; // claude: provisório, só para testes (sem sistema de reviver ainda)
             raiz.AddComponent<ComandosDoJogador>();
-            raiz.AddComponent<HudProvisorio>();
+            raiz.AddComponent<ComHud>().prefabDoHud = HudBuilder.ObterOuCriar(); // claude: HUD em uGUI no lugar do HudProvisorio
 
             ArsPaths.GarantirPasta(ArsPaths.Prefabs);
             string caminhoPrefab = $"{ArsPaths.Prefabs}/{nome}.prefab";

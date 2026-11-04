@@ -133,7 +133,7 @@ namespace ARS.EditorTools
             boneco.AddComponent<Recurso>();
             boneco.AddComponent<KitDeSkills>();
             boneco.AddComponent<ComandosDoJogador>();
-            boneco.AddComponent<ARS.UI.HudProvisorio>();
+            boneco.AddComponent<ARS.UI.ComHud>().prefabDoHud = HudBuilder.ObterOuCriar(); // claude: HUD em uGUI
             return boneco;
         }
 

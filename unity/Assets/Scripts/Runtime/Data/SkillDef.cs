@@ -31,6 +31,7 @@ namespace ARS.Data
     {
         public string nome = "Nova skill";
         [TextArea] public string descricao;
+        [Tooltip("Ícone mostrado no HUD.")] public Sprite icone; // claude: ícone do HUD (o visual é dado)
 
         [Header("Custo e recarga")]
         public float custo = 20f;

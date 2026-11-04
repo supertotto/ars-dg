@@ -58,12 +58,20 @@ namespace ARS.Characters
         /// <summary>Texto curto para o HUD (ex.: "Acerto Épico 3/5" ou "Acerto Épico: PRONTO").</summary>
         public string Resumo()
         {
-            if (definicao == null || eu == null) return null;
-            if (definicao.aoCompletar != null && eu.Estados.EstaAtivo(definicao.aoCompletar))
-                return $"{definicao.nome}: PRONTO";
-            int atual = definicao.contador != null ? eu.Estados.Acumulos(definicao.contador) : 0;
-            int total = definicao.contador != null ? definicao.contador.acumulosMaximos : 0;
-            return $"{definicao.nome} {atual}/{total}";
+            if (!Progresso(out int atual, out int total, out bool pronta)) return null;
+            return pronta ? $"{definicao.nome}: PRONTO" : $"{definicao.nome} {atual}/{total}";
+        }
+
+        // claude: progresso em números para o HUD (ícone + contador). Falso se não houver passiva.
+        public bool Progresso(out int atual, out int total, out bool pronta)
+        {
+            atual = total = 0;
+            pronta = false;
+            if (definicao == null || eu == null) return false;
+            pronta = definicao.aoCompletar != null && eu.Estados.EstaAtivo(definicao.aoCompletar);
+            atual = definicao.contador != null ? eu.Estados.Acumulos(definicao.contador) : 0;
+            total = definicao.contador != null ? definicao.contador.acumulosMaximos : 0;
+            return true;
         }
     }
 }
