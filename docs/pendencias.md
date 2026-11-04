@@ -75,6 +75,7 @@
 - [ ] Passiva do Caleb (Acerto Épico): 5 acertos para encher, skill épica com números ×1,5 e visual ×2, sem custo; acertos não contam enquanto a épica está pronta; o acerto da própria skill épica já conta para a próxima: provisórios
 - [ ] Recurso por classe: hoje todo herói recebe Mana (300, +4/s) até existir a ficha do herói nos dados
 - [ ] Números do ataque básico (alcance 6 m, 1 ataque/s, 20 de dano, projétil): provisórios, iguais para todos por enquanto
+- [ ] Visual do ataque básico do Caleb: bolinha dourada de 0,15 m com rastro roxo de 0,15 s (cores e tamanhos provisórios)
 - [ ] Controles e câmera: botão direito anda (provisório, estilo LoL); velocidade 3,5 m/s; câmera com inclinação 50°, rotação 45° e distância 16 m (zoom de 4 a 26 m)
 - [ ] Backend: monólito modular ou microsserviços (ver [Arquitetura](tecnico/arquitetura.md))
 - [ ] Usar plataforma pronta (Nakama, PlayFab, Unity Gaming Services) ou backend próprio

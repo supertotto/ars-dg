@@ -18,10 +18,10 @@ MonoBehaviour:
   dano: 20
   tipo: 1
   usaProjetil: 1
-  velocidadeProjetil: 14
-  visualProjetil: {fileID: 3367314013316085171, guid: 8b20002c2b69a9d44ab5bae8e1d923cd, type: 3}
-  corProjetil: {r: 1, g: 0.9333334, b: 0.5490196, a: 1}
-  tamanhoProjetil: 0.25
-  rastro: 1
+  velocidadeProjetil: 12
+  visualProjetil: {fileID: 6839724717758516713, guid: 91394379de1cdf848a56e37585c53aa9, type: 3}
+  corProjetil: {r: 1, g: 0.82, b: 0.3, a: 1}
+  tamanhoProjetil: 0.15
+  rastro: 0
   pontoDeDisparo: 0
   alturaDeDisparo: 1.3
