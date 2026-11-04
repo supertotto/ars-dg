@@ -69,6 +69,7 @@
 - [ ] Chance de cada visual dos Mísseis Mágicos (sapinho, borboletas, letras, míssil): provisório, todos com peso 1
 - [ ] Sapinho dos Mísseis Mágicos: tamanho (0,2 do modelo, ~0,3 m) e sem rastro, provisórios
 - [ ] Borboletas dos Mísseis Mágicos: forma desenhada por código, cores (rosa, azul, amarelo), 6 por disparo e tamanho, provisórios
+- [ ] Letras do grimório dos Mísseis Mágicos: runas inventadas geradas por código (8 símbolos), cor azul do míssil, 3 runas girando + rastro, provisórios
 - [ ] Recurso por classe: hoje todo herói recebe Mana (300, +4/s) até existir a ficha do herói nos dados
 - [ ] Números do ataque básico (alcance 6 m, 1 ataque/s, 20 de dano, projétil): provisórios, iguais para todos por enquanto
 - [ ] Controles e câmera: botão direito anda (provisório, estilo LoL); velocidade 3,5 m/s; câmera com inclinação 50°, rotação 45° e distância 16 m (zoom de 4 a 26 m)

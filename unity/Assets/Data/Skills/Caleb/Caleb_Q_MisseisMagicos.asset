@@ -46,6 +46,12 @@ MonoBehaviour:
     tamanho: 0.3
     rastro: 0
     peso: 1
+  - nome: "Letras do grim\xF3rio"
+    visual: {fileID: 7700256581350987883, guid: acc7fe46588bd3d4abcf3c9dcf0359cd, type: 3}
+    cor: {r: 1, g: 1, b: 1, a: 1}
+    tamanho: 0.3
+    rastro: 0
+    peso: 1
   efeitos:
   - tipo: 0
     valor: 35
