@@ -10,7 +10,7 @@
 1. **Missão:** a dungeon chega à Guilda como uma missão do Conclave. O Malk dá a missão no hub, nunca entra na dungeon e, ao ver o grupo sair, ameaça: se morrerem, ele mata eles.
 2. **Preparação:** o jogador escolhe 2 feitiços e o kit de entrada de consumíveis.
 3. **Trecho até o chefe:** caminho semi-linear, com grupos de inimigos e bifurcações que se reencontram, sem labirinto.
-4. **Ponto seguro:** fica antes dos chefes e tem loja de consumíveis, paga com o ouro temporário da dungeon.
+4. **Ponto seguro (checkpoint):** fica depois de cada chefe e subchefe (antes do trecho seguinte) e tem loja de consumíveis, paga com o ouro temporário da dungeon.
 5. **Chefe:** o grupo enfrenta o chefe e volta ao passo 3 até o último chefe da dungeon.
 6. **Fim:** consumíveis e ouro temporário zeram, o equipamento fica para sempre, a confiança do Conclave sobe e o salão melhora conforme a campanha avança.
 
@@ -31,7 +31,7 @@
 - **Controle:** chefes são imunes a controle (atordoar, enraizar, lentidão, transformar, empurrar). Interromper funciona quando a magia conjurada for interrompível.
 - **Taunt:** não conta como controle e funciona em chefes.
 - **Invisibilidade:** não protege de dano em área.
-- **Derrota:** se o grupo inteiro cair, todos voltam ao último ponto seguro e o chefe reseta, sem limite de tentativas. A dungeon nunca falha por derrota.
+- **Morte e derrota:** quem cai fica caído até o fim da batalha e levanta quando ela acaba. Se o grupo inteiro cair, todos voltam ao último ponto seguro e o chefe reseta, sem limite de tentativas. A dungeon nunca falha por derrota.
 
 ### Recompensas, falas e modos
 

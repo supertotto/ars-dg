@@ -25,9 +25,10 @@
 
 ## Sistemas
 
-- [ ] Kits dos healers (DPS e tanks fechados)
-- [ ] Revisar os nomes de todas as skills antes da versão final (inclui os nomes ainda abertos de Wix & Abraxas)
+- [ ] Revisar os nomes de todas as skills antes da versão final (inclui os nomes ainda abertos de Wix & Abraxas, o "Crescendo" do Pip, igual ao da Sona, e mais personalidade nos nomes da Nana)
 - [ ] Autocura dos tanks x importância do healer: ajustar nos números
+- [ ] Cada healer curando o grupo sozinho em todos os cenários; bônus de dano do Pip sem virar obrigatório; Lyra sem ser sempre a melhor escolha
+- [ ] Florescimento Vital (passiva da Nana): como interage tecnicamente com a Nuvem de Primavera (W)
 - [ ] Ameaça (aggro): coeficientes, prioridade de alvo e regras de renovação do Taunt
 - [ ] IA aliada jogando os heróis mecânicos (Maximilian, Wix & Abraxas, Bella, Kael)
 - [ ] Quais acertos alimentam passivas, acúmulos, escudos e recuperação de recurso (acertos múltiplos, invocações, dano ao longo do tempo)

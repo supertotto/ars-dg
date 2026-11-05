@@ -14,7 +14,7 @@ São **5 classes base**, cada uma com **3 subclasses de função fixa** (tank, h
 >
 > A **subclasse** continua definindo a função (tank, healer, DPS), o recurso, o atributo principal, a arma e o acessório.
 >
-> **Os kits por subclasse mais abaixo são da versão anterior.** Os dos DPS e dos tanks já foram substituídos pelos kits dos heróis; os de healer serão refeitos herói por herói. Skills deles podem ser reaproveitadas.
+> **Os kits por subclasse mais abaixo são da versão anterior.** Todos foram substituídos pelos kits dos heróis; ficam só como registro. Skills deles podem ser reaproveitadas.
 
 ## Padrão das teclas (vale para todos os heróis)
 
@@ -33,7 +33,7 @@ Heróis podem ter mais ou menos mobilidade, mas, quando houver um deslocamento, 
 
 Valores de dano, custo, recarga, duração e limites ficam para o balanceamento. Raças e feitiços não fazem parte dos kits. **Todo dano elemental é mágico** (uma skill pode misturar dano físico e mágico). **Invisibilidade não dá invulnerabilidade.**
 
-**DPS: os 10 kits fechados** (03/11/2026). Análise comparativa em [analises/comparacao-dps.md](analises/comparacao-dps.md). Tanks: fechados (abaixo). Healers: em andamento.
+**DPS: os 10 kits fechados** (03/11/2026). Análise comparativa em [analises/comparacao-dps.md](analises/comparacao-dps.md). Tanks e healers: fechados (abaixo). **Os 20 kits estão completos.**
 
 ### Ignis — Mago · tema: só bola de fogo
 
@@ -413,6 +413,254 @@ O caos do Caleb (feitiços que saem errados) fica **só no visual**: o kit é pr
 **Pontos fortes:** aggro mesmo sob ataques à distância, avanço agressivo, controle de corredores, defesa sustentada por ataques básicos.  
 **Pontos de atenção:** a muralha bloqueia aliados; limites de reflexão e regeneração são críticos para balanceamento.
 
+## Kits dos healers
+
+**Os 5 kits fechados** (04/11/2026). Análise comparativa em [analises/comparacao-healers.md](analises/comparacao-healers.md).
+
+- **Cada healer precisa conseguir curar o grupo sozinho** em qualquer dungeon e chefe. O balanceamento iguala a viabilidade, não o estilo.
+- Nenhum healer tem ressurreição no kit: quem cai levanta no fim da batalha (ver [Sistemas](03-sistemas.md)).
+- Na revisão final de nomes: "Crescendo" (R do Pip) é o mesmo nome da ultimate da Sona, do LoL; os nomes e o visual das skills da Nana podem ganhar mais da personalidade dela (sopa, sapos, vovó brava), sem mudar a mecânica.
+- Cuidado de balanceamento: o bônus de dano do Pip não pode torná-lo obrigatório.
+
+### Bobo — Guerreiro curandeiro / Lanceiro
+
+**Identidade:** único Healer corpo a corpo; converte agressividade e posicionamento em sustentação coletiva. Usa lança e estandarte. **Recurso:** Fúria. **Tipo de dano:** físico.
+
+#### Q — Lança da Vida
+
+- Ao atingir **um inimigo em alcance corpo a corpo**, causa dano físico e cura o aliado com menor percentual de vida próximo, incluindo Bobo.
+- Pode ser usado **diretamente em um aliado**, sem atingir inimigos, para curá-lo; também permite selecionar o próprio Bobo.
+- A utilização ofensiva é mais eficiente que a cura direta, mas a cura direta precisa ser viável mesmo sem inimigos acessíveis.
+- **Ajuste aprovado:** curar diretamente um aliado com Q também **acelera o próximo pulso do W**, assim como os ataques básicos. A aceleração respeita um limite.
+- Funciona fora de combate para cura direta.
+
+#### W — Estandarte da Ordem
+
+- Bobo planta um estandarte que cria uma **área estacionária de cura**.
+- Todos os aliados dentro da área, incluindo Bobo, recebem pulsos periódicos de cura.
+- **Ataques básicos de Bobo dentro da área** aceleram o próximo pulso, respeitando um limite.
+- **Curas diretas do Q** também aceleram o pulso, permitindo sustentar o grupo durante fases em que Bobo não consegue atacar.
+- O estandarte **continua curando normalmente sem ataques ou acelerações**.
+
+#### E — Investida do Porta-Estandarte
+
+- Avanço curto e **direcional**, apontado pelo cursor, sem necessidade de selecionar alvo.
+- Causa dano físico aos inimigos atravessados.
+- Concede **um pequeno escudo somente ao próprio Bobo**.
+- Serve para aproximação, reposicionamento ou fuga; não depende de controle de chefes.
+
+#### R — A Bandeira Não Cai!
+
+- Bobo ergue uma manifestação luminosa do estandarte e recebe um escudo.
+- Durante a ultimate, **ataques básicos** de Bobo produzem ondas de cura para **todo o grupo, independentemente da posição na instância**, com limitação de frequência.
+- Se o W estiver ativo, continua curando **independentemente**, com seus pulsos normais e aceleração pelos ataques. O R **não multiplica a potência do W**.
+- O R continua funcionando mesmo se o W expirar.
+- **Limitação importante:** a geração de ondas da ultimate depende de Bobo conseguir atacar.
+
+#### Passiva — Vigor Incansável
+
+- Cada ataque básico recupera uma pequena quantidade da vida de Bobo.
+- A cada **terceiro ataque básico**, recebe cura própria adicional e pequena redução da recarga do E.
+- **Instinto de Sobrevivência (efeito complementar da passiva):** quando um golpe recebido levaria Bobo abaixo de um limiar crítico de vida, antes de aplicar o dano, Bobo recebe um escudo e o golpe disparador sofre redução de dano. Tem recarga interna longa.
+- Valores discutidos como referência, **não finais**: limiar por volta de 20% da vida máxima e redução aproximada de 50% no golpe disparador. O escudo absorve o golpe já reduzido antes de afetar a vida.
+- Não neutraliza mecânicas de execução de chefes.
+
+**Forças:** cura enquanto ataca; estandarte persistente; autossustentação; mobilidade de curta distância.
+
+**Fraquezas:** risco de aggro e proximidade do chefe; perde eficiência ofensiva quando não pode atacar; não deve substituir o Tank.
+
+
+### Lyra — Invocadora espiritual
+
+**Identidade:** prevenção, mitigação, escudos e curas distribuídas por espíritos. **Recurso:** Mana. **Tipo de dano:** mágico.
+
+**Regra central dos espíritos:** todos os espíritos pertencem à **Lyra**, não são unidades independentes permanentes nem ficam vinculados aos aliados indefinidamente. São enviados para realizar ações e retornam a ela.
+
+#### Q — Toque Espiritual
+
+- Lyra envia um espírito até um aliado selecionado.
+- O espírito **se desloca fisicamente**, cura o alvo **quando chega** e retorna à Lyra.
+- Quando Lyra seleciona a si mesma, a cura é **imediata**.
+
+#### W — Coro dos Espíritos
+
+- Envia um grupo de espíritos para um aliado escolhido, inclusive a própria Lyra.
+- Os espíritos acompanham temporariamente esse aliado.
+- Durante o efeito, emitem **pulsos de cura** e **reduzem o dano recebido** pelo alvo e por aliados próximos.
+- Ao terminar, retornam à Lyra.
+
+#### E — Troca Espiritual
+
+- Lyra escolhe **um ponto no chão** dentro do alcance.
+- Um espírito se desloca rapidamente até o local e Lyra **troca instantaneamente de posição** com ele.
+- Durante a transição, Lyra fica intangível e causa **dano mágico** aos inimigos atravessados pela trajetória espiritual.
+- A intangibilidade termina na chegada. Não precisa de alvo inimigo ou aliado.
+
+#### R — Revoada dos Ancestrais
+
+- Lyra envia espíritos até **cada membro do grupo**.
+- Cada espírito produz **uma cura forte ao chegar** ao seu aliado.
+- Depois, os espíritos acompanham os respectivos aliados temporariamente e realizam **curas reativas quando eles recebem dano**, sujeitas a intervalo mínimo entre ativações.
+- Não concede imunidade à morte nem impede automaticamente dano fatal.
+- O W pode continuar ativo, mas **não recebe multiplicador de potência** do R.
+
+#### Passiva — Espíritos Inquietos
+
+- Curas realizadas pelos espíritos de Lyra concedem **um pequeno escudo** ao aliado curado.
+- Curas repetidas **renovam** a proteção, mas os escudos não se acumulam indefinidamente.
+- Quando um desses escudos é **totalmente quebrado por dano**, ativa uma pequena cura no aliado protegido, com recarga interna por aliado.
+- Essa cura reativa **não cria outro escudo**, evitando ciclos infinitos, e não impede dano fatal por si só.
+
+**Forças:** mobilidade, prevenção de dano, proteção distribuída, cobertura de aliados espalhados.
+
+**Fraquezas:** tempo de viagem dos espíritos e necessidade de antecipar picos de dano.
+
+
+### Orin — Sacerdote / Clérigo clássico
+
+**Identidade:** cura direta poderosa, purificação e proteção emergencial. A personalidade fofoqueira e hipocondríaca **não cria mecânicas de jogo**. **Recurso:** Fé, com **cinco cargas regenerativas**. **Equipamento:** mangual e relicário.
+
+#### Q — Cura Sagrada (com Graça Compartilhada)
+
+- Orin escolhe um aliado ou a si mesmo e inicia uma **curta conjuração**, durante a qual precisa ficar parado.
+- Ao concluir, o alvo principal recebe **cura forte e imediata**.
+- **Ajuste aprovado, Graça Compartilhada:** os demais aliados feridos recebem **uma pequena parcela da cura**, mesmo afastados dentro da arena.
+- Se interrompida antes de terminar, a cura não acontece.
+- Pode ser usada fora de combate.
+- A cura compartilhada **não cria novas curas em cadeia**.
+
+#### W — Purificação Restauradora
+
+- Remove efeitos negativos **removíveis** de um aliado e aplica uma pequena cura.
+- Se remover pelo menos um efeito negativo, a cura é **fortalecida**.
+- Continua podendo curar mesmo quando o alvo não possui efeitos negativos removíveis.
+
+#### E — Santuário de Emergência
+
+- Concede **instantaneamente um escudo** a um aliado ou ao próprio Orin.
+- Se o alvo estiver com vida crítica, o escudo fica mais forte e concede **uma pequena cura instantânea**.
+- Não altera aggro. Funciona contra chefes como proteção de dano.
+- Não exige conjuração.
+
+#### R — Milagre
+
+- Orin ergue o relicário e realiza uma **conjuração poderosa**.
+- Ao concluí-la, restaura **uma grande quantidade de vida de todos os cinco membros do grupo**, independentemente da distância entre eles na arena.
+- A conjuração pode ser interrompida.
+- **Não ressuscita**; ressurreição pertence à mecânica global de checkpoints.
+
+#### Passiva — Devoção
+
+- Curar aliados reduz ligeiramente o tempo de recarga das **outras habilidades**.
+- **Regra antiexploração:** uma utilização do Q ativa a redução de recarga **uma única vez**, mesmo que a Graça Compartilhada cure vários aliados.
+- Valores e habilidades afetadas em detalhe serão definidos no balanceamento.
+
+**Forças:** cura explosiva, recuperação emergencial, purificação e proteção direcionada.
+
+**Fraquezas:** dependência de janelas seguras para conjurar Q e R; pouca mobilidade própria.
+
+
+### Pip — Bardo
+
+**Identidade:** curandeiro musical e suporte ofensivo. **Equipamento:** sabre e alaúde. **Recurso:** Energia. **Tipo de dano das habilidades sonoras ofensivas:** mágico.
+
+#### Q — Acorde Vibrante
+
+- Pip lança uma **onda sonora em linha reta** na direção do cursor.
+- **Aliados atingidos:** recebem cura.
+- **Inimigos atingidos:** recebem dano mágico e lentidão, se forem suscetíveis a ela.
+- Cada personagem atingido, **aliado ou inimigo**, **prolonga a distância restante** da onda, permitindo atingir novos personagens adiante.
+- Se não encontrar outro personagem dentro da distância restante, a onda desaparece.
+- Também desaparece ao alcançar sua **distância máxima absoluta** ou ao atingir **parede/obstáculo sólido**; **não atravessa paredes**.
+- Cada personagem pode ser afetado **uma única vez por lançamento**.
+- Não procura alvos automaticamente nem muda de direção.
+
+#### W — Hino de Batalha
+
+- Pip toca uma melodia que fortalece **aliados próximos, incluindo ele próprio**.
+- Concede temporariamente **aumento de dano**, **velocidade de ataque** e **velocidade de conjuração**.
+- Os bônus permanecem pela duração prevista mesmo que Pip pare de tocar ou se afaste.
+- Não cura diretamente.
+
+#### E — Passo de Dança
+
+- Pip realiza um **salto curto direcional** até o ponto indicado pelo cursor, sem precisar de alvo.
+- **Na partida:** produz uma onda que causa dano mágico e lentidão aos inimigos próximos.
+- **Na chegada:** produz outra onda que cura os aliados próximos, incluindo Pip.
+- Chefes imunes a lentidão recebem apenas o dano.
+- Serve para fuga, aproximação e reposicionamento de cura.
+
+#### R — Crescendo
+
+- Pip inicia uma **apresentação canalizada** com pulsos de cura em área ao seu redor, **progressivamente mais fortes**.
+- Ao final, libera uma **grande explosão de cura coletiva**.
+- Pip **pode caminhar** enquanto toca, mas **não pode atacar nem utilizar Q, W ou E** durante a apresentação.
+- Se interrompido, a apresentação termina antecipadamente e **não produz a cura final**.
+- A área de cura **acompanha Pip** e beneficia aliados dentro do raio, incluindo ele próprio.
+- **Intenção aprovada:** os pulsos, por si, devem conseguir sustentar o grupo inteiro durante a apresentação, mesmo sob dano intenso, sem depender apenas da cura final. Exige calibração em testes.
+
+#### Passiva — Inspiração
+
+- Sempre que Pip cura um aliado por Q, E ou R, o aliado recebe **um pequeno bônus temporário de dano**.
+- Pip pode receber o bônus ao curar a si mesmo.
+- Novas curas **renovam a duração**, sem acumular várias cópias do bônus.
+- O efeito pode coexistir com o W — Hino de Batalha.
+
+**Forças:** fortalecimento ofensivo do grupo, mobilidade, curas em linha e ultimate de sustentação intensa.
+
+**Fraquezas:** exige alinhamento e proximidade dos aliados; R canalizado pode ser interrompido.
+
+
+### Nana — Naturalista / Druida
+
+**Identidade:** regeneração ao longo do tempo (HoT), curas em cadeia, proteção de área e gerenciamento da duração dos efeitos. **Equipamento:** cajado vivo e totem. **Recurso:** Essência. **Dano natural/elemental:** mágico.
+
+#### Q — Corrente Vital
+
+- Nana lança uma corrente de energia natural em um aliado selecionado ou em si mesma.
+- Cada aliado atingido recebe **cura imediata** e um efeito de **regeneração de vida ao longo do tempo (HoT)**.
+- A corrente salta automaticamente para o aliado com **menor percentual de vida** dentro do alcance do próximo salto.
+- Cada aliado só pode ser atingido **uma vez por lançamento**.
+- Funciona fora de combate.
+- Número máximo de saltos e alcance ainda serão balanceados.
+
+#### W — Nuvem de Primavera
+
+- Nana invoca uma **nuvem móvel** sobre um aliado ou sobre si mesma.
+- A nuvem **acompanha o alvo** e produz pulsos periódicos de chuva curativa sobre ele e aliados próximos.
+- Continua funcionando enquanto Nana usa outras habilidades.
+- Nana só pode manter **uma nuvem ativa**.
+- **Interação a especificar com a passiva:** a aplicação de regeneração associada ao W deve possuir um ciclo/duração identificável, de modo que completar o efeito possa gerar Florescimento Vital. Pulsos da nuvem não devem produzir flores ilimitadas.
+
+#### E — Raízes Protetoras
+
+- Nana cria raízes em uma **área escolhida no chão**.
+- Inimigos comuns na área sofrem dano mágico e **imobilização temporária**.
+- Chefes imunes a controle recebem dano, **sem imobilização**.
+- Aliados que permanecem dentro da área recebem **redução de dano**.
+- A área persiste por alguns segundos.
+
+#### R — Despertar da Árvore da Vida
+
+- Uma **grande Árvore da Vida** surge **no centro da arena** e transforma **toda a arena em um jardim mágico**.
+- Durante a duração da ultimate, **todos os aliados recebem regeneração de vida**, independentemente da posição na arena.
+- A Árvore da Vida **fortalece as regenerações do Q e do W** de Nana.
+- Nana pode **movimentar-se, atacar e utilizar Q, W e E normalmente**.
+- A árvore é manifestação mágica: **não pode ser destruída por inimigos, não bloqueia movimentação nem interfere nas mecânicas do chefe**.
+- A árvore e o jardim desaparecem ao término.
+
+#### Passiva — Florescimento Vital
+
+- Quando uma **regeneração individual de Nana completa naturalmente sua duração**, uma flor desabrocha e realiza **uma cura instantânea adicional** no aliado afetado.
+- **Renovar o efeito antes do fim reinicia a contagem** e impede o florescimento daquele ciclo.
+- A flor cura mesmo que Nana esteja distante.
+- Cada regeneração segue seu próprio ciclo; **não há ativações em cadeia infinitas**.
+- **Regra proposta para balanceamento:** a passiva interage com as regenerações individuais do Q e do W, mas **não com cada pulso coletivo do R**. A interação exata do W requer especificação técnica.
+
+**Forças:** cura prolongada, regeneração coletiva, proteção de área e recompensa por timing.
+
+**Fraquezas:** recuperação de dano explosivo menos imediata que a de Orin; depende de gerenciar ciclos de HoT; mobilidade pessoal limitada.
+
 ## Modo customizado (futuro)
 
 - O personagem customizado começa com um **kit básico da subclasse** (ex.: o Mago começa com o Q *Disparo Místico*).
@@ -472,13 +720,7 @@ Substituído pelo kit do herói: Quixote.
 
 ### Lanceiro — healer de posicionamento · principal: Sabedoria
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Estocada Revigorante | Acerta o inimigo e cura o aliado mais ferido por perto |
-| Skill 2 | Plantar Estandarte | Zona que cura quem estiver dentro |
-| Skill 3 | Chamado ao Estandarte | Puxa um aliado para dentro da zona |
-| Ultimate | Avante! | O estandarte cura o grupo inteiro de uma vez, onde quer que esteja |
-| Passiva | Vigor | Cada golpe deixa a cura do estandarte mais forte, até um limite |
+Substituído pelo kit do herói: Bobo.
 
 ### Bárbaro — DPS de fúria corpo a corpo · principal: Força
 
@@ -492,13 +734,7 @@ Substituído pelo kit do herói: Wix & Abraxas.
 
 ### Invocador — healer de espíritos · principal: Sabedoria
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Toque Espiritual | Um espírito voa até o aliado e cura de uma vez |
-| Skill 2 | Coro dos Espíritos | Cura em pulsos e reduz um pouco o dano recebido |
-| Skill 3 | Passagem Espiritual | Vira espírito por um instante, intangível, e causa dano nos inimigos que atravessa |
-| Ultimate | Revoada de Espíritos | Cura enorme; por alguns segundos os aliados não podem cair |
-| Passiva | Espíritos Inquietos | Cada cura também dá um pequeno escudo |
+Substituído pelo kit do herói: Lyra.
 
 ### Mago — DPS de magia à distância · principal: Inteligência
 
@@ -512,13 +748,7 @@ Substituído pelo kit do herói: Gunnar.
 
 ### Clérigo — healer de cura forte e purificação · principal: Sabedoria
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Cura Sagrada | Cura forte num alvo, mas demora um pouco para conjurar |
-| Skill 2 | Purificar | Remove veneno, maldição e efeitos negativos de um aliado, e cura um pouco |
-| Skill 3 | Santuário | Um aliado fica protegido, e os inimigos param de mirar nele por alguns segundos |
-| Ultimate | Milagre | Cura totalmente o grupo inteiro de uma vez |
-| Passiva | Devoção | Cada cura reduz um pouco a recarga da próxima |
+Substituído pelo kit do herói: Orin.
 
 ### Inquisidor — caçador do profano · principal: Força
 
@@ -532,13 +762,7 @@ Substituído pelo kit do herói: Maximilian.
 
 ### Bardo — healer pela música · principal: Sabedoria
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Acorde Vibrante | Nota forte que cura de uma vez os aliados próximos |
-| Skill 2 | Hino de Batalha | Aumenta o dano dos aliados próximos por alguns segundos |
-| Skill 3 | Nota Dupla | Som estridente atordoa os inimigos à frente, e o eco cura os aliados atrás do Bardo |
-| Ultimate | Crescendo | Música que fica mais forte a cada segundo e termina numa explosão que cura todo o grupo |
-| Passiva | Inspiração | Cada cura dá ao aliado um pequeno bônus de dano por alguns segundos |
+Substituído pelo kit do herói: Pip.
 
 ### Assassino — DPS de explosão · principal: Agilidade
 
@@ -552,13 +776,7 @@ Substituído pelo kit do herói: Flora.
 
 ### Druida — healer de cura contínua · principal: Sabedoria
 
-| Espaço | Skill | Efeito |
-| --- | --- | --- |
-| Skill 1 | Seiva Curativa | Cura que salta de aliado em aliado, deixando flores que continuam curando |
-| Skill 2 | Chuva Primaveril | Chuva leve que cura todos numa área por alguns segundos |
-| Skill 3 | Raízes | Prende um inimigo no lugar |
-| Ultimate | Sopro da Primavera | Cura forte em pulsos em todo o grupo enquanto o Druida canaliza |
-| Passiva | Crescimento | Curas contínuas ficam mais fortes quanto mais tempo duram |
+Substituído pelo kit do herói: Nana.
 
 ### Ranger — DPS à distância · principal: Agilidade
 

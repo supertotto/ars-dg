@@ -7,7 +7,7 @@
 - **No nível máximo:** as dungeons se adaptam ao nível do grupo, e entra o **modo aleatório** (o sistema sorteia a dungeon, com recompensa extra).
 - **Caminho semi-linear:** bifurcações que se reencontram, sem labirinto. Cada bifurcação usa um tipo de escolha: risco e recompensa, tesouro escondido, atalho de raça/classe, ou um caminho que enfraquece o próximo chefe.
 - **Ensino:** os grupos de inimigos ("trash") ensinam as mecânicas uma por vez antes de cada chefe.
-- **Pontos seguros** com loja de consumíveis antes dos chefes.
+- **Pontos seguros (checkpoints)** depois de cada chefe e subchefe, com loja de consumíveis.
 - **Zonas de caça** (áreas externas) ficam fora do lançamento; entram numa atualização, cada uma como o entorno de uma dungeon.
 
 | # | Dungeon | Chefes | Arco |

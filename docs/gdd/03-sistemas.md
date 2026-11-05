@@ -19,7 +19,7 @@ Cada herói tem **8 ações ativas** (uma por botão) e **2 passivas**.
 | Consumível | 1 atalho | — |
 
 - **Ataque básico:** botão direito, **automático, estilo LoL** — um clique no inimigo e o personagem segue atacando até receber outra ordem. Passivas que contam golpes contam os ataques básicos.
-- **Feitiços:** livres para qualquer classe, como os feitiços de invocador do LoL, com recarga longa. Ideias (a confirmar): Lampejo, Barreira, Purificar, Reerguer (revive um aliado, uma vez por chefe), Fôlego, Grito de Fuga, Exaustão, Brasa, Olho do Caçador. Algumas dungeons podem dar um feitiço temático que só funciona lá dentro.
+- **Feitiços:** livres para qualquer classe, como os feitiços de invocador do LoL, com recarga longa. Ideias (a confirmar): Lampejo, Barreira, Purificar, Fôlego, Grito de Fuga, Exaustão, Brasa, Olho do Caçador. Algumas dungeons podem dar um feitiço temático que só funciona lá dentro.
 
 ## Controles
 
@@ -117,7 +117,9 @@ Com o nivelamento para baixo, os atributos dos nós pequenos são reduzidos, mas
 - **Controle em chefes:** chefes são **imunes a controle** (atordoar, enraizar, lentidão, transformar, empurrar…), como no WoW. Funciona **interromper** uma magia que o chefe está conjurando, quando ela for interrompível.
 - **Taunt não é controle:** é só a ferramenta do tank para segurar a ameaça (não deixar o dragão soltar o sopro no healer) e **funciona em chefes**.
 - **Golpes em área:** os golpes dos chefes acertam uma área (cone na frente, círculo em volta), não só o tank. Quem estiver na área leva dano — posicionamento vale para todos.
-- **Derrota (estilo WoW):** se o grupo inteiro cair, todos voltam ao último ponto seguro e o chefe reseta, **sem limite de tentativas**. A dungeon nunca falha por derrota.
+- **Morte de um herói:** quem cai **fica caído até o fim da batalha**; ninguém revive durante a luta. Acabou a batalha (contra inimigos comuns ou chefe), os caídos **levantam** e seguem com o grupo. Nenhum herói tem ressurreição no kit.
+- **Derrota (estilo WoW):** se o grupo inteiro cair, todos voltam ao último **ponto seguro** (checkpoint) e o chefe reseta, **sem limite de tentativas**. A dungeon nunca falha por derrota.
+- **Pontos seguros (checkpoints):** ficam **depois de cada chefe e subchefe** (e, portanto, antes do próximo trecho), com a loja de consumíveis.
 
 ## Modos de dificuldade
 
