@@ -2,10 +2,17 @@
 
 ## Grupo e modos
 
-- **Grupo de 5:** 1 tank, 1 healer e 3 DPS.
-- **Solo:** o jogador controla um herói; os outros 4 são heróis controlados pela IA, como os seguidores do WoW. O jogo sorteia heróis para preencher as funções que faltam.
+- **Grupo de 6** (decisão de 05/11/2026): 1 tank, 1 healer, 3 DPS e **1 controlador**.
+- **Solo:** o jogador controla um herói; os outros 5 são heróis controlados pela IA, como os seguidores do WoW. O jogo sorteia heróis para preencher as funções que faltam.
 - **Co-op:** jogadores reais ocupam as vagas; a IA completa o que faltar (exceto no Mítico).
-- **Controle (CC):** não ocupa vaga. É uma função secundária que as subclasses têm em maior ou menor grau.
+- **Controlador** (inspirado no papel de Controlador do D&D 4e): ocupa uma vaga própria. É um herói **misturado**, que causa dano e controla a luta. Cada controlador puxa mais para um lado:
+  - **zonas e terreno:** áreas que punem quem atravessa e decidem onde vale a pena o inimigo ficar;
+  - **enfraquecer:** o inimigo causa menos dano ou recebe mais dano (não é controle, então funciona em chefes);
+  - **adds:** limpar e prender os inimigos que o chefe invoca;
+  - **interromper** magias interrompíveis.
+- A regra **chefes imunes a controle continua**: contra chefes, o controlador trabalha com zonas, enfraquecimento, adds e interrupção.
+- Os outros heróis continuam tendo controle como função secundária, em maior ou menor grau.
+- Com heróis fixos e tudo em dados, novos heróis e classes podem entrar no futuro.
 
 ## Kit do personagem
 

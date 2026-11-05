@@ -2,7 +2,7 @@
 
 > Nome de trabalho. O nome do jogo e do mundo ainda estão em aberto.
 
-Dungeon crawler cooperativo de alta fantasia em **Unity**, com câmera isométrica 3D. Junta **dungeons no estilo do World of Warcraft** com **combate de skills no estilo MOBA**. Solo ou em grupo de 5 (1 tank, 1 healer, 3 DPS), com 20 heróis fixos da Guilda **Ordem no Caos**.
+Dungeon crawler cooperativo de alta fantasia em **Unity**, com câmera isométrica 3D. Junta **dungeons no estilo do World of Warcraft** com **combate de skills no estilo MOBA**. Solo ou em grupo de 6 (1 tank, 1 healer, 3 DPS e 1 controlador), com heróis fixos da Guilda **Ordem no Caos**.
 
 ## Documentação
 

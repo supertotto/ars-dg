@@ -25,6 +25,10 @@
 
 ## Sistemas
 
+- [ ] Controladores: quais heróis ocupam a vaga (heróis novos, DPS reaproveitados ou os dois) e os kits deles
+- [ ] Controlador na estrutura de classes: vira uma 4ª subclasse em cada classe?
+- [ ] Revisar com o grupo de 6: buscador de grupo, Mítico (só jogadores reais), IA aliada e leitura visual na câmera isométrica
+- [ ] Healers: as curas descritas como "os cinco membros do grupo" passam a valer para os 6
 - [ ] Revisar os nomes de todas as skills antes da versão final (inclui os nomes ainda abertos de Wix & Abraxas, o "Crescendo" do Pip, igual ao da Sona, e mais personalidade nos nomes da Nana)
 - [ ] Autocura dos tanks x importância do healer: ajustar nos números
 - [ ] Cada healer curando o grupo sozinho em todos os cenários; bônus de dano do Pip sem virar obrigatório; Lyra sem ser sempre a melhor escolha

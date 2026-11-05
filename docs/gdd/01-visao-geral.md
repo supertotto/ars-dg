@@ -4,7 +4,7 @@
 
 ## O jogo em uma frase
 
-Dungeon crawler cooperativo de alta fantasia, com câmera isométrica 3D, jogável solo ou em grupo de 5, que junta **dungeons no estilo do WoW** (feitas à mão, chefes com mecânica, loot persistente) com **combate de skills no estilo MOBA**.
+Dungeon crawler cooperativo de alta fantasia, com câmera isométrica 3D, jogável solo ou em grupo de 6, que junta **dungeons no estilo do WoW** (feitas à mão, chefes com mecânica, loot persistente) com **combate de skills no estilo MOBA**.
 
 ## Pilares
 
@@ -12,7 +12,7 @@ Dungeon crawler cooperativo de alta fantasia, com câmera isométrica 3D, jogáv
 | --- | --- |
 | Dungeons memoráveis | Cada dungeon tem magia, cor, tom e tema próprios; chefes com fases e mecânicas que ensinam algo |
 | Elenco com alma | 20 heróis fixos da Guilda **Ordem no Caos**, com personalidade, duplas e histórias |
-| Grupo de 5 | Trindade clássica: 1 tank, 1 healer, 3 DPS — com jogadores reais ou heróis controlados pela IA |
+| Grupo de 6 | Trindade clássica mais o controlador: 1 tank, 1 healer, 3 DPS e 1 controlador — com jogadores reais ou heróis controlados pela IA |
 | Nada de pay-to-win | Poder só se conquista jogando |
 
 ## Referências
